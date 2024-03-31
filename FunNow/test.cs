@@ -11,5 +11,6 @@ namespace FunNow
     {
         string test2;
         int test3;
+        string test4;
     }
 }
