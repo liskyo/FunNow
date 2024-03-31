@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0876559811744fa1a544df416ce98f9e" Name="Diagram1">
+        <EntityTypeShape EntityType="dbFunNowModel.City" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.CommentRate" Width="1.5" PointX="7.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.Country" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.Coupon" Width="1.5" PointX="8.25" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.Equipment" Width="1.5" PointX="13.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.Hotel" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.Hotel_Equipment_Reference" Width="1.5" PointX="7.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.HotelImages" Width="1.5" PointX="7.5" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.HotelLikes" Width="1.5" PointX="10.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.HotelType" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.Member" Width="1.5" PointX="10.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.Order" Width="1.5" PointX="10.5" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.OrderDetails" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.OrderStatus" Width="1.5" PointX="8.25" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.PaymentStatus" Width="1.5" PointX="8.25" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.Role" Width="1.5" PointX="8.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.Room" Width="1.5" PointX="10.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.Room_Equipment_Reference" Width="1.5" PointX="15.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.RoomImage" Width="1.5" PointX="12.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.RoomType" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFunNowModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="dbFunNowModel.FK_City_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_Hotel_City" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_Comment_Hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_Comment_Member1" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_Order_Coupon" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_PaymentStatus_Coupon" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_Hotel_Equipment_Reference_Equipment" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_Room_Equipment_Reference_Equipment" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_Hotel_Equipment_Reference_Hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_Hotel_HotelType" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_HotelImages_Hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_HotelLikes_Hotel1" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_Room_Hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_HotelLikes_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_Member_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_OrderDetails_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_Order_OrderStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_Order_PaymentStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_OrderDetails_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_OrderDetails_Room" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_Room_Equipment_Reference_Room" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_Room_RoomType" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFunNowModel.FK_RoomImage_Room" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

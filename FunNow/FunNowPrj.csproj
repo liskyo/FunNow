@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D39298CB-725F-4AC6-858F-6B8DC63D38E1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>FunNow</RootNamespace>
+    <AssemblyName>FunNow</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BackSide_Member\FrmMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_Member\FrmMember.Designer.cs">
+      <DependentUpon>FrmMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_OrderDetails\FrmOrderDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_OrderDetails\FrmOrderDetails.Designer.cs">
+      <DependentUpon>FrmOrderDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_POS\FrmPOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_POS\FrmPOS.Designer.cs">
+      <DependentUpon>FrmPOS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_POS\FrmPOS2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_POS\FrmPOS2.Designer.cs">
+      <DependentUpon>FrmPOS2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_POS\FrmPOS3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_POS\FrmPOS3.Designer.cs">
+      <DependentUpon>FrmPOS3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_POS\HotelBase.cs" />
+    <Compile Include="BackSide_POS\View\HotelBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BackSide_POS\View\HotelBox.Designer.cs">
+      <DependentUpon>HotelBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_Room\FrmRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_Room\FrmRoom.Designer.cs">
+      <DependentUpon>FrmRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="City.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommentRate.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Comment\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comment\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Coupon.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbFunNow.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbFunNow.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbFunNow.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbFunNow.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbFunNow.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAdmin.Designer.cs">
+      <DependentUpon>FrmAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBooking.Designer.cs">
+      <DependentUpon>FrmBooking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRoom.Designer.cs">
+      <DependentUpon>FrmRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrontSide\FieldBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrontSide\FieldBox.designer.cs">
+      <DependentUpon>FieldBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrontSide\FrmHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrontSide\FrmHome.designer.cs">
+      <DependentUpon>FrmHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrontSide\FrmCart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrontSide\FrmCart.designer.cs">
+      <DependentUpon>FrmCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrontSide\FrmPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrontSide\FrmPayment.designer.cs">
+      <DependentUpon>FrmPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrontSide\FrmRoomStyle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrontSide\FrmRoomStyle.designer.cs">
+      <DependentUpon>FrmRoomStyle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrontSide\RoomTypeSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrontSide\RoomTypeSelect.designer.cs">
+      <DependentUpon>RoomTypeSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hotel.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HotelImages.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HotelLikes.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HotelType.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hotel_Equipment_Reference.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Like\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Like\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login_Register\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login_Register\FrmLogin.designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login_Register\FrmRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login_Register\FrmRegister.designer.cs">
+      <DependentUpon>FrmRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Member.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="memoBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="memoBox.Designer.cs">
+      <DependentUpon>memoBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDetails.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderStatus.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentStatus.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Room.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="roomBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="roomBox.Designer.cs">
+      <DependentUpon>roomBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoomImage.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RoomType.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Room_Equipment_Reference.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BackSide_Member\FrmMember.resx">
+      <DependentUpon>FrmMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_OrderDetails\FrmOrderDetails.resx">
+      <DependentUpon>FrmOrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_POS\FrmPOS.resx">
+      <DependentUpon>FrmPOS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_POS\FrmPOS2.resx">
+      <DependentUpon>FrmPOS2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_POS\FrmPOS3.resx">
+      <DependentUpon>FrmPOS3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_POS\View\HotelBox.resx">
+      <DependentUpon>HotelBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_Room\FrmRoom.resx">
+      <DependentUpon>FrmRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAdmin.resx">
+      <DependentUpon>FrmAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBooking.resx">
+      <DependentUpon>FrmBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRoom.resx">
+      <DependentUpon>FrmRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrontSide\FieldBox.resx">
+      <DependentUpon>FieldBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrontSide\FrmHome.resx">
+      <DependentUpon>FrmHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrontSide\FrmCart.resx">
+      <DependentUpon>FrmCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrontSide\FrmPayment.resx">
+      <DependentUpon>FrmPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrontSide\FrmRoomStyle.resx">
+      <DependentUpon>FrmRoomStyle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrontSide\RoomTypeSelect.resx">
+      <DependentUpon>RoomTypeSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login_Register\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login_Register\FrmRegister.resx">
+      <DependentUpon>FrmRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="memoBox.resx">
+      <DependentUpon>memoBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="roomBox.resx">
+      <DependentUpon>roomBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="dbFunNow.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbFunNow.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="dbFunNow.edmx.diagram">
+      <DependentUpon>dbFunNow.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dbFunNow.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbFunNow.edmx</DependentUpon>
+      <LastGenOutput>dbFunNow.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="dbFunNow.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbFunNow.edmx</DependentUpon>
+      <LastGenOutput>dbFunNow.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
