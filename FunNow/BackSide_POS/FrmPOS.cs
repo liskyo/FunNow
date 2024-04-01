@@ -423,7 +423,7 @@ namespace FunNow.BackSide_POS
                              select ht.HotelTypeName).Distinct();//使用 LINQ 查詢 tRoom 表中所有記錄的 fCity 欄位。
                                                                  //套用 Distinct() 方法，確保沒有重複的城市名稱。
             comboBox1.Items.Clear();
-            comboBox1.Items.Add("     請選擇住宿類型");//將預設選項 "All City" 新增到 comboBox1 中
+            comboBox1.Items.Add("請選擇住宿類型");//將預設選項 "All City" 新增到 comboBox1 中
             comboBox1.SelectedIndex = 0;//將起始項目設為 (SelectedIndex = 0)。         
             foreach (var ht in hotelType)// 迴圈遍歷 distinctCity 中的每個城市名稱
             {
@@ -434,7 +434,7 @@ namespace FunNow.BackSide_POS
                             select r.RoomTypeName).Distinct();//使用 LINQ 查詢 tRoom 表中所有記錄的 fCity 欄位。
                                                               //套用 Distinct() 方法，確保沒有重複的城市名稱。
             comboBox2.Items.Clear();
-            comboBox2.Items.Add("     請選擇房間類型");//將預設選項 "All City" 新增到 comboBox1 中
+            comboBox2.Items.Add("請選擇房間類型");//將預設選項 "All City" 新增到 comboBox1 中
             comboBox2.SelectedIndex = 0;//將起始項目設為 (SelectedIndex = 0)。         
             foreach (var r in roomType)// 迴圈遍歷 distinctCity 中的每個城市名稱
             {
