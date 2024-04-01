@@ -17,9 +17,6 @@ namespace FunNow.BackSide_POS
 
     public partial class FrmPOS : Form
     {
-        //private IQueryable<Object> hotels ;
-        //public string loginMemeber { get; set; }
-        //public int FrmLogin.auth.MemberID { get; set; }
         public static DateTime checkInDate { get; set; }
         public static DateTime checkOutDate { get; set; }
 
@@ -436,7 +433,7 @@ namespace FunNow.BackSide_POS
         }
         private void FrmPOS_Activated(object sender, EventArgs e)
         {
-            resetGridStyle();
+            //resetGridStyle();
         }
         private void queryAll()  //select Room資料表資料內容
         {

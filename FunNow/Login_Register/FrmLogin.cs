@@ -1,4 +1,5 @@
 ﻿using Fun;
+using FunNow.BackSide_Hotel;
 using FunNow.BackSide_POS;
 using projFunNow_Ruby;
 using System;
@@ -72,26 +73,18 @@ namespace FunNow
                     }
                     if (encryPassword.Equals(mm.Password))//如果解密之後的密碼也相符
                     {
-                         ; //為了能讓其他表單關聯的全域變數
                         MessageBox.Show("歡迎" + mm.Name + "登入成功!!!");
 
                         if (mm.RoleID == 2)
                         {
                             //進入管理員後臺頁面
-                            FrmAdmin fa = new FrmAdmin();
-                            fa.loginAdmin = mm.Name;
-                            fa.loginAdminID = mm.MemberID;
-                            fa.ShowDialog();
+                            FrmMain fa = new FrmMain();
+                            auth = mm;
                         }
                         else
                         {
                             auth = mm;
-                            //進入一般顧客頁面
-                            //FrmPOS f = new FrmPOS();
-                            //f.loginMemeber = mm.Name;
-                            //f.loginMemberID = mm.MemberID;
 
-                            //f.ShowDialog();
                         }
                         isClosed = false;
                         Close();
@@ -121,10 +114,7 @@ namespace FunNow
 
         }
 
-        private void F_getData(string str)
-        {
-            throw new NotImplementedException();
-        }
+
 
         private void hidddenEyes(PictureBox p, System.Windows.Forms.TextBox t)
         {
@@ -173,12 +163,6 @@ namespace FunNow
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-            dbFunNow db = new dbFunNow();
-
-            var members = from m in db.Member
-                          select m;
-            dataGridView1.DataSource = members.ToList();
-
         }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
