@@ -38,9 +38,16 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lblName = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.showAllComment = new System.Windows.Forms.Button();
+            this.lbSmallComment1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbSmallComment2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -140,11 +147,60 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
+            // showAllComment
+            // 
+            this.showAllComment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(79)))), ((int)(((byte)(97)))));
+            this.showAllComment.ForeColor = System.Drawing.Color.White;
+            this.showAllComment.Location = new System.Drawing.Point(917, 327);
+            this.showAllComment.Name = "showAllComment";
+            this.showAllComment.Size = new System.Drawing.Size(101, 31);
+            this.showAllComment.TabIndex = 46;
+            this.showAllComment.Text = "顯示完整評論";
+            this.showAllComment.UseVisualStyleBackColor = false;
+            this.showAllComment.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lbSmallComment1
+            // 
+            this.lbSmallComment1.Location = new System.Drawing.Point(12, 16);
+            this.lbSmallComment1.Name = "lbSmallComment1";
+            this.lbSmallComment1.Size = new System.Drawing.Size(149, 17);
+            this.lbSmallComment1.TabIndex = 47;
+            this.lbSmallComment1.Text = "label2";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lbSmallComment1);
+            this.panel1.Location = new System.Drawing.Point(531, 310);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(174, 48);
+            this.panel1.TabIndex = 48;
+            // 
+            // lbSmallComment2
+            // 
+            this.lbSmallComment2.Location = new System.Drawing.Point(12, 16);
+            this.lbSmallComment2.Name = "lbSmallComment2";
+            this.lbSmallComment2.Size = new System.Drawing.Size(148, 17);
+            this.lbSmallComment2.TabIndex = 47;
+            this.lbSmallComment2.Text = "label2";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.lbSmallComment2);
+            this.panel2.Location = new System.Drawing.Point(723, 310);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(174, 48);
+            this.panel2.TabIndex = 49;
+            // 
             // FrmBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 841);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.showAllComment);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -162,6 +218,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -177,6 +235,11 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button showAllComment;
+        private System.Windows.Forms.Label lbSmallComment1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbSmallComment2;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

@@ -1,11 +1,13 @@
 ﻿using Fun;
 using FunNow.BackSide_POS;
+using FunNow.Comment;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,8 +21,7 @@ namespace FunNow
         public DateTime frmbookingEnd { get; set; }
         public FrmBooking()
         {
-            InitializeComponent();
-            
+            InitializeComponent();     
         }
 
         private void FrmBooking_Load(object sender, EventArgs e)
@@ -43,7 +44,28 @@ namespace FunNow
                               && !orders.Contains(r.RoomID)
                         select r;
 
-            foreach (var r in rooms)
+            var comments = (from c in db.CommentRate
+                            where c.HotelID == selectedHotel.HotelID
+                            orderby c.CreatedAt descending // 按時間遞減排序
+                            select c).Take(2); // 取最新的兩筆評論
+
+            int i = 1; // 用於追蹤是 smallCommentBox1 還是 smallCommentBox2
+            foreach (var c in comments)
+            {   
+                if (i == 1)
+                {
+                    lbSmallComment1.Text = c.Description;
+                    i++;
+                }
+                else if (i == 2)
+                {
+                    lbSmallComment2.Text = c.Description; // 假設 smallCommentBox2 具有 Text 屬性，用來顯示評論文字
+
+                    break; // 只需顯示最新的兩筆評論
+                }
+            }
+
+                foreach (var r in rooms)
             {
                 roomBox rb = new roomBox();
                 rb.room = r;
@@ -79,6 +101,12 @@ namespace FunNow
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             new FrmCart().ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {   //bnt showAllComment
+            FrmComment frmComment = new FrmComment(selectedHotel);
+            frmComment.ShowDialog();
         }
     }
 }

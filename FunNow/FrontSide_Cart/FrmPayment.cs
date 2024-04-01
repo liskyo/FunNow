@@ -11,12 +11,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FunNow.FrontSide_Cart.view;
 using FunNow.BackSide_POS;
+using FunNow.Comment;
 
 namespace Fun
 {
     public partial class FrmPayment : Form
     {
         private int _payID;
+        private Hotel selectedHotel;
+        public void ShowWriteComment()
+        {
+            FrmWriteComment wc = new FrmWriteComment();
+            wc.SelectedHotel = selectedHotel;
+            wc.ShowDialog();
+        }
         public string TotalPrice
         {
             get { return lblTotalPrice.Text; }
@@ -153,6 +161,7 @@ namespace Fun
                 orderDetail.isOrdered = true;
             }
             db.SaveChanges();
+            ShowWriteComment();
             this.Close();
 
         }

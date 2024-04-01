@@ -134,11 +134,30 @@
     <Compile Include="CommentRate.cs">
       <DependentUpon>dbFunNow.tt</DependentUpon>
     </Compile>
-    <Compile Include="Comment\Form1.cs">
+    <Compile Include="Comment\CComment.cs" />
+    <Compile Include="Comment\CommentBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Comment\CommentBox.Designer.cs">
+      <DependentUpon>CommentBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comment\FrmComment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comment\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Comment\FrmComment.Designer.cs">
+      <DependentUpon>FrmComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comment\FrmWriteComment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comment\FrmWriteComment.Designer.cs">
+      <DependentUpon>FrmWriteComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comment\WriteCommentBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Comment\WriteCommentBox.Designer.cs">
+      <DependentUpon>WriteCommentBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Country.cs">
       <DependentUpon>dbFunNow.tt</DependentUpon>
@@ -268,17 +287,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Role.cs">
-      <DependentUpon>dbFunNow.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Room.cs">
-      <DependentUpon>dbFunNow.tt</DependentUpon>
-    </Compile>
     <Compile Include="FrontSide_selectRoom\View\roomBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FrontSide_selectRoom\View\roomBox.Designer.cs">
       <DependentUpon>roomBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Room.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
     </Compile>
     <Compile Include="RoomEquipment.cs">
       <DependentUpon>dbFunNow.tt</DependentUpon>
@@ -331,6 +350,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BackSide_Room\FrmRoom.resx">
       <DependentUpon>FrmRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comment\CommentBox.resx">
+      <DependentUpon>CommentBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comment\FrmComment.resx">
+      <DependentUpon>FrmComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comment\FrmWriteComment.resx">
+      <DependentUpon>FrmWriteComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comment\WriteCommentBox.resx">
+      <DependentUpon>WriteCommentBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAdmin.resx">
       <DependentUpon>FrmAdmin.cs</DependentUpon>
