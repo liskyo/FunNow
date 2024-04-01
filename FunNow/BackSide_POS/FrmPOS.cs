@@ -471,6 +471,7 @@ namespace FunNow.BackSide_POS
         {
             dbFunNow db = new dbFunNow();
             var hotels = from h in db.Hotel//使用 LINQ 查詢 Hotel 表中所有記錄 自訂新欄位如NEW
+                         join c in db.CommentRate on h.HotelID equals c.HotelID
                          select
                          new  //設定要顯示的欄位
                          {
@@ -480,7 +481,10 @@ namespace FunNow.BackSide_POS
                              旅館特色 = h.HotelDescription,
                              旅館電話 = h.HotelPhone,
                              旅館種類 = h.HotelType.HotelTypeName,
-                             均價 = h.Room.Average(p => p.RoomPrice)
+                             均價 = h.Room.Average(p => p.RoomPrice),
+                             //評分 = c.Rating
+
+
                              //旅館評價 = cr.Description,
                          };
             dataGridView1.DataSource = hotels.ToList();
@@ -1212,7 +1216,7 @@ namespace FunNow.BackSide_POS
             checkOutDate = dateTimePicker2.Value.Date;
         }
 
-        private void toolStripButton6_Click(object sender, EventArgs e)  //按旅館評分排序
+        private void toolStripButton6_Click(object sender, EventArgs e)  //按旅館評分排序(進階搜尋原本沒有的欄位可參考)
         {
             dbFunNow db = new dbFunNow();//代表與資料庫的連線
 
