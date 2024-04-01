@@ -31,18 +31,22 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBooking));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblService = new System.Windows.Forms.Label();
             this.lblComment = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lblName = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+//<<<<<<< Updated upstream
             this.showAllComment = new System.Windows.Forms.Button();
             this.lbSmallComment1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbSmallComment2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+//=======
+            this.lblMemo = new System.Windows.Forms.Label();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+//>>>>>>> Stashed changes
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -64,23 +68,11 @@
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(135, 28);
+            this.label1.Location = new System.Drawing.Point(145, 28);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(919, 56);
+            this.label1.Size = new System.Drawing.Size(885, 56);
             this.label1.TabIndex = 1;
-            // 
-            // lblService
-            // 
-            this.lblService.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblService.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblService.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
-            this.lblService.Location = new System.Drawing.Point(512, 387);
-            this.lblService.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblService.Name = "lblService";
-            this.lblService.Size = new System.Drawing.Size(518, 100);
-            this.lblService.TabIndex = 3;
-            this.lblService.Text = "設施";
             // 
             // lblComment
             // 
@@ -126,27 +118,28 @@
             // 
             // lblName
             // 
-            this.lblName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
             this.lblName.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
+            this.lblName.ForeColor = System.Drawing.Color.White;
             this.lblName.Location = new System.Drawing.Point(512, 108);
             this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(518, 148);
+            this.lblName.Size = new System.Drawing.Size(518, 42);
             this.lblName.TabIndex = 41;
-            this.lblName.Text = "飯店";
+            this.lblName.Text = "飯店名稱";
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(962, 39);
+            this.pictureBox2.Location = new System.Drawing.Point(965, 28);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(42, 45);
+            this.pictureBox2.Size = new System.Drawing.Size(65, 56);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 43;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
+//<<<<<<< Updated upstream
             // showAllComment
             // 
             this.showAllComment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(79)))), ((int)(((byte)(97)))));
@@ -192,21 +185,48 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(174, 48);
             this.panel2.TabIndex = 49;
+//=======
+            // lblMemo
+            // 
+            this.lblMemo.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblMemo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
+            this.lblMemo.Location = new System.Drawing.Point(512, 160);
+            this.lblMemo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMemo.Name = "lblMemo";
+            this.lblMemo.Size = new System.Drawing.Size(518, 95);
+            this.lblMemo.TabIndex = 44;
+            this.lblMemo.Text = "飯店描述";
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.AutoScroll = true;
+            this.flowLayoutPanel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(512, 387);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(518, 100);
+            this.flowLayoutPanel3.TabIndex = 45;
+            this.flowLayoutPanel3.WrapContents = false;
+//>>>>>>> Stashed changes
             // 
             // FrmBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 841);
+//<<<<<<< Updated upstream
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.showAllComment);
+//=======
+            this.Controls.Add(this.flowLayoutPanel3);
+            this.Controls.Add(this.lblMemo);
+//>>>>>>> Stashed changes
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.lblComment);
-            this.Controls.Add(this.lblService);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox3);
@@ -228,18 +248,22 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblService;
         private System.Windows.Forms.Label lblComment;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.PictureBox pictureBox2;
+//Updated upstream
         private System.Windows.Forms.Button showAllComment;
         private System.Windows.Forms.Label lbSmallComment1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbSmallComment2;
         private System.Windows.Forms.Panel panel2;
+//=======
+        private System.Windows.Forms.Label lblMemo;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+//>>>>>>> Stashed changes
     }
 }
 

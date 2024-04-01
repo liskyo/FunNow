@@ -16,6 +16,7 @@ namespace FunNow
 {
     public partial class FrmBooking : Form
     {
+        //痊癒變數+屬性-------------------------------------------------------------------------------
         public Hotel selectedHotel { get; set; }
         public DateTime frmbookingStart { get; set; }
         public DateTime frmbookingEnd { get; set; }
@@ -23,12 +24,9 @@ namespace FunNow
         {
             InitializeComponent();     
         }
-
+        //Load--------------------------------------------------------------------------------------
         private void FrmBooking_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(frmbookingEnd.ToString());
-            MessageBox.Show(frmbookingStart.ToString());
-            MessageBox.Show(selectedHotel.HotelID.ToString());
             if (selectedHotel == null)
                 return;
 
@@ -70,29 +68,60 @@ namespace FunNow
                 roomBox rb = new roomBox();
                 rb.room = r;
                 rb.Width = flowLayoutPanel1.Width;
-                rb.showAddCart += this.showCartMethod;
+                //delegate傳時間: datetimepicker->hotelbox->frmbooking->roombox-------------
+                rb.roomboxStart = frmbookingStart;
+                rb.roomboxEnd = frmbookingEnd;
+                //在roombox註冊顯示房間葉面的事件方法--------------------------------------------
+                rb.showRoomEvent += this.showRoomMethod;
+                //在roombox註冊加入購物車的事件方法--------------------------------------------
+                rb.showAddCart += this.showAddCartMethod;
                 flowLayoutPanel1.Controls.Add(rb);
+            }
+
+            lblName.Text = selectedHotel.HotelName;
+            lblMemo.Text = selectedHotel.HotelDescription;
+
+            var equipments = from eq in db.Hotel_Equipment_Reference
+                             where eq.HotelID == selectedHotel.HotelID
+                             select eq.HotelEquipment;
+
+            foreach (var equip in equipments)
+            {
+                CheckBox c = new CheckBox();
+                c.Text = equip.HotelEquipmentName.ToString();
+                c.Checked = true;
+                c.Enabled = false;
+                c.Width = flowLayoutPanel2.Width;
+                c.Height = 25;
+                c.Font = new Font("微軟正黑體", 12, FontStyle.Regular);
+
+                flowLayoutPanel3.Controls.Add(c);
             }
         }
 
-        private void showCartMethod(roomBox p, DateTime frmbookingStart, DateTime frmbookingEnd)
+        //showRoomMethod----------------------------------------------------------------
+        private void showRoomMethod(roomBox p)
         {
-            MessageBox.Show(FrmPOS.checkInDate.ToString());
-            MessageBox.Show(FrmPOS.checkOutDate.ToString());
+            FrmRoom f = new FrmRoom();
+            f.selectedRoom = p.room;
+            f.ShowDialog();
+        }
 
-            //將資料傳進OrderDetails 資料表
+        //showAddCartMethod----------------------------------------------------------------
+        private void showAddCartMethod(roomBox p, DateTime start, DateTime end)
+        {
+            //存入orderdetails表
             dbFunNow db = new dbFunNow();
             OrderDetails o = new OrderDetails();
             o.RoomID = p.room.RoomID;
             o.MemberID = FrmLogin.auth.MemberID;
-            o.CheckInDate = DateTime.Parse(FrmPOS.checkInDate.ToString("yyyy/MM/dd"));
-            o.CheckOutDate = DateTime.Parse(FrmPOS.checkOutDate.ToString("yyyy/MM/dd")); ;
+            o.CheckInDate = DateTime.Parse(start.ToString("yyyy/MM/dd"));
+            o.CheckOutDate = DateTime.Parse(end.ToString("yyyy/MM/dd")); ;
             o.CreatedAt = DateTime.Now;
             o.isOrdered = false;
             db.OrderDetails.Add(o);
             db.SaveChanges();
             MessageBox.Show("已新增至購物車");
-
 
             FrmCart f = new FrmCart();
             f.ShowDialog();

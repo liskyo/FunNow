@@ -10,24 +10,30 @@ using System.Windows.Forms;
 
 namespace FunNow
 {
-    public delegate void D(roomBox p, DateTime start, DateTime end);
+    //delegate---------------------------------------------------------
+    public delegate void D1(roomBox p, DateTime start, DateTime end);
+    public delegate void D2(roomBox p);
+
     public partial class roomBox : UserControl
     {
-        public event D showAddCart;
-        private DateTime _start;
-        private Room _room;
-
-        public DateTime start
+        //event--------------------------------------------------------
+        public event D1 showAddCart;
+        public event D2 showRoomEvent;
+        //痊癒變數+屬性-------------------------------------------------
+        private DateTime _roomboxStart;
+        public DateTime roomboxStart
         {
-            get { return _start; }
+            get { return _roomboxStart; }
             set
             {
-                _start = value;
-                lblDate.Text = _start.ToString("yyyy/MM/dd");
+                _roomboxStart = value;
+                lblDate.Text = _roomboxStart.ToString("yyyy/MM/dd");
             }
         }
-        public DateTime end { get; set; }
 
+        public DateTime roomboxEnd { get; set; }
+        
+        private Room _room;
         public Room room
         {
             get { return _room; }
@@ -35,7 +41,6 @@ namespace FunNow
             {
                 _room = value;
                 lblName.Text = _room.RoomName;
-                lblMemo.Text = _room.Description;
                 lblPrice.Text = "$" + _room.RoomPrice.ToString();
             }
         }
@@ -43,23 +48,15 @@ namespace FunNow
         {
             InitializeComponent();
         }
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            FrmRoom f = new FrmRoom();
-            f.ShowDialog();
-        }
-
+        //-------------------------------------------------------------
         private void lblName_Click(object sender, EventArgs e)
         {
-            FrmRoom f = new FrmRoom();
-            f.ShowDialog();
+            showRoomEvent?.Invoke(this);
         }
-
-    
 
         private void btnCart_Click_1(object sender, EventArgs e)
         {
-            showAddCart(this, start, end);
+            showAddCart(this, roomboxStart, roomboxEnd);
         }
     }
 }
