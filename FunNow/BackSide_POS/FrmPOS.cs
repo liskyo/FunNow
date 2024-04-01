@@ -145,7 +145,7 @@ namespace FunNow.BackSide_POS
                              旅館特色 = h.HotelDescription,
                              旅館電話 = h.HotelPhone,
                              旅館種類 = h.HotelType.HotelTypeName,
-                             平均價格 = h.Room.Average(p => p.RoomPrice)
+                             均價 = h.Room.Average(p => p.RoomPrice)
 
                              //旅館評價 = cr.Description,
 
@@ -237,7 +237,7 @@ namespace FunNow.BackSide_POS
                              旅館特色 = h.HotelDescription,
                              旅館電話 = h.HotelPhone,
                              旅館種類 = h.HotelType.HotelTypeName,
-                             平均價格 = h.Room.Average(p => p.RoomPrice)
+                             均價 = h.Room.Average(p => p.RoomPrice)
 
                              //旅館評價 = cr.Description,
 
@@ -328,7 +328,7 @@ namespace FunNow.BackSide_POS
                              旅館特色 = h.HotelDescription,
                              旅館電話 = h.HotelPhone,
                              旅館種類 = h.HotelType.HotelTypeName,
-                             平均價格 = h.Room.Average(p => p.RoomPrice)
+                             均價 = h.Room.Average(p => p.RoomPrice)
 
                              //旅館評價 = cr.Description,
 
@@ -715,7 +715,7 @@ namespace FunNow.BackSide_POS
                              旅館特色 = h.HotelDescription,
                              旅館電話 = h.HotelPhone,
                              旅館種類 = h.HotelType.HotelTypeName,
-                             平均價格 = h.Room.Average(p => p.RoomPrice)
+                             均價 = h.Room.Average(p => p.RoomPrice)
 
                              //旅館評價 = cr.Description,
 
@@ -801,7 +801,7 @@ namespace FunNow.BackSide_POS
                              旅館特色 = h.HotelDescription,
                              旅館電話 = h.HotelPhone,
                              旅館種類 = h.HotelType.HotelTypeName,
-                             平均價格 = h.Room.Average(p => p.RoomPrice)
+                             均價 = h.Room.Average(p => p.RoomPrice)
 
                              //旅館評價 = cr.Description,
 
@@ -888,7 +888,7 @@ namespace FunNow.BackSide_POS
                              旅館特色 = h.HotelDescription,
                              旅館電話 = h.HotelPhone,
                              旅館種類 = h.HotelType.HotelTypeName,
-                             平均價格 = h.Room.Average(p => p.RoomPrice)
+                             均價 = h.Room.Average(p => p.RoomPrice)
 
                              //旅館評價 = cr.Description,
 
@@ -975,7 +975,7 @@ namespace FunNow.BackSide_POS
                              旅館特色 = h.HotelDescription,
                              旅館電話 = h.HotelPhone,
                              旅館種類 = h.HotelType.HotelTypeName,
-                             平均價格 = h.Room.Average(p => p.RoomPrice)
+                             均價 = h.Room.Average(p => p.RoomPrice)
 
                              //旅館評價 = cr.Description,
 
@@ -1019,6 +1019,295 @@ namespace FunNow.BackSide_POS
                              // rb._hotels = hotels2;//顯示全部旅館
                 hb.hotelboxStart = dateTimePicker1.Value;
                 hb.hotelboxEnd = dateTimePicker2.Value;
+                hb.showHotelEvent += this.showHotelMethod;
+                flowLayoutPanel1.Controls.Add(hb);
+                //將 RoomBox 物件新增到 flowLayoutPanel1 控制項中。
+            }
+            checkInDate = dateTimePicker1.Value.Date;
+            checkOutDate = dateTimePicker2.Value.Date;
+        }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)  //精選旅館名稱有W的飯店
+        {
+            dbFunNow db = new dbFunNow();//代表與資料庫的連線
+
+            var orders = from k in db.OrderDetails//使用 LINQ 查詢 OrderDetails 表中所有記錄的 RoomID 欄位，已被訂房的資料
+                         where !(k.CheckInDate >= dateTimePicker2.Value.Date || k.CheckOutDate <= dateTimePicker1.Value.Date) // 符合條件List<OrderDetails>
+                         //使用 where 子句排除在指定日期範圍內已訂出的房間。 //訂單的開始日期大於或等於 dateTimePicker2 的值
+                         select k.RoomID;                           //  或  //訂單的結束日期小於或等於 dateTimePicker1 的值。 //ex. List<RoomID> 123 234(在訂單內)
+            //   o 可訂  旅館  房間  
+            //   x (1)   3     123 (在訂單內)
+            //   x (2)   4     234
+            //   o (3)   4     235
+            //   o (4)   5     236 
+            //   o (4)   5     237
+
+            // 篩選出已在指定日期範圍內訂出的房間                    
+            var rooms = from r in db.Room   // 查詢所有房間  List<Room>
+                        where !orders.ToList().Contains(r.RoomID) //k.RoomID = r.RoomID => List<Room> 房間 o (3)  4-235    o (4)  5-236   o (4) 5-237 
+                        select r.HotelID;                         // List<HotelID>    旅館 o 4 o 5 o 5
+
+            string keyword = txtKeyword.Text; //關鍵字搜尋
+
+            var hotels = from h in db.Hotel   // 所有的hotel
+                         where rooms.ToList().Contains(h.HotelID) && h.HotelName.Contains("w")
+                         select
+                         new
+                         {
+                             城市 = h.City.CityName,
+                             旅館名稱 = h.HotelName,
+                             旅館地址 = h.HotelAddress,
+                             旅館特色 = h.HotelDescription,
+                             旅館電話 = h.HotelPhone,
+                             旅館種類 = h.HotelType.HotelTypeName,
+                             均價 = h.Room.Average(p => p.RoomPrice)
+
+                             //旅館評價 = cr.Description,
+
+                         };  // 將hotels查詢結果繫結到dataGridView1 
+
+            // 將查詢結果繫結到資料表
+            dataGridView1.DataSource = hotels.ToList();
+
+            resetGridStyle();// 重設資料表樣式
+
+            //===================================================  以下為顯示於HotelBox的操作，包含我的最愛功能
+
+            flowLayoutPanel1.Controls.Clear();
+
+            var hotellike = from hl in db.HotelLikes
+                            select hl;
+
+            var hotels2 = from h in db.Hotel   // 空房的hotel
+                          where rooms.ToList().Contains(h.HotelID) && h.HotelName.Contains("w")
+                          select h;  //將hotels2查詢結果繫結到HotelBox
+
+            foreach (var h in hotels2)
+            {
+                HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。
+                                             //rb.start = dateTimePicker1.Value;
+                                             //rb.end = dateTimePicker2.Value;
+                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == FrmLogin.auth.MemberID);
+
+                if (hls.ToList().Count != 0)   //愛心顏色才會跟HotelLikes內的LikeStatus同步
+                {
+                    hb.hotellike = (HotelLikes)hls.ToList().ElementAt(0);
+                }
+
+                hb.HotelID = h.HotelID;
+
+                hb.MemberID = FrmLogin.auth.MemberID;
+
+                hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
+                hb.hotel = h;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
+                             // rb._hotels = hotels2;//顯示全部旅館
+                hb.hotelboxStart = dateTimePicker1.Value;
+                hb.hotelboxEnd = dateTimePicker2.Value;
+                hb.showHotelEvent += this.showHotelMethod;
+                flowLayoutPanel1.Controls.Add(hb);
+                //將 RoomBox 物件新增到 flowLayoutPanel1 控制項中。
+            }
+            checkInDate = dateTimePicker1.Value.Date;
+            checkOutDate = dateTimePicker2.Value.Date;
+
+        }
+
+        private void toolStripButton10_Click(object sender, EventArgs e) // 按城市名稱搜尋
+        {
+            dbFunNow db = new dbFunNow();//代表與資料庫的連線
+
+            var orders = from k in db.OrderDetails//使用 LINQ 查詢 OrderDetails 表中所有記錄的 RoomID 欄位
+                         where !(k.CheckInDate >= dateTimePicker2.Value.Date || k.CheckOutDate <= dateTimePicker1.Value.Date) // 符合條件List<OrderDetails>
+                         //使用 where 子句排除在指定日期範圍內已訂出的房間。 //訂單的開始日期大於或等於 dateTimePicker2 的值
+                         select k.RoomID;                           //  或  //訂單的結束日期小於或等於 dateTimePicker1 的值。 //ex. List<RoomID> 123 234(在訂單內)
+            //   o 可訂  旅館  房間  
+            //   x (1)   3     123 (在訂單內)
+            //   x (2)   4     234
+            //   o (3)   4     235
+            //   o (4)   5     236 
+            //   o (4)   5     237
+
+            // 篩選出已在指定日期範圍內訂出的房間                    
+            var rooms = from r in db.Room   // 查詢所有房間  List<Room>
+                        where !orders.ToList().Contains(r.RoomID) //k.RoomID = r.RoomID => List<Room> 房間 o (3)  4-235    o (4)  5-236   o (4) 5-237 
+                        select r.HotelID;                         // List<HotelID>    旅館 o 4 o 5 o 5
+
+            var hotels = from h in db.Hotel   // 空房的hotel
+                         where rooms.ToList().Contains(h.HotelID)  // List<Hotel>
+                         select
+                         new
+                         {
+                             城市 = h.City.CityName,
+                             旅館名稱 = h.HotelName,
+                             旅館地址 = h.HotelAddress,
+                             旅館特色 = h.HotelDescription,
+                             旅館電話 = h.HotelPhone,
+                             旅館種類 = h.HotelType.HotelTypeName,
+                             均價 = h.Room.Average(p => p.RoomPrice)
+
+                             //旅館評價 = cr.Description,
+                         };                                  // List<Hotel>
+
+            // 按 CityID 排列
+            hotels = hotels.OrderBy(h => h.城市);
+
+            // 將查詢結果繫結到資料表
+            dataGridView1.DataSource = hotels.ToList();
+
+            resetGridStyle();// 重設資料表樣式
+
+            //========================================          
+
+            flowLayoutPanel1.Controls.Clear(); //首先，清除 flowLayoutPanel1 控制項中的所有控制項
+
+            var sorthotelname = hotels.Select(p => p.旅館名稱); //從 sortedhotels 集合中選取所有旅館名稱                                                                     
+            List<string> sorthotelnamelist = sorthotelname.ToList();//並轉換為 List<string> 集合 sorthotelname2
+
+            //從 db.Hotel 資料表中選取所有空房的旅館並轉換為 List<Hotel> 集合
+            var hotels2 = from h in db.Hotel   // 空房的hotel
+                          where rooms.ToList().Contains(h.HotelID)  // List<Hotel> hotels2list
+                          select h;
+
+            //var hotels2list = hotels2.ToList();
+
+            //var sorthtels3 = hotels2list   //根據旅館名稱對 hotels2list 集合進行排序
+            //    .OrderBy(h => sorthotelnamelist.IndexOf(h.HotelName)).ToList();
+
+            var hotellike = from hl in db.HotelLikes //從 db.HotelLikes 資料表中選取所有旅館喜好資料。
+                            select hl;
+
+            foreach (var h in hotels2) //遍歷 sorthtels3 集合中的每個旅館
+            {
+                HotelBox hb = new HotelBox();//建立一個 HotelBox 物件，用來顯示旅館資訊。
+
+                //根據會員 ID 和旅館 ID 從 db.HotelLikes 資料表中選取旅館喜好資料
+                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == FrmLogin.auth.MemberID);
+
+                if (hls.ToList().Count != 0) //如果旅館喜好裡有資料，則設定 HotelBox 物件的旅館喜好狀態
+                {
+                    hb.hotellike = (HotelLikes)hls.ToList().ElementAt(0); //返回 List<HotelLikes> 集合中的第一個元素
+                                                                          //將第一個元素轉換為 HotelLikes 型別
+                                                                          //rb.hotellike：HotelBox 物件的 HotelLikes 屬性，用於存儲旅館喜好資料。
+                                                                          //hls：一個包含旅館喜好資料的 IEnumerable<HotelLikes> 集合。
+                                                                          //ToList()：將 IEnumerable< HotelLikes > 集合轉換為 List<HotelLikes> 集合。
+                                                                          //ElementAt(0)：返回 List<HotelLikes> 集合中的第一個元素。
+                                                                          //(HotelLikes)：將第一個元素轉換為 HotelLikes 型別。
+                }
+
+                hb.HotelID = h.HotelID;
+
+                hb.MemberID = FrmLogin.auth.MemberID;
+
+                hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
+                hb.hotel = h;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
+                             // rb._hotels = hotels2;//顯示全部旅館
+                hb.hotelboxStart = dateTimePicker1.Value;
+                hb.hotelboxEnd = dateTimePicker2.Value;
+
+                hb.showHotelEvent += this.showHotelMethod;
+                flowLayoutPanel1.Controls.Add(hb);
+                //將 RoomBox 物件新增到 flowLayoutPanel1 控制項中。
+            }
+            checkInDate = dateTimePicker1.Value.Date;
+            checkOutDate = dateTimePicker2.Value.Date;
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)  //按旅館評分排序
+        {
+            dbFunNow db = new dbFunNow();//代表與資料庫的連線
+
+            var orders = from k in db.OrderDetails//使用 LINQ 查詢 OrderDetails 表中所有記錄的 RoomID 欄位，已被訂房的資料
+                         where !(k.CheckInDate >= dateTimePicker2.Value.Date || k.CheckOutDate <= dateTimePicker1.Value.Date) // 符合條件List<OrderDetails>
+                         //使用 where 子句排除在指定日期範圍內已訂出的房間。 //訂單的開始日期大於或等於 dateTimePicker2 的值
+                         select k.RoomID;                           //  或  //訂單的結束日期小於或等於 dateTimePicker1 的值。 //ex. List<RoomID> 123 234(在訂單內)
+            //   o 可訂  旅館  房間  
+            //   x (1)   3     123 (在訂單內)
+            //   x (2)   4     234
+            //   o (3)   4     235
+            //   o (4)   5     236 
+            //   o (4)   5     237
+
+            // 篩選出已在指定日期範圍內訂出的房間                    
+            var rooms = from r in db.Room   // 查詢所有房間  List<Room>
+                        where !orders.ToList().Contains(r.RoomID) //k.RoomID = r.RoomID => List<Room> 房間 o (3)  4-235    o (4)  5-236   o (4) 5-237 
+                        select r.HotelID;                         // List<HotelID>    旅館 o 4 o 5 o 5
+
+            string keyword = txtKeyword.Text; //關鍵字搜尋
+
+
+            var hotels = from h in db.Hotel   // 所有的hotel
+                         join c in db.CommentRate on h.HotelID equals c.HotelID
+                         where rooms.ToList().Contains(h.HotelID) // List<Hotel>
+                         select
+                         new
+                         {
+                             城市 = h.City.CityName,
+                             旅館名稱 = h.HotelName,
+                             旅館地址 = h.HotelAddress,
+                             旅館特色 = h.HotelDescription,
+                             旅館電話 = h.HotelPhone,
+                             旅館種類 = h.HotelType.HotelTypeName,
+                             //均價 = h.Room.Average(p => p.RoomPrice),
+                             評分 = c.Rating
+
+                         };  // 將hotels查詢結果繫結到dataGridView1 
+
+            hotels = hotels.OrderByDescending(h => h.評分);
+
+
+            // 將查詢結果繫結到資料表
+            dataGridView1.DataSource = hotels.ToList();
+
+            resetGridStyle();// 重設資料表樣式
+
+            //===================================================  以下為顯示於HotelBox的操作，包含我的最愛功能
+
+            flowLayoutPanel1.Controls.Clear(); //首先，清除 flowLayoutPanel1 控制項中的所有控制項
+
+            var sorthotelname = hotels.Select(p => p.旅館名稱); //從 sortedhotels 集合中選取所有旅館名稱                                                                     
+            List<string> sorthotelnamelist = sorthotelname.ToList();//並轉換為 List<string> 集合 sorthotelname2
+
+            //從 db.Hotel 資料表中選取所有空房的旅館並轉換為 List<Hotel> 集合
+            var hotels2 = from h in db.Hotel   // 空房的hotel
+                          where rooms.ToList().Contains(h.HotelID)  // List<Hotel> hotels2list
+                          select h;
+
+            var hotels2list = hotels2.ToList();
+
+            var sorthtels3 = hotels2list   //根據旅館名稱對 hotels2list 集合進行排序
+                .OrderBy(h => sorthotelnamelist.IndexOf(h.HotelName)).ToList();
+
+            var hotellike = from hl in db.HotelLikes //從 db.HotelLikes 資料表中選取所有旅館喜好資料。
+                            select hl;
+
+            foreach (var h in sorthtels3) //遍歷 sorthtels3 集合中的每個旅館
+            {
+                HotelBox hb = new HotelBox();//建立一個 HotelBox 物件，用來顯示旅館資訊。
+
+                //根據會員 ID 和旅館 ID 從 db.HotelLikes 資料表中選取旅館喜好資料
+                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == FrmLogin.auth.MemberID);
+
+                if (hls.ToList().Count != 0) //如果旅館喜好裡有資料，則設定 HotelBox 物件的旅館喜好狀態
+                {
+                    hb.hotellike = (HotelLikes)hls.ToList().ElementAt(0); //返回 List<HotelLikes> 集合中的第一個元素
+                                                                          //將第一個元素轉換為 HotelLikes 型別
+                                                                          //rb.hotellike：HotelBox 物件的 HotelLikes 屬性，用於存儲旅館喜好資料。
+                                                                          //hls：一個包含旅館喜好資料的 IEnumerable<HotelLikes> 集合。
+                                                                          //ToList()：將 IEnumerable< HotelLikes > 集合轉換為 List<HotelLikes> 集合。
+                                                                          //ElementAt(0)：返回 List<HotelLikes> 集合中的第一個元素。
+                                                                          //(HotelLikes)：將第一個元素轉換為 HotelLikes 型別。
+                }
+
+                hb.HotelID = h.HotelID;
+
+                hb.MemberID = FrmLogin.auth.MemberID;
+
+                hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
+                hb.hotel = h;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
+                             // rb._hotels = hotels2;//顯示全部旅館
+                hb.hotelboxStart = dateTimePicker1.Value;
+                hb.hotelboxEnd = dateTimePicker2.Value;
+
                 hb.showHotelEvent += this.showHotelMethod;
                 flowLayoutPanel1.Controls.Add(hb);
                 //將 RoomBox 物件新增到 flowLayoutPanel1 控制項中。
