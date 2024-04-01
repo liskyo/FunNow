@@ -131,9 +131,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbFunNow.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Equipment.cs">
-      <DependentUpon>dbFunNow.tt</DependentUpon>
-    </Compile>
     <Compile Include="FrmAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +186,9 @@
       <DependentUpon>RoomTypeSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="Hotel.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HotelEquipment.cs">
       <DependentUpon>dbFunNow.tt</DependentUpon>
     </Compile>
     <Compile Include="HotelImages.cs">
@@ -255,6 +255,9 @@
     </Compile>
     <Compile Include="roomBox.Designer.cs">
       <DependentUpon>roomBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoomEquipment.cs">
+      <DependentUpon>dbFunNow.tt</DependentUpon>
     </Compile>
     <Compile Include="RoomImage.cs">
       <DependentUpon>dbFunNow.tt</DependentUpon>

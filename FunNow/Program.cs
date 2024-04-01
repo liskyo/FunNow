@@ -33,10 +33,10 @@ namespace FunNow
 
             //Application.Run(new Form1());
 
-            //Application.Run(new FrmPOS());
+            Application.Run(new FrmPOS());
             // Application.Run(new FrmPOS2());
 
-            Application.Run(new FrmLogin());
+            //Application.Run(new FrmLogin());
 
 
         }

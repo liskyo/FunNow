@@ -17,12 +17,13 @@ namespace FunNow
         public int OrderDetailID { get; set; }
         public int MemberID { get; set; }
         public int RoomID { get; set; }
-        public Nullable<System.DateTime> CheckInDate { get; set; }
-        public Nullable<System.DateTime> CheckOutDate { get; set; }
+        public System.DateTime CheckInDate { get; set; }
+        public System.DateTime CheckOutDate { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
-        public Nullable<bool> isOrdered { get; set; }
-        public int OrderID { get; set; }
+        public bool isOrdered { get; set; }
+        public Nullable<int> OrderID { get; set; }
     
+        public virtual Member Member { get; set; }
         public virtual Order Order { get; set; }
         public virtual Room Room { get; set; }
     }

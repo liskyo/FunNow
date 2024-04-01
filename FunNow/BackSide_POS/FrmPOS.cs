@@ -17,8 +17,8 @@ namespace FunNow.BackSide_POS
     public partial class FrmPOS : Form
     {
         //private IQueryable<Object> hotels ;
-        public string loginMemeber { get; set; }
-        public int loginMemberID { get; set; }
+        //public string loginMemeber { get; set; }
+        //public int FrmLogin.auth.MemberID { get; set; }
 
         private OrderDetails _order;
         public OrderDetails order
@@ -167,7 +167,7 @@ namespace FunNow.BackSide_POS
                 HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。
                                              //rb.start = dateTimePicker1.Value;
                                              //rb.end = dateTimePicker2.Value;
-                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == loginMemberID);
+                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == FrmLogin.auth.MemberID);
 
                 if (hls.ToList().Count != 0)   //愛心顏色才會跟HotelLikes內的LikeStatus同步
                 {
@@ -176,7 +176,7 @@ namespace FunNow.BackSide_POS
 
                 hb.HotelID = h.HotelID;
 
-                hb.MemberID = loginMemberID;
+                hb.MemberID = FrmLogin.auth.MemberID;
 
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
                 hb.hotel = h;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
@@ -250,7 +250,7 @@ namespace FunNow.BackSide_POS
                 HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。
                                              //rb.start = dateTimePicker1.Value;
                                              //rb.end = dateTimePicker2.Value;
-                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == loginMemberID);
+                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == FrmLogin.auth.MemberID);
 
                 if (hls.ToList().Count != 0)   //愛心顏色才會跟HotelLikes內的LikeStatus同步
                 {
@@ -259,7 +259,7 @@ namespace FunNow.BackSide_POS
 
                 hb.HotelID = h.HotelID;
 
-                hb.MemberID = loginMemberID;
+                hb.MemberID = FrmLogin.auth.MemberID;
 
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
                 hb.hotel = h;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
@@ -327,7 +327,7 @@ namespace FunNow.BackSide_POS
                 HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。
                                              //rb.start = dateTimePicker1.Value;
                                              //rb.end = dateTimePicker2.Value;
-                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == loginMemberID);
+                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == FrmLogin.auth.MemberID);
 
                 if (hls.ToList().Count != 0)   //愛心顏色才會跟HotelLikes內的LikeStatus同步
                 {
@@ -336,7 +336,7 @@ namespace FunNow.BackSide_POS
 
                 hb.HotelID = h.HotelID;
 
-                hb.MemberID = loginMemberID;
+                hb.MemberID = FrmLogin.auth.MemberID;
 
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
                 hb.hotel = h;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
@@ -348,9 +348,14 @@ namespace FunNow.BackSide_POS
         }
         private void FrmPOS_Load(object sender, EventArgs e)
         {
+            FrmLogin f = new FrmLogin();
+
+            f.ShowDialog();
+            
+            
             dateTimePicker2.Value = dateTimePicker1.Value.AddDays(1); //設定進首頁時，退房時間的顯示
 
-            toolStripLabel4.Text = "熱烈歡迎會員編號" + loginMemberID + "，大名為" + loginMemeber + "登入平台";
+            toolStripLabel4.Text = "熱烈歡迎會員編號" + FrmLogin.auth.MemberID + "，大名為" + FrmLogin.auth.Name + "登入平台";
 
             queryAll(); //SHOW出房間資訊 包含自訂欄位
 
@@ -581,7 +586,7 @@ namespace FunNow.BackSide_POS
                 HotelBox hb = new HotelBox();//建立一個 HotelBox 物件，用來顯示旅館資訊。
 
                 //根據會員 ID 和旅館 ID 從 db.HotelLikes 資料表中選取旅館喜好資料
-                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == loginMemberID);
+                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == FrmLogin.auth.MemberID);
 
                 if (hls.ToList().Count != 0) //如果旅館喜好裡有資料，則設定 HotelBox 物件的旅館喜好狀態
                 {
@@ -596,7 +601,7 @@ namespace FunNow.BackSide_POS
 
                 hb.HotelID = h.HotelID;
 
-                hb.MemberID = loginMemberID;
+                hb.MemberID = FrmLogin.auth.MemberID;
 
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
                 hb.hotel = h;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
@@ -607,6 +612,11 @@ namespace FunNow.BackSide_POS
             }
         }
         private void toolStrip3_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolStripLabel4_Click(object sender, EventArgs e)
         {
 
         }

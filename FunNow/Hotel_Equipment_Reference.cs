@@ -14,11 +14,11 @@ namespace FunNow
     
     public partial class Hotel_Equipment_Reference
     {
-        public int HotelEquipmentID { get; set; }
+        public int HotelEquipmentReferenceID { get; set; }
         public int HotelID { get; set; }
-        public int EquipmentID { get; set; }
+        public int HotelEquipmentID { get; set; }
     
-        public virtual Equipment Equipment { get; set; }
         public virtual Hotel Hotel { get; set; }
+        public virtual HotelEquipment HotelEquipment { get; set; }
     }
 }

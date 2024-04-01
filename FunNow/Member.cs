@@ -19,7 +19,7 @@ namespace FunNow
         {
             this.CommentRate = new HashSet<CommentRate>();
             this.HotelLikes = new HashSet<HotelLikes>();
-            this.Order = new HashSet<Order>();
+            this.OrderDetails = new HashSet<OrderDetails>();
         }
     
         public int MemberID { get; set; }
@@ -28,7 +28,7 @@ namespace FunNow
         public string Password { get; set; }
         public string Phone { get; set; }
         public Nullable<System.DateTime> Birthday { get; set; }
-        public Nullable<int> RoleID { get; set; }
+        public int RoleID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CommentRate> CommentRate { get; set; }
@@ -36,6 +36,6 @@ namespace FunNow
         public virtual ICollection<HotelLikes> HotelLikes { get; set; }
         public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

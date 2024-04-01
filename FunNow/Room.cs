@@ -23,11 +23,11 @@ namespace FunNow
         }
     
         public int RoomID { get; set; }
-        public Nullable<int> HotelID { get; set; }
+        public int HotelID { get; set; }
         public string RoomName { get; set; }
         public decimal RoomPrice { get; set; }
         public string Description { get; set; }
-        public Nullable<int> RoomTypeID { get; set; }
+        public int RoomTypeID { get; set; }
         public Nullable<bool> RoomStatus { get; set; }
     
         public virtual Hotel Hotel { get; set; }

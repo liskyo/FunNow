@@ -29,9 +29,9 @@ namespace FunNow
         public virtual DbSet<CommentRate> CommentRate { get; set; }
         public virtual DbSet<Country> Country { get; set; }
         public virtual DbSet<Coupon> Coupon { get; set; }
-        public virtual DbSet<Equipment> Equipment { get; set; }
         public virtual DbSet<Hotel> Hotel { get; set; }
         public virtual DbSet<Hotel_Equipment_Reference> Hotel_Equipment_Reference { get; set; }
+        public virtual DbSet<HotelEquipment> HotelEquipment { get; set; }
         public virtual DbSet<HotelImages> HotelImages { get; set; }
         public virtual DbSet<HotelLikes> HotelLikes { get; set; }
         public virtual DbSet<HotelType> HotelType { get; set; }
@@ -43,6 +43,7 @@ namespace FunNow
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<Room_Equipment_Reference> Room_Equipment_Reference { get; set; }
+        public virtual DbSet<RoomEquipment> RoomEquipment { get; set; }
         public virtual DbSet<RoomImage> RoomImage { get; set; }
         public virtual DbSet<RoomType> RoomType { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }

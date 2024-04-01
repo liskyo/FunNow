@@ -29,7 +29,6 @@ namespace FunNow
         public System.DateTime CreatedAt { get; set; }
     
         public virtual Coupon Coupon { get; set; }
-        public virtual Member Member { get; set; }
         public virtual OrderStatus OrderStatus { get; set; }
         public virtual PaymentStatus PaymentStatus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

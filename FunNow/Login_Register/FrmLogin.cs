@@ -21,6 +21,8 @@ namespace FunNow
         Image[] imgs;
         bool hidden = false;
         private bool isClosed = true;
+        public static Member auth { get; set; }
+
         
         public int count = 0;
         bool _stop = false;
@@ -99,12 +101,13 @@ namespace FunNow
                         }
                         else
                         {
+                            auth = mm;
                             //進入一般顧客頁面
-                            FrmPOS f = new FrmPOS();
-                            f.loginMemeber = mm.Name;
-                            f.loginMemberID = mm.MemberID;
+                            //FrmPOS f = new FrmPOS();
+                            //f.loginMemeber = mm.Name;
+                            //f.loginMemberID = mm.MemberID;
 
-                            f.ShowDialog();
+                            //f.ShowDialog();
                         }
                         isClosed = false;
                         Close();

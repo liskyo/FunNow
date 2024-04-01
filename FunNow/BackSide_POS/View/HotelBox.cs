@@ -124,8 +124,8 @@ namespace FunNow.BackSide_POS.View
         {
             InitializeComponent();
             imags = new Image[2];
-            imags[0] = Image.FromFile("c:\\C_heart.png");
-            imags[1] = Image.FromFile("c:\\O_heart.png");
+            imags[0] = Image.FromFile("c:\\FunNowTopics\\FunNow\\image\\C_heart.png");
+            imags[1] = Image.FromFile("c:\\FunNowTopics\\FunNow\\image\\O_heart.png");
             pictureBox2.Image = imags[0];
 
         }
@@ -173,7 +173,7 @@ namespace FunNow.BackSide_POS.View
                     hotellike.MemberID = MemberID;
                     hotellike.LikeStatus = true;
                     db.HotelLikes.Add(hotellike);
-                }                
+                }
                 db.SaveChanges();// 儲存變更
             }
             else  //狀態為紅色
