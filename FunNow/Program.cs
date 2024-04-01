@@ -1,9 +1,10 @@
 ﻿using Fun;
+using FunNow.BackSide_Hotel;
 using FunNow.BackSide_POS;
 
 //using FunNow.BackSide_Hotel;
 using FunNow.BackSide_Room;
-using prjFunNow;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,14 +30,12 @@ namespace FunNow
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-            //Application.Run(new FrmHome());
-
-            //Application.Run(new Form1());
+         
 
             Application.Run(new FrmPOS());
-            // Application.Run(new FrmPOS2());
-
-            //Application.Run(new FrmLogin());
+            //Application.Run(new FrmMain());
+           
+            
 
 
         }

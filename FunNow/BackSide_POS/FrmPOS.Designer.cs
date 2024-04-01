@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPOS));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
@@ -192,21 +192,21 @@
             // 
             this.我的帳戶ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("我的帳戶ToolStripMenuItem.Image")));
             this.我的帳戶ToolStripMenuItem.Name = "我的帳戶ToolStripMenuItem";
-            this.我的帳戶ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.我的帳戶ToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
             this.我的帳戶ToolStripMenuItem.Text = "帳戶管理";
             // 
             // 我的最愛ToolStripMenuItem
             // 
             this.我的最愛ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("我的最愛ToolStripMenuItem.Image")));
             this.我的最愛ToolStripMenuItem.Name = "我的最愛ToolStripMenuItem";
-            this.我的最愛ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.我的最愛ToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
             this.我的最愛ToolStripMenuItem.Text = "我的最愛";
             // 
             // 我的收藏ToolStripMenuItem
             // 
             this.我的收藏ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("我的收藏ToolStripMenuItem.Image")));
             this.我的收藏ToolStripMenuItem.Name = "我的收藏ToolStripMenuItem";
-            this.我的收藏ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.我的收藏ToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
             this.我的收藏ToolStripMenuItem.Text = "我的收藏";
             // 
             // toolStripButton9
@@ -218,6 +218,7 @@
             this.toolStripButton9.Name = "toolStripButton9";
             this.toolStripButton9.Size = new System.Drawing.Size(36, 34);
             this.toolStripButton9.Text = "toolStripButton9";
+            this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
             // 
             // toolStripButton11
             // 
@@ -508,6 +509,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(208, 34);
             this.comboBox1.TabIndex = 4;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -664,14 +666,14 @@
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";

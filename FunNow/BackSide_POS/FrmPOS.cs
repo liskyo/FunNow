@@ -1,4 +1,5 @@
-﻿using FunNow.BackSide_OrderDetails;
+﻿using Fun;
+using FunNow.BackSide_OrderDetails;
 using FunNow.BackSide_POS.View;
 using FunNow.BackSide_Room;
 using System;
@@ -19,6 +20,8 @@ namespace FunNow.BackSide_POS
         //private IQueryable<Object> hotels ;
         //public string loginMemeber { get; set; }
         //public int FrmLogin.auth.MemberID { get; set; }
+        public static DateTime checkInDate { get; set; }
+        public static DateTime checkOutDate { get; set; }
 
         private OrderDetails _order;
         public OrderDetails order
@@ -45,6 +48,17 @@ namespace FunNow.BackSide_POS
             }
         }
         private Room _r;
+        private void showHotelMethod(HotelBox p, DateTime start, DateTime end)
+        {
+            
+            FrmBooking f = new FrmBooking();
+            f.selectedHotel = p.hotel;
+            f.frmbookingStart = start;
+            f.frmbookingEnd = end;
+            f.ShowDialog();
+
+        }
+
         public Room r
         {
             get
@@ -175,18 +189,21 @@ namespace FunNow.BackSide_POS
                 }
 
                 hb.HotelID = h.HotelID;
-
                 hb.MemberID = FrmLogin.auth.MemberID;
 
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
                 hb.hotel = h;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
                              // rb._hotels = hotels2;//顯示全部旅館
-
+                hb.hotelboxStart = dateTimePicker1.Value;
+                hb.hotelboxEnd = dateTimePicker2.Value;
+                hb.showHotelEvent += this.showHotelMethod;
                 flowLayoutPanel1.Controls.Add(hb);
                 //將 RoomBox 物件新增到 flowLayoutPanel1 控制項中。
             }
-
+            checkInDate = dateTimePicker1.Value.Date;
+            checkOutDate = dateTimePicker2.Value.Date;
         }
+      
         private void button1_Click(object sender, EventArgs e)  //KeyWord搜尋 
         {
             dbFunNow db = new dbFunNow();//代表與資料庫的連線
@@ -264,10 +281,14 @@ namespace FunNow.BackSide_POS
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
                 hb.hotel = h;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
                              // rb._hotels = hotels2;//顯示全部旅館
-
+                hb.hotelboxStart = dateTimePicker1.Value;
+                hb.hotelboxEnd = dateTimePicker2.Value;
+                hb.showHotelEvent += this.showHotelMethod;
                 flowLayoutPanel1.Controls.Add(hb);
                 //將 RoomBox 物件新增到 flowLayoutPanel1 控制項中。
             }
+            checkInDate = dateTimePicker1.Value.Date;
+            checkOutDate = dateTimePicker2.Value.Date;
 
         }
         private void toolStripButton4_Click(object sender, EventArgs e)  //3條件搜尋
@@ -341,17 +362,22 @@ namespace FunNow.BackSide_POS
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
                 hb.hotel = h;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
                              // rb._hotels = hotels2;//顯示全部旅館
-
+                hb.hotelboxStart = dateTimePicker1.Value;
+                hb.hotelboxEnd = dateTimePicker2.Value;
+                hb.showHotelEvent += this.showHotelMethod;
                 flowLayoutPanel1.Controls.Add(hb);
                 //將 RoomBox 物件新增到 flowLayoutPanel1 控制項中。
             }
+            checkInDate = dateTimePicker1.Value.Date;
+            checkOutDate = dateTimePicker2.Value.Date;
         }
+
+        
         private void FrmPOS_Load(object sender, EventArgs e)
         {
             FrmLogin f = new FrmLogin();
 
-            f.ShowDialog();
-            
+            f.ShowDialog();            
             
             dateTimePicker2.Value = dateTimePicker1.Value.AddDays(1); //設定進首頁時，退房時間的顯示
 
@@ -606,11 +632,18 @@ namespace FunNow.BackSide_POS
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
                 hb.hotel = h;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
                              // rb._hotels = hotels2;//顯示全部旅館
+                hb.hotelboxStart = dateTimePicker1.Value;
+                hb.hotelboxEnd = dateTimePicker2.Value;
 
+                hb.showHotelEvent += this.showHotelMethod;
                 flowLayoutPanel1.Controls.Add(hb);
                 //將 RoomBox 物件新增到 flowLayoutPanel1 控制項中。
             }
+            checkInDate = dateTimePicker1.Value.Date;
+            checkOutDate = dateTimePicker2.Value.Date;
         }
+
+     
         private void toolStrip3_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -619,6 +652,17 @@ namespace FunNow.BackSide_POS
         private void toolStripLabel4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        //住宿類型
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            new FrmCart().Show();
         }
     }
 }

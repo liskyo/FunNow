@@ -10,10 +10,19 @@ using System.Windows.Forms;
 
 namespace FunNow.BackSide_POS.View
 {
-   // public delegate void DConfirm(RoomBox p);
+   
+    //DELEGATE
+    public delegate void D(HotelBox p, DateTime start, DateTime end);
 
     public partial class HotelBox : UserControl
     {
+        //EVENT
+        public event D showHotelEvent;
+        public DateTime hotelboxStart { get; set; }
+        public DateTime hotelboxEnd { get; set; }
+
+
+
         Image[] imags;
         //bool hidden = false;
 
@@ -42,53 +51,13 @@ namespace FunNow.BackSide_POS.View
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-
-           // var frmPOS2 = new FrmPOS2(_rooms);//show全部
-           //// var frmPOS2 = new FrmPOS2(room);//只show點擊單筆  
-           //var frmPOS2 = new FrmPOS2(_hotels);//show全部
-
-            var FrmBooking = new FrmBooking(hotel);//只show點擊單筆  
-            FrmBooking.ShowDialog();
+  
+            showHotelEvent?.Invoke(this, hotelboxStart, hotelboxEnd);
         }
 
-
-
-      //  public event DConfirm orderConfirm;
-        //宣告一個公共事件 orderConfirm。事件通常用於通知其他程式碼某些動作已經完成。
-        //在訂房確認後觸發的事件。
-        //private DateTime _start;//用來儲存訂房的開始日期時間
-        //public DateTime end { get; set; }//用來存取訂房的結束日期時間
-        //private Room _room;
-
-        //public IQueryable<Room>  _rooms;
-
-        //public DateTime start
-        //{
-        //    get { return _start; }
-        //    set
-        //    {
-        //        _start = value;
-        //        label2.Text = "入住：" + _start.ToString("yy/MM/dd");
-        //    }
-        //}
-        //public Room room//用來存取一個 tRoom 類型的物件 (代表房間資訊)。
-        //{
-        //    get { return _room; }//回傳私有變數 _room 的值
-        //    set
-        //    {
-        //        _room = value;//更新 _room 的值，並根據新值更新其他 UI 元素
-        //        lblHotelName.Text = _room.RoomName;//lblName顯示訂單房名
-        //        lblHotelPhone.Text = "$" + _room.RoomPrice.ToString();
-        //        //if (!string.IsNullOrEmpty(_room.fImagepath))//不是空字串則載入圖片
-        //        //{
-        //        //    string path = Application.StartupPath + "\\roomImages";
-        //        //    pictureBox1.Image = new Bitmap(path + "\\" + _room.fImagepath);
-        //        //}
-        //    }
-        //}
+   
 
         private Hotel _hotel;
-
         public IQueryable<Hotel> _hotels;
 
 
@@ -113,8 +82,6 @@ namespace FunNow.BackSide_POS.View
         }
 
 
-
-
         public int HotelID { get; internal set; }
         public int MemberID { get; internal set; }
 
@@ -129,11 +96,7 @@ namespace FunNow.BackSide_POS.View
             pictureBox2.Image = imags[0];
 
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //if (this.orderConfirm != null)
-            //    this.orderConfirm(this);
-        }
+   
 
         private void label9_Click(object sender, EventArgs e)
         {

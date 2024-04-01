@@ -21,9 +21,7 @@ namespace FunNow
         Image[] imgs;
         bool hidden = false;
         private bool isClosed = true;
-        public static Member auth { get; set; }
-
-        
+        public static Member auth { get; set; }        
         public int count = 0;
         bool _stop = false;
         public FrmLogin()
@@ -32,29 +30,15 @@ namespace FunNow
             txtPassword.Text = "";
             txtPassword.PasswordChar = '●';
             imgs = new Image[2];
-            imgs[0] = Image.FromFile("c:\\openEyes.png");
-            imgs[1] = Image.FromFile("c:\\closeEyes.png");
-        }
+            imgs[0] = Image.FromFile("c:\\FunNowTopics\\FunNow\\image\\openEyes.png");
+            imgs[1] = Image.FromFile("c:\\FunNowTopics\\FunNow\\image\\closeEyes.png");
 
-        //public static class loginInformation
-        //{
-        //    public static Member loginMemberName
-        //    { get; set; }
-
-
-        //    public static Member loginMemberID { get; set; }
-        //}
-
-        public void Get_Data(string str)
-        {
             dbFunNow db = new dbFunNow();
             var members = from m in db.Member
-                          where m.Email.Equals(txtEmail.Text)  //先找有沒有相符的會員帳號(電子信箱)
                           select m;
-            foreach (var mm in members)
-            {
-                mm.Name = str;
-            }
+            dataGridView1.DataSource = members.ToList();
+
+
         }
 
         static string EncryptBase64(string input)
@@ -229,6 +213,11 @@ namespace FunNow
         {
             l.ForeColor = Color.Green;
             _stop = false;
+        }
+
+        private void FrmLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = isClosed;
         }
     }
 }

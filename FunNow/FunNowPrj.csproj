@@ -55,6 +55,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackSide_Hotel1\FrmHotelSystem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_Hotel1\FrmHotelSystem.designer.cs">
+      <DependentUpon>FrmHotelSystem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_Hotel1\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_Hotel1\FrmMain.designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_Hotel1\View\FrmHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_Hotel1\View\FrmHotel.designer.cs">
+      <DependentUpon>FrmHotel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_Hotel1\View\FrmRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_Hotel1\View\FrmRoom.designer.cs">
+      <DependentUpon>FrmRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_Hotel1\View\HotelBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BackSide_Hotel1\View\HotelBox.designer.cs">
+      <DependentUpon>HotelBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="BackSide_Member\FrmMember.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,53 +167,47 @@
     <Compile Include="FrmAdmin.Designer.cs">
       <DependentUpon>FrmAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmBooking.cs">
+    <Compile Include="FrontSide_Cart\FrmCart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmBooking.Designer.cs">
-      <DependentUpon>FrmBooking.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmRoom.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmRoom.Designer.cs">
-      <DependentUpon>FrmRoom.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrontSide\FieldBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrontSide\FieldBox.designer.cs">
-      <DependentUpon>FieldBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrontSide\FrmHome.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrontSide\FrmHome.designer.cs">
-      <DependentUpon>FrmHome.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrontSide\FrmCart.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrontSide\FrmCart.designer.cs">
+    <Compile Include="FrontSide_Cart\FrmCart.designer.cs">
       <DependentUpon>FrmCart.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrontSide\FrmPayment.cs">
+    <Compile Include="FrontSide_Cart\FrmPayment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrontSide\FrmPayment.designer.cs">
+    <Compile Include="FrontSide_Cart\FrmPayment.designer.cs">
       <DependentUpon>FrmPayment.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrontSide\FrmRoomStyle.cs">
+    <Compile Include="FrontSide_Cart\View\cartBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrontSide_Cart\View\cartBox.designer.cs">
+      <DependentUpon>cartBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrontSide_Cart\View\payBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrontSide_Cart\View\payBox.designer.cs">
+      <DependentUpon>payBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrontSide_selectRoom\FrmBooking.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrontSide\FrmRoomStyle.designer.cs">
-      <DependentUpon>FrmRoomStyle.cs</DependentUpon>
+    <Compile Include="FrontSide_selectRoom\FrmBooking.Designer.cs">
+      <DependentUpon>FrmBooking.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrontSide\RoomTypeSelect.cs">
+    <Compile Include="FrontSide_selectRoom\FrmRoom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrontSide\RoomTypeSelect.designer.cs">
-      <DependentUpon>RoomTypeSelect.cs</DependentUpon>
+    <Compile Include="FrontSide_selectRoom\FrmRoom.Designer.cs">
+      <DependentUpon>FrmRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrontSide_Cart\View\FieldBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrontSide_Cart\View\FieldBox.designer.cs">
+      <DependentUpon>FieldBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Hotel.cs">
       <DependentUpon>dbFunNow.tt</DependentUpon>
@@ -250,10 +274,10 @@
     <Compile Include="Room.cs">
       <DependentUpon>dbFunNow.tt</DependentUpon>
     </Compile>
-    <Compile Include="roomBox.cs">
+    <Compile Include="FrontSide_selectRoom\View\roomBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="roomBox.Designer.cs">
+    <Compile Include="FrontSide_selectRoom\View\roomBox.Designer.cs">
       <DependentUpon>roomBox.cs</DependentUpon>
     </Compile>
     <Compile Include="RoomEquipment.cs">
@@ -272,6 +296,21 @@
       <DependentUpon>dbFunNow.tt</DependentUpon>
     </Compile>
     <Compile Include="test.cs" />
+    <EmbeddedResource Include="BackSide_Hotel1\FrmHotelSystem.resx">
+      <DependentUpon>FrmHotelSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_Hotel1\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_Hotel1\View\FrmHotel.resx">
+      <DependentUpon>FrmHotel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_Hotel1\View\FrmRoom.resx">
+      <DependentUpon>FrmRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_Hotel1\View\HotelBox.resx">
+      <DependentUpon>HotelBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BackSide_Member\FrmMember.resx">
       <DependentUpon>FrmMember.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,29 +335,26 @@
     <EmbeddedResource Include="FrmAdmin.resx">
       <DependentUpon>FrmAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmBooking.resx">
-      <DependentUpon>FrmBooking.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmRoom.resx">
-      <DependentUpon>FrmRoom.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrontSide\FieldBox.resx">
-      <DependentUpon>FieldBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrontSide\FrmHome.resx">
-      <DependentUpon>FrmHome.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrontSide\FrmCart.resx">
+    <EmbeddedResource Include="FrontSide_Cart\FrmCart.resx">
       <DependentUpon>FrmCart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrontSide\FrmPayment.resx">
+    <EmbeddedResource Include="FrontSide_Cart\FrmPayment.resx">
       <DependentUpon>FrmPayment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrontSide\FrmRoomStyle.resx">
-      <DependentUpon>FrmRoomStyle.cs</DependentUpon>
+    <EmbeddedResource Include="FrontSide_Cart\View\cartBox.resx">
+      <DependentUpon>cartBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrontSide\RoomTypeSelect.resx">
-      <DependentUpon>RoomTypeSelect.cs</DependentUpon>
+    <EmbeddedResource Include="FrontSide_Cart\View\payBox.resx">
+      <DependentUpon>payBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrontSide_selectRoom\FrmBooking.resx">
+      <DependentUpon>FrmBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrontSide_selectRoom\FrmRoom.resx">
+      <DependentUpon>FrmRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrontSide_Cart\View\FieldBox.resx">
+      <DependentUpon>FieldBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login_Register\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
@@ -338,7 +374,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="roomBox.resx">
+    <EmbeddedResource Include="FrontSide_selectRoom\View\roomBox.resx">
       <DependentUpon>roomBox.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="dbFunNow.edmx">
