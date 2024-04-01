@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,8 +92,11 @@ namespace FunNow.BackSide_POS.View
         {
             InitializeComponent();
             imags = new Image[2];
-            imags[0] = Image.FromFile("c:\\FunNowTopics\\FunNow\\image\\C_heart.png");
-            imags[1] = Image.FromFile("c:\\FunNowTopics\\FunNow\\image\\O_heart.png");
+            string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+            string path0 = Path.Combine(projectRoot, "..\\..\\..\\image\\", "C_heart.png");
+            string path1 = Path.Combine(projectRoot, "..\\..\\..\\image\\", "O_heart.png");
+            imags[0] = Image.FromFile(path0);
+            imags[1] = Image.FromFile(path1);
             pictureBox2.Image = imags[0];
 
         }
