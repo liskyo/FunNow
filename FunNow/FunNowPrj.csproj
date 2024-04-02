@@ -85,6 +85,36 @@
     <Compile Include="BackSide_Hotel1\View\HotelBox.designer.cs">
       <DependentUpon>HotelBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="BackSide_Member\FrmMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_Member\FrmMember.designer.cs">
+      <DependentUpon>FrmMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_Member\FrmMemberList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_Member\FrmMemberList.designer.cs">
+      <DependentUpon>FrmMemberList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_Order\FrmOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_Order\FrmOrder.designer.cs">
+      <DependentUpon>FrmOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_Order\FrmOrder_Management .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_Order\FrmOrder_Management .designer.cs">
+      <DependentUpon>FrmOrder_Management .cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_Order\View\HotelOrderBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BackSide_Order\View\HotelOrderBox.designer.cs">
+      <DependentUpon>HotelOrderBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="BackSide_POS\FrmPOS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +252,30 @@
     <Compile Include="HotelLikes.cs">
       <DependentUpon>dbFunNow.tt</DependentUpon>
     </Compile>
+    <Compile Include="HotelLike\FrmHotelLikeBack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HotelLike\FrmHotelLikeBack.designer.cs">
+      <DependentUpon>FrmHotelLikeBack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HotelLike\FrmHotelsLikeFront.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HotelLike\FrmHotelsLikeFront.designer.cs">
+      <DependentUpon>FrmHotelsLikeFront.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HotelLike\View\FieldBoxLike.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HotelLike\View\FieldBoxLike.designer.cs">
+      <DependentUpon>FieldBoxLike.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HotelLike\View\HotelLikeBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HotelLike\View\HotelLikeBox.designer.cs">
+      <DependentUpon>HotelLikeBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="HotelType.cs">
       <DependentUpon>dbFunNow.tt</DependentUpon>
     </Compile>
@@ -306,6 +360,21 @@
     <EmbeddedResource Include="BackSide_Hotel1\View\HotelBox.resx">
       <DependentUpon>HotelBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_Member\FrmMember.resx">
+      <DependentUpon>FrmMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_Member\FrmMemberList.resx">
+      <DependentUpon>FrmMemberList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_Order\FrmOrder.resx">
+      <DependentUpon>FrmOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_Order\FrmOrder_Management .resx">
+      <DependentUpon>FrmOrder_Management .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_Order\View\HotelOrderBox.resx">
+      <DependentUpon>HotelOrderBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BackSide_POS\FrmPOS.resx">
       <DependentUpon>FrmPOS.cs</DependentUpon>
     </EmbeddedResource>
@@ -353,6 +422,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrontSide_Cart\View\FieldBox.resx">
       <DependentUpon>FieldBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HotelLike\FrmHotelLikeBack.resx">
+      <DependentUpon>FrmHotelLikeBack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HotelLike\FrmHotelsLikeFront.resx">
+      <DependentUpon>FrmHotelsLikeFront.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HotelLike\View\FieldBoxLike.resx">
+      <DependentUpon>FieldBoxLike.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HotelLike\View\HotelLikeBox.resx">
+      <DependentUpon>HotelLikeBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login_Register\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
