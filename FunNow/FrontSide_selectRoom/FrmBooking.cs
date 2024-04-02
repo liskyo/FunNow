@@ -17,6 +17,12 @@ namespace FunNow
 {
     public partial class FrmBooking : Form
     {
+        //public FrmBooking(int HotelID)
+        //{
+        //    selectedHotel.HotelID = HotelID;
+        //}
+
+
         //痊癒變數+屬性-------------------------------------------------------------------------------
         public Hotel selectedHotel { get; set; }
         public DateTime frmbookingStart { get; set; }

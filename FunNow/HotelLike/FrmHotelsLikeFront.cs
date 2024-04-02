@@ -98,8 +98,8 @@ namespace prjFunNowMember.View
         {
             // 這裡實現根據 hotelId 跳轉到該酒店頁面的邏輯
             // 例如，打開一個顯示酒店詳細資訊的新窗體
-            //var gotohotel = new FrmBooking(hotelId);          //是否new 思璇做的那個部分即可?? //todo......
-            //hotelDetailsForm.Show();
+            //FrmBooking f = new FrmBooking(hotelId);          //是否new 思璇做的那個部分即可?? //todo......
+            //f.Show();
 
         }
 
