@@ -128,18 +128,6 @@
     <Compile Include="BackSide_POS\FrmPOS.Designer.cs">
       <DependentUpon>FrmPOS.cs</DependentUpon>
     </Compile>
-    <Compile Include="BackSide_POS\FrmPOS2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BackSide_POS\FrmPOS2.Designer.cs">
-      <DependentUpon>FrmPOS2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BackSide_POS\FrmPOS3.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BackSide_POS\FrmPOS3.Designer.cs">
-      <DependentUpon>FrmPOS3.cs</DependentUpon>
-    </Compile>
     <Compile Include="BackSide_POS\HotelBase.cs" />
     <Compile Include="BackSide_POS\View\HotelBox.cs">
       <SubType>UserControl</SubType>
@@ -387,12 +375,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BackSide_POS\FrmPOS.resx">
       <DependentUpon>FrmPOS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BackSide_POS\FrmPOS2.resx">
-      <DependentUpon>FrmPOS2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BackSide_POS\FrmPOS3.resx">
-      <DependentUpon>FrmPOS3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BackSide_POS\View\HotelBox.resx">
       <DependentUpon>HotelBox.cs</DependentUpon>
