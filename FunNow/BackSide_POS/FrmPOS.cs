@@ -198,8 +198,7 @@ namespace FunNow.BackSide_POS
             }
             checkInDate = dateTimePicker1.Value.Date;
             checkOutDate = dateTimePicker2.Value.Date;
-        }
-      
+        }      
         private void button1_Click(object sender, EventArgs e)  //KeyWord 查詢 
         {
             dbFunNow db = new dbFunNow();//代表與資料庫的連線
@@ -379,9 +378,7 @@ namespace FunNow.BackSide_POS
             }
             checkInDate = dateTimePicker1.Value.Date;
             checkOutDate = dateTimePicker2.Value.Date;
-        }
-
-        
+        }               
         private void FrmPOS_Load(object sender, EventArgs e)
         {
             FrmLogin f = new FrmLogin();
@@ -444,7 +441,7 @@ namespace FunNow.BackSide_POS
                             select hee.HotelEquipmentName).Distinct();//使用 LINQ 查詢 tRoom 表中所有記錄的 fCity 欄位。
                                                               //套用 Distinct() 方法，確保沒有重複的城市名稱。
             comboBox3.Items.Clear();
-            comboBox3.Items.Add("     請選擇旅館設施");//將預設選項 "All City" 新增到 comboBox1 中
+            comboBox3.Items.Add("請選擇旅館設施");//將預設選項 "All City" 新增到 comboBox1 中
             comboBox3.SelectedIndex = 0;//將起始項目設為 (SelectedIndex = 0)。         
             foreach (var hee in hotelequipmentname)// 迴圈遍歷 distinctCity 中的每個城市名稱
             {
@@ -455,7 +452,7 @@ namespace FunNow.BackSide_POS
                                       select ree.RoomEquipmentName).Distinct();//使用 LINQ 查詢 tRoom 表中所有記錄的 fCity 欄位。
                                                                                 //套用 Distinct() 方法，確保沒有重複的城市名稱。
             comboBox4.Items.Clear();
-            comboBox4.Items.Add("     請選擇房間設施");//將預設選項 "All City" 新增到 comboBox1 中
+            comboBox4.Items.Add("請選擇房間設施");//將預設選項 "All City" 新增到 comboBox1 中
             comboBox4.SelectedIndex = 0;//將起始項目設為 (SelectedIndex = 0)。         
             foreach (var ree in roomequipmentname)// 迴圈遍歷 distinctCity 中的每個城市名稱
             {
@@ -673,20 +670,15 @@ namespace FunNow.BackSide_POS
             }
             checkInDate = dateTimePicker1.Value.Date;
             checkOutDate = dateTimePicker2.Value.Date;
-        }
-
-     
+        }     
         private void toolStrip3_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }
-
         private void toolStripLabel4_Click(object sender, EventArgs e)
         {
 
-        }
-
-        
+        }        
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) //住宿類型查詢
         {
             dbFunNow db = new dbFunNow();//代表與資料庫的連線
@@ -767,12 +759,10 @@ namespace FunNow.BackSide_POS
             checkInDate = dateTimePicker1.Value.Date;
             checkOutDate = dateTimePicker2.Value.Date;
         }
-
         private void toolStripButton9_Click(object sender, EventArgs e)
         {
             new FrmCart().Show();
         }
-
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e) //房間類型查詢
         {
                         dbFunNow db = new dbFunNow();//代表與資料庫的連線
@@ -855,7 +845,6 @@ namespace FunNow.BackSide_POS
             checkInDate = dateTimePicker1.Value.Date;
             checkOutDate = dateTimePicker2.Value.Date;
         }
-
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)  //旅館設施查詢
         {
             dbFunNow db = new dbFunNow();//代表與資料庫的連線
@@ -940,7 +929,6 @@ namespace FunNow.BackSide_POS
             checkInDate = dateTimePicker1.Value.Date;
             checkOutDate = dateTimePicker2.Value.Date;
         }
-
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)  //房間設施查詢
         {
             dbFunNow db = new dbFunNow();//代表與資料庫的連線
@@ -1029,7 +1017,6 @@ namespace FunNow.BackSide_POS
             checkInDate = dateTimePicker1.Value.Date;
             checkOutDate = dateTimePicker2.Value.Date;
         }
-
         private void toolStripButton8_Click(object sender, EventArgs e)  //精選旅館名稱有W的飯店
         {
             dbFunNow db = new dbFunNow();//代表與資料庫的連線
@@ -1114,7 +1101,6 @@ namespace FunNow.BackSide_POS
             checkOutDate = dateTimePicker2.Value.Date;
 
         }
-
         private void toolStripButton10_Click(object sender, EventArgs e) // 按城市名稱搜尋
         {
             dbFunNow db = new dbFunNow();//代表與資料庫的連線
@@ -1214,7 +1200,6 @@ namespace FunNow.BackSide_POS
             checkInDate = dateTimePicker1.Value.Date;
             checkOutDate = dateTimePicker2.Value.Date;
         }
-
         private void toolStripButton6_Click(object sender, EventArgs e)  //按旅館評分排序(進階搜尋原本沒有的欄位可參考)
         {
             dbFunNow db = new dbFunNow();//代表與資料庫的連線
