@@ -44,6 +44,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -102,6 +103,12 @@
     </Compile>
     <Compile Include="BackSide_Order\FrmOrder.designer.cs">
       <DependentUpon>FrmOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_Order\FrmOrder_Analysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_Order\FrmOrder_Analysis.designer.cs">
+      <DependentUpon>FrmOrder_Analysis.cs</DependentUpon>
     </Compile>
     <Compile Include="BackSide_Order\FrmOrder_Management .cs">
       <SubType>Form</SubType>
@@ -368,6 +375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BackSide_Order\FrmOrder.resx">
       <DependentUpon>FrmOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_Order\FrmOrder_Analysis.resx">
+      <DependentUpon>FrmOrder_Analysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BackSide_Order\FrmOrder_Management .resx">
       <DependentUpon>FrmOrder_Management .cs</DependentUpon>

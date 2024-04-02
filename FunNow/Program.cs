@@ -1,5 +1,6 @@
 ﻿using Fun;
 using FunNow.BackSide_Hotel;
+using FunNow.BackSide_Order;
 using FunNow.BackSide_POS;
 
 //using FunNow.BackSide_Hotel;
@@ -30,12 +31,14 @@ namespace FunNow
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-         
+
 
             Application.Run(new FrmPOS());
             Application.Run(new FrmMain());
-           
-            
+            //Application.Run(new Frm());
+
+
+
 
 
         }

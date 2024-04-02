@@ -246,8 +246,8 @@ namespace FunNow.BackSide_Order
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //FrmOrder_Analysis analysisForm = new FrmOrder_Analysis();
-            //analysisForm.ShowDialog();
+            FrmOrder_Analysis analysisForm = new FrmOrder_Analysis();
+            analysisForm.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)

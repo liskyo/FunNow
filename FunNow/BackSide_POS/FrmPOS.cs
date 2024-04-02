@@ -1,6 +1,6 @@
 ﻿using Fun;
 using FunNow.BackSide_POS.View;
-
+using prjFunNowMember.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1317,6 +1317,11 @@ namespace FunNow.BackSide_POS
             }
             checkInDate = dateTimePicker1.Value.Date;
             checkOutDate = dateTimePicker2.Value.Date;
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            new FrmHotelsLikeFront(FrmLogin.auth.MemberID).Show();
         }
     }
 }
