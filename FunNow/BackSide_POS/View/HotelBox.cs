@@ -93,6 +93,8 @@ namespace FunNow.BackSide_POS.View
                 lblHotelPhone.Text = "電話:" + _hotel.HotelPhone;
                 lblAvgPrice.Text = "" + _hotel.Room.Average(p => p.RoomPrice);
                 lblCity.Text = _hotel.City.CityName;
+                lblHotelDescription.Text = _hotel.HotelDescription;
+                lblHotelTypeName.Text = _hotel.HotelType.HotelTypeName;
                 lblRating.Text = "" + _hotel.CommentRate.Average(c => c.Rating);
 
 

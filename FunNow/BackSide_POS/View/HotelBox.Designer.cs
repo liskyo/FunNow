@@ -33,12 +33,13 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCity = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblHotelDescription = new System.Windows.Forms.Label();
+            this.lblHotelTypeName = new System.Windows.Forms.Label();
             this.lblHotelPhone = new System.Windows.Forms.Label();
             this.lblHotelAddress = new System.Windows.Forms.Label();
             this.lblHotelName = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.lblAvgPrice = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -46,7 +47,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -54,8 +54,8 @@
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -94,8 +94,8 @@
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.lblCity);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.lblHotelDescription);
+            this.panel1.Controls.Add(this.lblHotelTypeName);
             this.panel1.Controls.Add(this.lblHotelPhone);
             this.panel1.Controls.Add(this.lblHotelAddress);
             this.panel1.Controls.Add(this.lblHotelName);
@@ -111,6 +111,7 @@
             this.lblCity.AutoSize = true;
             this.lblCity.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblCity.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblCity.ForeColor = System.Drawing.Color.Green;
             this.lblCity.Location = new System.Drawing.Point(0, 182);
             this.lblCity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCity.Name = "lblCity";
@@ -118,35 +119,37 @@
             this.lblCity.TabIndex = 5;
             this.lblCity.Text = "label6";
             // 
-            // label5
+            // lblHotelDescription
             // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label5.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(0, 203);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 21);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "label5";
+            this.lblHotelDescription.AutoSize = true;
+            this.lblHotelDescription.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblHotelDescription.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblHotelDescription.Location = new System.Drawing.Point(0, 203);
+            this.lblHotelDescription.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHotelDescription.Name = "lblHotelDescription";
+            this.lblHotelDescription.Size = new System.Drawing.Size(56, 21);
+            this.lblHotelDescription.TabIndex = 4;
+            this.lblHotelDescription.Text = "label5";
             // 
-            // label4
+            // lblHotelTypeName
             // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label4.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(0, 224);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 21);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "label4";
+            this.lblHotelTypeName.AutoSize = true;
+            this.lblHotelTypeName.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblHotelTypeName.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblHotelTypeName.ForeColor = System.Drawing.Color.Purple;
+            this.lblHotelTypeName.Location = new System.Drawing.Point(0, 224);
+            this.lblHotelTypeName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHotelTypeName.Name = "lblHotelTypeName";
+            this.lblHotelTypeName.Size = new System.Drawing.Size(56, 21);
+            this.lblHotelTypeName.TabIndex = 3;
+            this.lblHotelTypeName.Text = "label4";
             // 
             // lblHotelPhone
             // 
             this.lblHotelPhone.AutoSize = true;
             this.lblHotelPhone.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblHotelPhone.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblHotelPhone.ForeColor = System.Drawing.Color.Blue;
             this.lblHotelPhone.Location = new System.Drawing.Point(0, 49);
             this.lblHotelPhone.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHotelPhone.Name = "lblHotelPhone";
@@ -159,6 +162,7 @@
             this.lblHotelAddress.AutoSize = true;
             this.lblHotelAddress.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblHotelAddress.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblHotelAddress.ForeColor = System.Drawing.Color.Blue;
             this.lblHotelAddress.Location = new System.Drawing.Point(0, 28);
             this.lblHotelAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHotelAddress.Name = "lblHotelAddress";
@@ -195,9 +199,19 @@
             this.panel2.Size = new System.Drawing.Size(292, 245);
             this.panel2.TabIndex = 0;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(210, 26);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(29, 21);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 11;
+            this.pictureBox3.TabStop = false;
+            // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.IndianRed;
+            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
             this.button1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(165, 207);
@@ -213,6 +227,7 @@
             this.lblAvgPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAvgPrice.AutoSize = true;
             this.lblAvgPrice.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblAvgPrice.ForeColor = System.Drawing.Color.Tomato;
             this.lblAvgPrice.Location = new System.Drawing.Point(192, 175);
             this.lblAvgPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAvgPrice.Name = "lblAvgPrice";
@@ -238,6 +253,7 @@
             this.lblRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRating.AutoSize = true;
             this.lblRating.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblRating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.lblRating.Location = new System.Drawing.Point(236, 26);
             this.lblRating.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRating.Name = "lblRating";
@@ -250,6 +266,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label7.ForeColor = System.Drawing.Color.Goldenrod;
             this.label7.Location = new System.Drawing.Point(222, 5);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
@@ -271,16 +288,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(210, 26);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(29, 21);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 11;
-            this.pictureBox3.TabStop = false;
             // 
             // HotelBox
             // 
@@ -306,8 +313,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -318,8 +325,8 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblCity;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblHotelDescription;
+        private System.Windows.Forms.Label lblHotelTypeName;
         private System.Windows.Forms.Label lblHotelPhone;
         private System.Windows.Forms.Label lblHotelAddress;
         private System.Windows.Forms.Label lblHotelName;
