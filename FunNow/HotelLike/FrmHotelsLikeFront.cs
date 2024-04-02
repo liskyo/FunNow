@@ -100,6 +100,8 @@ namespace prjFunNowMember.View
             // 例如，打開一個顯示酒店詳細資訊的新窗體
             //FrmBooking f = new FrmBooking(hotelId);          //是否new 思璇做的那個部分即可?? //todo......
             //f.Show();
+            FrmBooking f = new FrmBooking(hotelId);          //是否new 思璇做的那個部分即可?? //todo......
+            f.Show();
 
         }
 

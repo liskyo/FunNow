@@ -17,10 +17,14 @@ namespace FunNow
 {
     public partial class FrmBooking : Form
     {
-        //public FrmBooking(int HotelID)
-        //{
-        //    selectedHotel.HotelID = HotelID;
-        //}
+        public FrmBooking(int hotelId)
+        {
+            InitializeComponent();
+
+            dbFunNow db = new dbFunNow();
+            this.selectedHotel = db.Hotel.FirstOrDefault(h => h.HotelID == hotelId);
+
+        }
 
 
         //痊癒變數+屬性-------------------------------------------------------------------------------
