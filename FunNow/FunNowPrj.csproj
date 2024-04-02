@@ -154,17 +154,17 @@
     <Compile Include="Comment\FrmComment.Designer.cs">
       <DependentUpon>FrmComment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comment\FrmCommentList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comment\FrmCommentList.Designer.cs">
+      <DependentUpon>FrmCommentList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comment\FrmWriteComment.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Comment\FrmWriteComment.Designer.cs">
       <DependentUpon>FrmWriteComment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Comment\WriteCommentBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Comment\WriteCommentBox.Designer.cs">
-      <DependentUpon>WriteCommentBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Country.cs">
       <DependentUpon>dbFunNow.tt</DependentUpon>
@@ -385,11 +385,11 @@
     <EmbeddedResource Include="Comment\FrmComment.resx">
       <DependentUpon>FrmComment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Comment\FrmCommentList.resx">
+      <DependentUpon>FrmCommentList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Comment\FrmWriteComment.resx">
       <DependentUpon>FrmWriteComment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Comment\WriteCommentBox.resx">
-      <DependentUpon>WriteCommentBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAdmin.resx">
       <DependentUpon>FrmAdmin.cs</DependentUpon>

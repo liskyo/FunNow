@@ -36,8 +36,9 @@ namespace FunNow.Comment
                                     join h in db.Hotel on c.HotelID equals h.HotelID
                                     join m in db.Member on c.MemberID equals m.MemberID
                                     join od in db.OrderDetails on c.MemberID equals od.MemberID
-                                    join r in db.Room on c.HotelID equals r.HotelID
-                                    where h.HotelID == selectedHotel.HotelID
+                                    join r in db.Room on od.RoomID equals r.RoomID
+                                    where h.HotelID == selectedHotel.HotelID && r.HotelID == selectedHotel.HotelID
+
                                     select new CComment
                                     {
                                         MemberName = m.Name,
@@ -49,9 +50,23 @@ namespace FunNow.Comment
                                         CommentTxt = c.Description
                                     };
 
-                originalComments.AddRange(commentsQuery);
-                comments.AddRange(commentsQuery);
+                var commentsData = commentsQuery.ToList();
+                dataGridView1.DataSource = commentsData;
+
+                originalComments.AddRange(commentsData.Select(c => new CComment
+                {
+                    MemberName = c.MemberName,
+                    HotelName = c.HotelName,
+                    RoomType = c.RoomType,
+                    CheckInDate = c.CheckInDate,
+                    Rating = c.Rating,
+                    CommentTime = c.CommentTime,
+                    CommentTxt = c.CommentTxt
+                }));
+
+                comments.AddRange(originalComments);
                 SendQueryResults();
+               
             }
         }
 

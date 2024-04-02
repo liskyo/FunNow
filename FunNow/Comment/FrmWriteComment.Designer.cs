@@ -36,20 +36,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.lbHotelName = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelWriteComment = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lbRoomName = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lbStayedDays = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panelWriteComment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -137,19 +137,19 @@
             this.lbHotelName.TabIndex = 96;
             this.lbHotelName.Text = "label3";
             // 
-            // panel1
+            // panelWriteComment
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.pictureBox4);
-            this.panel1.Controls.Add(this.lbHotelName);
-            this.panel1.Controls.Add(this.pictureBox3);
-            this.panel1.Controls.Add(this.lbRoomName);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.lbStayedDays);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(556, 141);
-            this.panel1.TabIndex = 97;
+            this.panelWriteComment.BackColor = System.Drawing.Color.White;
+            this.panelWriteComment.Controls.Add(this.pictureBox4);
+            this.panelWriteComment.Controls.Add(this.lbHotelName);
+            this.panelWriteComment.Controls.Add(this.pictureBox3);
+            this.panelWriteComment.Controls.Add(this.lbRoomName);
+            this.panelWriteComment.Controls.Add(this.pictureBox2);
+            this.panelWriteComment.Controls.Add(this.lbStayedDays);
+            this.panelWriteComment.Location = new System.Drawing.Point(159, 159);
+            this.panelWriteComment.Name = "panelWriteComment";
+            this.panelWriteComment.Size = new System.Drawing.Size(556, 141);
+            this.panelWriteComment.TabIndex = 97;
             // 
             // pictureBox4
             // 
@@ -210,21 +210,23 @@
             this.label3.TabIndex = 98;
             this.label3.Text = "訂單資訊";
             // 
-            // flowLayoutPanel1
+            // dataGridView1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.panel1);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(158, 143);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(573, 167);
-            this.flowLayoutPanel1.TabIndex = 99;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(159, 731);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(556, 150);
+            this.dataGridView1.TabIndex = 99;
             // 
             // FrmWriteComment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1063, 747);
+            this.ClientSize = new System.Drawing.Size(1063, 902);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.panelWriteComment);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbInput);
@@ -235,12 +237,12 @@
             this.Text = "FrmWriteComment";
             this.Load += new System.EventHandler(this.FrmWriteComment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelWriteComment.ResumeLayout(false);
+            this.panelWriteComment.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,14 +257,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Label lbHotelName;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelWriteComment;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label lbRoomName;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lbStayedDays;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.DataGridView dataGridView1;
         // private ShowOrder showOrder1;
     }
 }

@@ -15,6 +15,7 @@ namespace FunNow.Comment.Model
         public decimal AvgRating { get; set; }
         public string HotelName { get; set; }
         public DateTime CheckOutDate { get; set; }
+        public int HotelID { get; set; }
 
         // 建立方法，使其可重複使用
         public DateTime? GetCommentTime()

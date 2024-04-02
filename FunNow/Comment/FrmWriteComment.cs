@@ -18,15 +18,28 @@ namespace FunNow.Comment
     {
         private CComment _comment;
         private readonly dbFunNow db = new dbFunNow();
-        private int memberId;
         public Hotel SelectedHotel { get; set; }
-        private List<WriteCommentBox> commentBoxes = new List<WriteCommentBox>();
+        //private List<WriteCommentBox> commentBoxes = new List<WriteCommentBox>();
+        private int hotelID;
+        private string hotelName;
+        private DateTime checkInDate;
+        private DateTime checkOutDate;
+        private string roomType;
+        public FrmWriteComment(int hotelID, string hotelName, DateTime checkInDate, DateTime checkOutDate, string roomType)
+        {
+            this.hotelID = hotelID;
+            this.hotelName = hotelName;
+            this.checkInDate = checkInDate;
+            this.checkOutDate = checkOutDate;
+            this.roomType = roomType;
 
-        public FrmWriteComment()
-        {   
             InitializeComponent();
             SortRating(); // 加載評分下拉列表
-            LoadOrderInfo(memberId); // 加載訂單信息
+            // 加載訂單資訊
+
+
+            // 在初始化時使用訂單相關資訊來顯示訂單內容
+           
         }
 
         private void SortRating()
@@ -44,61 +57,53 @@ namespace FunNow.Comment
             foreach (var score in scores)
             { comboBoxScore.Items.Add(score.ToString("0.0")); }
         }
-        private void LoadOrderInfo(int memberId)
+       
+        private IEnumerable<dynamic> QueryOrderInfo()
         {
-            // 查詢並加載訂單信息
-            var hotelInfos = QueryOrderInfo(memberId);
-
-            if (hotelInfos != null)
-            {
-                // 顯示訂單信息
-                foreach (var hotelInfo in hotelInfos)
-                {
-                    var commentBox = new WriteCommentBox();
-                    commentBox.DisplayOrderInfo(hotelInfo);
-                    flowLayoutPanel1.Controls.Add(commentBox);
-                    commentBoxes.Add(commentBox);
-                }
-            }
-        }
-
-        private dynamic QueryOrderInfo(int memberId)
-        {
-            // 查詢訂單信息
-            var query = from c in db.CommentRate
-                        join h in db.Hotel on c.HotelID equals h.HotelID
-                        join m in db.Member on c.MemberID equals m.MemberID
-                        join od in db.OrderDetails on c.MemberID equals od.MemberID
-                        join r in db.Room on c.HotelID equals r.HotelID
-                        where m.MemberID == memberId
+            // 查詢訂單資訊
+            var query = from od in db.OrderDetails
+                        join m in db.Member on od.MemberID equals m.MemberID
+                        join o in db.Order on od.OrderID equals o.OrderID
+                        join r in db.Room on od.RoomID equals r.RoomID
+                        join h in db.Hotel on r.HotelID equals h.HotelID
+                        where m.MemberID == FrmLogin.auth.MemberID 
+                        orderby od.CreatedAt 
                         select new
                         {
+                            HotelID = h.HotelID,
                             HotelName = h.HotelName,
-                            RoomType = r.RoomName,
                             CheckInDate = od.CheckInDate,
-                            CheckOutDate = od.CheckOutDate
+                            CheckOutDate = od.CheckOutDate,
+                            RoomType = r.RoomName
                         };
 
-            return query.FirstOrDefault();
-        }
-
-        private void DisplayOrderInfo(dynamic hotelInfo) //dynamic在運行時根據上下文動態解析其類型
-        {
-            if (hotelInfo != null)
+            foreach (var hotelInfo in query)
             {
-                // 顯示訂單信息到相應lable
-                lbHotelName.Text = hotelInfo.HotelName;
-                lbRoomName.Text = hotelInfo.RoomType;
+                if (hotelInfo.HotelName == this.hotelName && hotelInfo.CheckInDate == this.checkInDate) // 找到要評論的HOTEL及訂房時間
+                {
 
-                //計算住宿幾晚
-                string formattedCID = hotelInfo.CheckInDate.ToString("yyyy/MM/dd");
-                string formattedCOD = hotelInfo.CheckOutDate.ToString("yyyy/MM/dd");
+                    // 顯示訂單信息到相應lable
+                    lbHotelName.Text = hotelInfo.HotelName;
+                    lbRoomName.Text = hotelInfo.RoomType;
 
-                TimeSpan stayDuration = hotelInfo.CheckOutDate - hotelInfo.CheckInDate;
-                int nightsStayed = stayDuration.Days;
-                lbStayedDays.Text = $"入住{nightsStayed}晚  {formattedCID} - {formattedCOD}";
+                    //計算住宿幾晚
+                    string formattedCID = hotelInfo.CheckInDate.ToString("yyyy/MM/dd");
+                    string formattedCOD = hotelInfo.CheckOutDate.ToString("yyyy/MM/dd");
+
+                    TimeSpan stayDuration = hotelInfo.CheckOutDate - hotelInfo.CheckInDate;
+                    int nightsStayed = stayDuration.Days;
+                    lbStayedDays.Text = $"入住{nightsStayed}晚  {formattedCID} - {formattedCOD}";
+
+                    SelectedHotel = new Hotel { HotelID = hotelInfo.HotelID, HotelName = hotelInfo.HotelName };
+                    break;
+                }
             }
+            dataGridView1.DataSource = query.ToList();
+            return query.ToList();
+
         }
+
+        
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
@@ -108,36 +113,97 @@ namespace FunNow.Comment
             if (result == DialogResult.Yes)
             {
                 SaveCommentToDatabase();
+                this.Close();
             }
             else
             {
                 MessageBox.Show("已取消送出評論。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
         }
 
         private void SaveCommentToDatabase()
         {
-            // 將評論保存到數據庫
-            foreach (var commentBox in commentBoxes)
+            var query = from od in db.OrderDetails
+                         join m in db.Member on od.MemberID equals m.MemberID
+                         join o in db.Order on od.OrderID equals o.OrderID 
+                         join r in db.Room on od.RoomID equals r.RoomID
+                         join h in db.Hotel on r.HotelID equals h.HotelID
+                         where m.MemberID == FrmLogin.auth.MemberID // 將 loggedInMemberID 替換為登入會員的 ID
+                         orderby od.CreatedAt descending
+                         select new
+                         {
+                             HotelID = h.HotelID,
+                             HotelName = h.HotelName,
+                             CheckInDate = od.CheckInDate,
+                             CheckOutDate = od.CheckOutDate,
+                             RoomType = r.RoomName
+                         };
+
+            dataGridView1.DataSource = query.ToList();
+            var result = query.FirstOrDefault();
+
+            if (result != null)
             {
-                // 獲取評論文本
-                string commentText = commentBox.Controls.OfType<TextBox>().FirstOrDefault()?.Text;
-                commentBox.CommentText = commentText;
+                // 获取酒店ID
+                int hotelId = result.HotelID;
 
-                var comment = commentBox.CreateCommentObject();
-                if (comment != null)
-                {
-                    db.CommentRate.Add(comment);
-                }
+                // 使用获取到的酒店ID进行其他操作
             }
+            
+            int memberId = FrmLogin.auth.MemberID;
+            string commentText = tbInput.Text;
+            double rating = Convert.ToDouble(comboBoxScore.SelectedItem);
 
-            db.SaveChanges();
-            MessageBox.Show("評論已成功送出。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // 創建並設置評論屬性值
+            CommentRate comment = new CommentRate
+            {
+                Description = commentText,
+                CreatedAt = DateTime.Now,
+                Rating = (int)rating,
+                MemberID = FrmLogin.auth.MemberID,
+                HotelID = result.HotelID
+            };
+
+            // 確保評分有效
+            if (comment.Rating >= 0)
+            {
+                db.CommentRate.Add(comment);
+                db.SaveChanges();
+                MessageBox.Show("評論已成功送出。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // 清除評論文字框和評分
+                tbInput.Clear();
+                comboBoxScore.Items.Clear();
+            }
+            else
+            {
+                MessageBox.Show("請先選擇評分！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            //// 將評論保存到數據庫
+            //foreach (var commentBox in commentBoxes)
+            //{
+            //    // 獲取評論文本
+            //    string commentText = commentBox.Controls.OfType<TextBox>().FirstOrDefault()?.Text;
+            //    commentBox.CommentText = commentText;
+
+            //    // 獲取 hotelId
+            //    //int hotelId = 
+
+            //    var comment = commentBox.CreateCommentObject(hotelId);
+            //    if (comment != null)
+            //    {
+            //        db.CommentRate.Add(comment);
+            //    }
+            //}
+
+            //db.SaveChanges();
+            //MessageBox.Show("評論已成功送出。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void FrmWriteComment_Load(object sender, EventArgs e)
         {
-            LoadOrderInfo(memberId);
+            QueryOrderInfo();
         }
     }
       

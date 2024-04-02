@@ -68,18 +68,18 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(9, -2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(6, -1);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1688, 173);
+            this.pictureBox1.Size = new System.Drawing.Size(1125, 115);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 39;
             this.pictureBox1.TabStop = false;
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Location = new System.Drawing.Point(9, 178);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.splitContainer1.Location = new System.Drawing.Point(6, 119);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -89,8 +89,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel2);
-            this.splitContainer1.Size = new System.Drawing.Size(1518, 709);
-            this.splitContainer1.SplitterDistance = 860;
+            this.splitContainer1.Size = new System.Drawing.Size(1012, 473);
+            this.splitContainer1.SplitterDistance = 573;
+            this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 41;
             // 
             // flowLayoutPanel1
@@ -98,9 +99,9 @@
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(860, 709);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(573, 473);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel2
@@ -111,10 +112,10 @@
             this.flowLayoutPanel2.Controls.Add(this.panel3);
             this.flowLayoutPanel2.Controls.Add(this.panel4);
             this.flowLayoutPanel2.Controls.Add(this.button14);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(-24, 4);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(-16, 3);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(675, 709);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(450, 473);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // panel3
@@ -131,10 +132,10 @@
             this.panel3.Controls.Add(this.label26);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.label27);
-            this.panel3.Location = new System.Drawing.Point(11, 12);
-            this.panel3.Margin = new System.Windows.Forms.Padding(11, 12, 3, 4);
+            this.panel3.Location = new System.Drawing.Point(7, 8);
+            this.panel3.Margin = new System.Windows.Forms.Padding(7, 8, 2, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(629, 308);
+            this.panel3.Size = new System.Drawing.Size(419, 205);
             this.panel3.TabIndex = 0;
             // 
             // label2
@@ -143,9 +144,10 @@
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(79)))), ((int)(((byte)(97)))));
-            this.label2.Location = new System.Drawing.Point(337, 130);
+            this.label2.Location = new System.Drawing.Point(225, 87);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 36);
+            this.label2.Size = new System.Drawing.Size(64, 24);
             this.label2.TabIndex = 93;
             this.label2.Text = "-TWD";
             // 
@@ -155,9 +157,10 @@
             this.lblTotalPrice.BackColor = System.Drawing.Color.White;
             this.lblTotalPrice.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblTotalPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(79)))), ((int)(((byte)(97)))));
-            this.lblTotalPrice.Location = new System.Drawing.Point(459, 83);
+            this.lblTotalPrice.Location = new System.Drawing.Point(306, 55);
+            this.lblTotalPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotalPrice.Name = "lblTotalPrice";
-            this.lblTotalPrice.Size = new System.Drawing.Size(152, 36);
+            this.lblTotalPrice.Size = new System.Drawing.Size(102, 24);
             this.lblTotalPrice.TabIndex = 92;
             this.lblTotalPrice.Text = "TotalPrice";
             // 
@@ -167,9 +170,10 @@
             this.lblFinalPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
             this.lblFinalPrice.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblFinalPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.lblFinalPrice.Location = new System.Drawing.Point(436, 228);
+            this.lblFinalPrice.Location = new System.Drawing.Point(291, 152);
+            this.lblFinalPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFinalPrice.Name = "lblFinalPrice";
-            this.lblFinalPrice.Size = new System.Drawing.Size(188, 46);
+            this.lblFinalPrice.Size = new System.Drawing.Size(126, 31);
             this.lblFinalPrice.TabIndex = 71;
             this.lblFinalPrice.Text = "FinalPrice";
             // 
@@ -179,9 +183,10 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.label1.Location = new System.Drawing.Point(316, 228);
+            this.label1.Location = new System.Drawing.Point(211, 152);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 46);
+            this.label1.Size = new System.Drawing.Size(72, 31);
             this.label1.TabIndex = 71;
             this.label1.Text = "TWD";
             // 
@@ -191,9 +196,10 @@
             this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
             this.label13.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(79)))));
-            this.label13.Location = new System.Drawing.Point(44, 228);
+            this.label13.Location = new System.Drawing.Point(29, 152);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(128, 46);
+            this.label13.Size = new System.Drawing.Size(86, 31);
             this.label13.TabIndex = 49;
             this.label13.Text = "總金額";
             // 
@@ -203,9 +209,10 @@
             this.label11.BackColor = System.Drawing.Color.White;
             this.label11.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(79)))), ((int)(((byte)(97)))));
-            this.label11.Location = new System.Drawing.Point(349, 84);
+            this.label11.Location = new System.Drawing.Point(233, 56);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(83, 36);
+            this.label11.Size = new System.Drawing.Size(56, 24);
             this.label11.TabIndex = 91;
             this.label11.Text = "TWD";
             // 
@@ -215,9 +222,10 @@
             this.lblDiscount.BackColor = System.Drawing.Color.White;
             this.lblDiscount.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblDiscount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(79)))), ((int)(((byte)(97)))));
-            this.lblDiscount.Location = new System.Drawing.Point(459, 130);
+            this.lblDiscount.Location = new System.Drawing.Point(306, 87);
+            this.lblDiscount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDiscount.Name = "lblDiscount";
-            this.lblDiscount.Size = new System.Drawing.Size(133, 36);
+            this.lblDiscount.Size = new System.Drawing.Size(89, 24);
             this.lblDiscount.TabIndex = 70;
             this.lblDiscount.Text = "discount";
             // 
@@ -227,9 +235,10 @@
             this.lblPayMethod.BackColor = System.Drawing.Color.White;
             this.lblPayMethod.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblPayMethod.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblPayMethod.Location = new System.Drawing.Point(22, 130);
+            this.lblPayMethod.Location = new System.Drawing.Point(15, 87);
+            this.lblPayMethod.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPayMethod.Name = "lblPayMethod";
-            this.lblPayMethod.Size = new System.Drawing.Size(259, 35);
+            this.lblPayMethod.Size = new System.Drawing.Size(176, 24);
             this.lblPayMethod.TabIndex = 69;
             this.lblPayMethod.Text = "台新信用卡優惠 7%";
             // 
@@ -239,9 +248,10 @@
             this.label26.BackColor = System.Drawing.Color.White;
             this.label26.Font = new System.Drawing.Font("微軟正黑體", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
-            this.label26.Location = new System.Drawing.Point(21, 18);
+            this.label26.Location = new System.Drawing.Point(14, 12);
+            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(150, 42);
+            this.label26.Size = new System.Drawing.Size(100, 28);
             this.label26.TabIndex = 45;
             this.label26.Text = "房價明細";
             // 
@@ -251,18 +261,20 @@
             this.label10.BackColor = System.Drawing.Color.White;
             this.label10.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(79)))), ((int)(((byte)(97)))));
-            this.label10.Location = new System.Drawing.Point(22, 84);
+            this.label10.Location = new System.Drawing.Point(15, 56);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(71, 35);
+            this.label10.Size = new System.Drawing.Size(48, 24);
             this.label10.TabIndex = 68;
             this.label10.Text = "房價";
             // 
             // label27
             // 
             this.label27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.label27.Location = new System.Drawing.Point(1, 184);
+            this.label27.Location = new System.Drawing.Point(1, 123);
+            this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(628, 125);
+            this.label27.Size = new System.Drawing.Size(419, 83);
             this.label27.TabIndex = 91;
             // 
             // panel4
@@ -272,19 +284,19 @@
             this.panel4.Controls.Add(this.pictureBox7);
             this.panel4.Controls.Add(this.comboBox1);
             this.panel4.Controls.Add(this.label38);
-            this.panel4.Location = new System.Drawing.Point(11, 336);
-            this.panel4.Margin = new System.Windows.Forms.Padding(11, 12, 3, 4);
+            this.panel4.Location = new System.Drawing.Point(7, 224);
+            this.panel4.Margin = new System.Windows.Forms.Padding(7, 8, 2, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(629, 193);
+            this.panel4.Size = new System.Drawing.Size(419, 129);
             this.panel4.TabIndex = 92;
             // 
             // pictureBox14
             // 
             this.pictureBox14.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox14.Image")));
-            this.pictureBox14.Location = new System.Drawing.Point(522, 18);
-            this.pictureBox14.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox14.Location = new System.Drawing.Point(348, 12);
+            this.pictureBox14.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(46, 40);
+            this.pictureBox14.Size = new System.Drawing.Size(31, 27);
             this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox14.TabIndex = 103;
             this.pictureBox14.TabStop = false;
@@ -292,10 +304,10 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(565, 18);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox7.Location = new System.Drawing.Point(377, 12);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(46, 40);
+            this.pictureBox7.Size = new System.Drawing.Size(31, 27);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 102;
             this.pictureBox7.TabStop = false;
@@ -306,10 +318,10 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "請選擇付款方式"});
-            this.comboBox1.Location = new System.Drawing.Point(28, 110);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox1.Location = new System.Drawing.Point(19, 73);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(313, 31);
+            this.comboBox1.Size = new System.Drawing.Size(210, 24);
             this.comboBox1.TabIndex = 100;
             this.comboBox1.Text = "選擇付款方式";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -320,9 +332,10 @@
             this.label38.BackColor = System.Drawing.Color.White;
             this.label38.Font = new System.Drawing.Font("微軟正黑體", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label38.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
-            this.label38.Location = new System.Drawing.Point(21, 18);
+            this.label38.Location = new System.Drawing.Point(14, 12);
+            this.label38.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(150, 42);
+            this.label38.Size = new System.Drawing.Size(100, 28);
             this.label38.TabIndex = 45;
             this.label38.Text = "付款方式";
             // 
@@ -333,10 +346,10 @@
             this.button14.FlatAppearance.BorderSize = 0;
             this.button14.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button14.ForeColor = System.Drawing.Color.White;
-            this.button14.Location = new System.Drawing.Point(422, 537);
-            this.button14.Margin = new System.Windows.Forms.Padding(422, 4, 3, 4);
+            this.button14.Location = new System.Drawing.Point(281, 359);
+            this.button14.Margin = new System.Windows.Forms.Padding(281, 3, 2, 3);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(222, 84);
+            this.button14.Size = new System.Drawing.Size(148, 56);
             this.button14.TabIndex = 94;
             this.button14.Text = "立即付款";
             this.button14.UseVisualStyleBackColor = false;
@@ -344,12 +357,12 @@
             // 
             // FrmPayment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1532, 890);
+            this.ClientSize = new System.Drawing.Size(1021, 593);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "FrmPayment";
             this.Text = "FrmPayment";
             this.Load += new System.EventHandler(this.FrmPayment_Load);

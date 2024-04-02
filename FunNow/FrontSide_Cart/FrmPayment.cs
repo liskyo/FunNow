@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using FunNow.FrontSide_Cart.view;
 using FunNow.BackSide_POS;
 using FunNow.Comment;
+using System.Data.Entity.Core.Metadata.Edm;
 
 namespace Fun
 {
@@ -19,9 +20,15 @@ namespace Fun
     {
         private int _payID;
         private Hotel selectedHotel;
+        private int hotelID;
+        private string hotelName;
+        private DateTime checkInDate;
+        private DateTime checkOutDate;
+        private string roomType;
+       // private DateTime CreateAt;
         public void ShowWriteComment()
         {
-            FrmWriteComment wc = new FrmWriteComment();
+            FrmWriteComment wc = new FrmWriteComment(hotelID, hotelName, checkInDate, checkOutDate, roomType);
             wc.SelectedHotel = selectedHotel;
             wc.ShowDialog();
         }
@@ -161,7 +168,25 @@ namespace Fun
                 orderDetail.isOrdered = true;
             }
             db.SaveChanges();
-            ShowWriteComment();
+
+
+            //根據購物車中商品筆數，顯示相對應的評論表單數
+            DateTime targetTime = DateTime.Now.AddSeconds(-30);
+            var orderDetails = db.OrderDetails.Where(od => od.MemberID == FrmLogin.auth.MemberID &&
+                 od.CreatedAt >= targetTime &&
+                 od.CreatedAt <= DateTime.Now).ToList();
+            foreach (var orderDetail in orderDetails)
+            {
+               
+                // 獲取與訂單相關的酒店資訊
+                var hotel = db.Hotel.FirstOrDefault(h => h.HotelID == orderDetail.Room.HotelID);
+                // 創建新的評論表單，並將相關訂單資訊傳遞給建構函式
+                FrmWriteComment wc = new FrmWriteComment(hotel.HotelID, hotel.HotelName, orderDetail.CheckInDate, orderDetail.CheckOutDate, orderDetail.Room.RoomName);
+
+                // 顯示評論表單
+                wc.ShowDialog();
+            }
+           
             this.Close();
 
         }

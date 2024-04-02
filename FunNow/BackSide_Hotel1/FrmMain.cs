@@ -1,4 +1,5 @@
 ﻿using FunNow.BackSide_Hotel.View;
+using FunNow.Comment;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +27,15 @@ namespace FunNow.BackSide_Hotel
         private void showHotelInfo()
         {
           FrmHotelSystem f = new FrmHotelSystem();
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
+            f.Show();
+        }
+
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            FrmCommentList f = new FrmCommentList();
             f.MdiParent = this;
             f.WindowState = FormWindowState.Maximized;
             f.Show();
