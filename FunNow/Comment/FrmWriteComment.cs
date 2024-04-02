@@ -124,32 +124,32 @@ namespace FunNow.Comment
 
         private void SaveCommentToDatabase()
         {
-            var query = from od in db.OrderDetails
-                         join m in db.Member on od.MemberID equals m.MemberID
-                         join o in db.Order on od.OrderID equals o.OrderID 
-                         join r in db.Room on od.RoomID equals r.RoomID
-                         join h in db.Hotel on r.HotelID equals h.HotelID
-                         where m.MemberID == FrmLogin.auth.MemberID // 將 loggedInMemberID 替換為登入會員的 ID
-                         orderby od.CreatedAt descending
-                         select new
-                         {
-                             HotelID = h.HotelID,
-                             HotelName = h.HotelName,
-                             CheckInDate = od.CheckInDate,
-                             CheckOutDate = od.CheckOutDate,
-                             RoomType = r.RoomName
-                         };
+            //var query = from od in db.OrderDetails
+            //             join m in db.Member on od.MemberID equals m.MemberID
+            //             join o in db.Order on od.OrderID equals o.OrderID 
+            //             join r in db.Room on od.RoomID equals r.RoomID
+            //             join h in db.Hotel on r.HotelID equals h.HotelID
+            //             where m.MemberID == FrmLogin.auth.MemberID // 將 loggedInMemberID 替換為登入會員的 ID
+            //             orderby od.CreatedAt descending
+            //             select new
+            //             {
+            //                 HotelID = h.HotelID,
+            //                 HotelName = h.HotelName,
+            //                 CheckInDate = od.CheckInDate,
+            //                 CheckOutDate = od.CheckOutDate,
+            //                 RoomType = r.RoomName
+            //             };
 
-            dataGridView1.DataSource = query.ToList();
-            var result = query.FirstOrDefault();
+            //dataGridView1.DataSource = query.ToList();
+            //var result = query.FirstOrDefault();
 
-            if (result != null)
-            {
+            //if (result != null)
+            //{
                 // 获取酒店ID
-                int hotelId = result.HotelID;
+              //  int hotelId = this.hotelID;
 
                 // 使用获取到的酒店ID进行其他操作
-            }
+            //}
             
             int memberId = FrmLogin.auth.MemberID;
             string commentText = tbInput.Text;
@@ -162,7 +162,7 @@ namespace FunNow.Comment
                 CreatedAt = DateTime.Now,
                 Rating = (int)rating,
                 MemberID = FrmLogin.auth.MemberID,
-                HotelID = result.HotelID
+                HotelID = this.hotelID
             };
 
             // 確保評分有效
