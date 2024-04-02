@@ -15,21 +15,21 @@ namespace prjFunNowMember.View
 {
     public partial class FrmHotelsLikeFront : Form
     {
-        public FrmHotelsLikeFront(int memberID)                  // memberID => 目前登入的那個會員
+
+        public FrmHotelsLikeFront()                  // memberID => 目前登入的那個會員
         {
             InitializeComponent();
-            this.MemberID = memberID;                          // 在 FrmHotelsLikeFront表單收藏喜愛飯店的會員ID = 目前登入的那個會員
+            //this.MemberID = memberID;                          // 在 FrmHotelsLikeFront表單收藏喜愛飯店的會員ID = 目前登入的那個會員
 
 
         }
 
-        int MemberID = 2;
 
         private void FrmHotelsLikeFront_Load(object sender, EventArgs e)
         {
             dbFunNow db = new dbFunNow();
             var hotellikes = from hl in db.HotelLikes             // hl 代表db.HotelLikes 資料表的每一列資料  
-                             where hl.MemberID == this.MemberID   //怎麼抓MemberID  
+                             where hl.MemberID == FrmLogin.auth.MemberID   //怎麼抓MemberID  
                              select hl;
 
 
@@ -80,7 +80,7 @@ namespace prjFunNowMember.View
 
             using (var db = new dbFunNow())
             {
-                var favorite = db.HotelLikes.FirstOrDefault(hl => hl.HotelID == hotelId && hl.MemberID == this.MemberID);
+                var favorite = db.HotelLikes.FirstOrDefault(hl => hl.HotelID == hotelId && hl.MemberID == FrmLogin.auth.MemberID);
                 if (favorite != null)
                 {
                     db.HotelLikes.Remove(favorite);

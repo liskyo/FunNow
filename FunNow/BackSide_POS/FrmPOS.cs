@@ -1058,7 +1058,7 @@ namespace FunNow.BackSide_POS
         }
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            new FrmHotelsLikeFront(FrmLogin.auth.MemberID).Show();
+            new FrmHotelsLikeFront().Show();
         } //打開我的最愛
         private void toolStripButton10_Click_1(object sender, EventArgs e) // 按城市名稱搜尋
         {

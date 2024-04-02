@@ -197,7 +197,7 @@ namespace FunNow
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            new FrmHotelsLikeFront(FrmLogin.auth.MemberID).Show();
+            new FrmHotelsLikeFront().Show();
         }
     }
 }
