@@ -71,12 +71,17 @@ namespace FunNow.BackSide_POS.View
             showHotelEvent?.Invoke(this, hotelboxStart, hotelboxEnd);
         }
 
-   
+        private CommentRate _commentRate;
+        public CommentRate commentRat
+        {
+            get { return _commentRate; }
+            set
+            {
+            }
+        }
 
         private Hotel _hotel;
         public IQueryable<Hotel> _hotels;
-
-
         public Hotel hotel//用來存取一個 tRoom 類型的物件 (代表房間資訊)。
         {
             get { return _hotel; }//回傳私有變數 _room 的值
@@ -88,7 +93,7 @@ namespace FunNow.BackSide_POS.View
                 lblHotelPhone.Text = "電話:" + _hotel.HotelPhone;
                 lblAvgPrice.Text = "" + _hotel.Room.Average(p => p.RoomPrice);
                 lblCity.Text = _hotel.City.CityName;
-
+                lblRating.Text = "" + _hotel.CommentRate.Average(c => c.Rating);
 
 
                 //if (!string.IsNullOrEmpty(_room.fImagepath))//不是空字串則載入圖片
@@ -102,6 +107,7 @@ namespace FunNow.BackSide_POS.View
 
         public int HotelID { get; internal set; }
         public int MemberID { get; internal set; }
+
 
 
 
@@ -120,11 +126,6 @@ namespace FunNow.BackSide_POS.View
    
 
         private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
         {
 
         }
