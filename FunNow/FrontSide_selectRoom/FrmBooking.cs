@@ -1,6 +1,7 @@
 ﻿using Fun;
 using FunNow.BackSide_POS;
 using FunNow.Comment;
+using prjFunNowMember.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -187,6 +188,16 @@ namespace FunNow
         {   //bnt showAllComment
             FrmComment frmComment = new FrmComment(selectedHotel);
             frmComment.ShowDialog();
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            new FrmCart().ShowDialog();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            new FrmHotelsLikeFront(FrmLogin.auth.MemberID).Show();
         }
     }
 }

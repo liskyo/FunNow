@@ -1,4 +1,5 @@
-﻿using FunNow;
+﻿using Fun;
+using FunNow;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,14 +24,6 @@ namespace prjFunNowMember.View
         }
 
         int MemberID = 2;
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-
-
-
-        }
 
         private void FrmHotelsLikeFront_Load(object sender, EventArgs e)
         {
@@ -103,6 +96,11 @@ namespace prjFunNowMember.View
             //var hotelDetailsForm = new HotelDetailsForm(hotelId);          //是否new 思璇做的那個部分即可?? //todo......
             //hotelDetailsForm.Show();
 
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            new FrmCart().Show();
         }
     }
 }
