@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -115,11 +116,16 @@ namespace FunNow
                            select p.HotelImage;
             foreach (var pic in pictures)
             {
+                string fliename = Path.GetFileName(pic);
+                string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", fliename);
+
+
                 PictureBox pb = new PictureBox();
                 pb.SizeMode = PictureBoxSizeMode.Zoom;
                 pb.Width = 100;
                 pb.Height = 50;
-                pb.Image = new Bitmap(pic);
+                pb.Image = new Bitmap(path);
                 pb.Click += Pb_Click;
                 flowLayoutPanel2.Controls.Add(pb);
 
