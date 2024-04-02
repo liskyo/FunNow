@@ -189,7 +189,7 @@ namespace FunNow.BackSide_POS
                 hb.MemberID = FrmLogin.auth.MemberID;
 
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
-                hb.hotel = h.HotelAll;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
+                hb.hotel = h.HotelAll;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數   
                              // rb._hotels = hotels2;//顯示全部旅館
                 hb.hotelboxStart = dateTimePicker1.Value;
                 hb.hotelboxEnd = dateTimePicker2.Value;
@@ -260,10 +260,12 @@ namespace FunNow.BackSide_POS
                           || h.HotelAddress.Contains(keyword)
                           || h.HotelPhone.Contains(keyword)
                           || h.City.CityName.Contains(keyword)
-                          select h;  //將hotels2查詢結果繫結到HotelBox
-
+                          select new { HotelAll = h, h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() };  //將hotels2查詢結果繫結到HotelBox
+                                                                                                                                                //設定照片條件
             foreach (var h in hotels2)
             {
+                string HotelImageString = h.FirstRoomImage != null ? h.FirstRoomImage.ToString() : null; //設定照片參數
+
                 HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。
                                              //rb.start = dateTimePicker1.Value;
                                              //rb.end = dateTimePicker2.Value;
@@ -279,8 +281,10 @@ namespace FunNow.BackSide_POS
                 hb.MemberID = FrmLogin.auth.MemberID;
 
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
-                hb.hotel = h;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
-                             // rb._hotels = hotels2;//顯示全部旅館
+
+                hb.hotelPicture = HotelImageString;
+                hb.hotel = h.HotelAll;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
+                                      // rb._hotels = hotels2;//顯示全部旅館
                 hb.hotelboxStart = dateTimePicker1.Value;
                 hb.hotelboxEnd = dateTimePicker2.Value;
                 hb.showHotelEvent += this.showHotelMethod;
@@ -351,10 +355,11 @@ namespace FunNow.BackSide_POS
 
             var hotels2 = from h in db.Hotel   // 空房的hotel
                           where (rooms.ToList().Contains(h.HotelID)) && h.City.CityName == toolStripComboBox2.Text  // List<Hotel>
-                          select h;  //將hotels2查詢結果繫結到HotelBox
-
+                          select new { HotelAll = h, h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() };  //將hotels2查詢結果繫結到HotelBox
+                                                                                                                                                //設定照片條件
             foreach (var h in hotels2)
             {
+                string HotelImageString = h.FirstRoomImage != null ? h.FirstRoomImage.ToString() : null; //設定照片參數
                 HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。
                                              //rb.start = dateTimePicker1.Value;
                                              //rb.end = dateTimePicker2.Value;
@@ -370,8 +375,10 @@ namespace FunNow.BackSide_POS
                 hb.MemberID = FrmLogin.auth.MemberID;
 
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
-                hb.hotel = h;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
-                             // rb._hotels = hotels2;//顯示全部旅館
+
+                hb.hotelPicture = HotelImageString;
+                hb.hotel = h.HotelAll;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
+                                      // rb._hotels = hotels2;//顯示全部旅館
                 hb.hotelboxStart = dateTimePicker1.Value;
                 hb.hotelboxEnd = dateTimePicker2.Value;
                 hb.showHotelEvent += this.showHotelMethod;
