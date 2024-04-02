@@ -22,6 +22,21 @@ namespace FunNow.BackSide_POS.View
         public DateTime hotelboxStart { get; set; }
         public DateTime hotelboxEnd { get; set; }
 
+        public string hotelPicture  //顯示照片
+        {
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    pictureBox1.Image = Image.FromFile(value);
+                }
+                else
+                {
+                    pictureBox1.Image = null;
+                }
+            }
+        }
+
 
 
         Image[] imags;
@@ -72,6 +87,8 @@ namespace FunNow.BackSide_POS.View
                 lblHotelAddress.Text = "地址:"+ _hotel.HotelAddress;
                 lblHotelPhone.Text = "電話:" + _hotel.HotelPhone;
                 lblAvgPrice.Text = "" + _hotel.Room.Average(p => p.RoomPrice);
+                lblCity.Text = _hotel.City.CityName;
+
 
 
                 //if (!string.IsNullOrEmpty(_room.fImagepath))//不是空字串則載入圖片
