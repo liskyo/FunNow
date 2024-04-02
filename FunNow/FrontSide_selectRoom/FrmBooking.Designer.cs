@@ -37,16 +37,14 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lblName = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-//<<<<<<< Updated upstream
             this.showAllComment = new System.Windows.Forms.Button();
             this.lbSmallComment1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbSmallComment2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-//=======
             this.lblMemo = new System.Windows.Forms.Label();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-//>>>>>>> Stashed changes
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -61,6 +59,7 @@
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(488, 272);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -88,11 +87,13 @@
             // 
             // flowLayoutPanel2
             // 
+            this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(16, 387);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(488, 100);
             this.flowLayoutPanel2.TabIndex = 12;
+            this.flowLayoutPanel2.WrapContents = false;
             // 
             // flowLayoutPanel1
             // 
@@ -130,6 +131,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(965, 28);
             this.pictureBox2.Name = "pictureBox2";
@@ -139,7 +141,6 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
-//<<<<<<< Updated upstream
             // showAllComment
             // 
             this.showAllComment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(79)))), ((int)(((byte)(97)))));
@@ -185,7 +186,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(174, 48);
             this.panel2.TabIndex = 49;
-//=======
+            // 
             // lblMemo
             // 
             this.lblMemo.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -200,28 +201,35 @@
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.AutoScroll = true;
-            this.flowLayoutPanel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(512, 387);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(636, 397);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(518, 100);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(382, 81);
             this.flowLayoutPanel3.TabIndex = 45;
             this.flowLayoutPanel3.WrapContents = false;
-//>>>>>>> Stashed changes
+            // 
+            // label2
+            // 
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
+            this.label2.Location = new System.Drawing.Point(511, 387);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(518, 100);
+            this.label2.TabIndex = 50;
+            this.label2.Text = "飯店設備";
             // 
             // FrmBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 841);
-//<<<<<<< Updated upstream
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.showAllComment);
-//=======
             this.Controls.Add(this.flowLayoutPanel3);
             this.Controls.Add(this.lblMemo);
-//>>>>>>> Stashed changes
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -230,6 +238,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmBooking";
@@ -263,7 +272,8 @@
 //=======
         private System.Windows.Forms.Label lblMemo;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-//>>>>>>> Stashed changes
+        private System.Windows.Forms.Label label2;
+        //>>>>>>> Stashed changes
     }
 }
 

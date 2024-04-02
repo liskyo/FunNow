@@ -33,11 +33,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblName = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.lblDate = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.btnCart = new System.Windows.Forms.Button();
             this.btnOrder = new System.Windows.Forms.Button();
             this.lblPrice = new System.Windows.Forms.Label();
@@ -79,9 +79,9 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 303);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 294);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(269, 55);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(269, 76);
             this.flowLayoutPanel1.TabIndex = 12;
             // 
             // pictureBox1
@@ -96,11 +96,12 @@
             // 
             // lblName
             // 
+            this.lblName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
             this.lblName.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
+            this.lblName.ForeColor = System.Drawing.Color.White;
             this.lblName.Location = new System.Drawing.Point(0, 13);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(273, 67);
+            this.lblName.Size = new System.Drawing.Size(273, 46);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "房型";
             this.lblName.Click += new System.EventHandler(this.lblName_Click);
@@ -123,27 +124,24 @@
             this.splitContainer2.SplitterDistance = 185;
             this.splitContainer2.TabIndex = 0;
             // 
-            // label4
+            // label5
             // 
-            this.label4.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
-            this.label4.Location = new System.Drawing.Point(0, 13);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 30);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "數量";
+            this.label5.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
+            this.label5.Location = new System.Drawing.Point(3, 13);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(119, 33);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "入住日期";
             // 
-            // label1
+            // lblDate
             // 
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(26, 128);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 55);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "1";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDate.Font = new System.Drawing.Font("微軟正黑體", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblDate.Location = new System.Drawing.Point(1, 128);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(180, 43);
+            this.lblDate.TabIndex = 10;
+            this.lblDate.Text = "入住日期";
             // 
             // splitContainer3
             // 
@@ -166,24 +164,27 @@
             this.splitContainer3.SplitterDistance = 122;
             this.splitContainer3.TabIndex = 0;
             // 
-            // lblDate
+            // label4
             // 
-            this.lblDate.Font = new System.Drawing.Font("微軟正黑體", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblDate.Location = new System.Drawing.Point(1, 128);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(180, 43);
-            this.lblDate.TabIndex = 10;
-            this.lblDate.Text = "入住日期";
+            this.label4.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
+            this.label4.Location = new System.Drawing.Point(0, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(119, 30);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "數量";
             // 
-            // label5
+            // label1
             // 
-            this.label5.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
-            this.label5.Location = new System.Drawing.Point(3, 13);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(119, 33);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "入住日期";
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label1.Location = new System.Drawing.Point(26, 128);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 55);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "1";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCart
             // 
@@ -237,6 +238,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "roomBox";
             this.Size = new System.Drawing.Size(839, 373);
+            this.Load += new System.EventHandler(this.roomBox_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

@@ -58,5 +58,36 @@ namespace FunNow
         {
             showAddCart(this, roomboxStart, roomboxEnd);
         }
+
+        private void roomBox_Load(object sender, EventArgs e)
+        {
+            dbFunNow db = new dbFunNow();
+            var pictures = from p in db.RoomImage
+                           where p.RoomID == room.RoomID
+                           select p.RoomImage1;
+            foreach (var pic in pictures)
+            {
+                PictureBox pb = new PictureBox();
+                pb.SizeMode = PictureBoxSizeMode.Zoom;
+                pb.Width = 100;
+                pb.Height = 50;
+                pb.Image = new Bitmap(pic);
+                pb.Click += Pb_Click;
+                flowLayoutPanel1.Controls.Add(pb);
+
+                if (flowLayoutPanel1.Controls.Count == 1)
+                {
+                    pictureBox1.Image = pb.Image;
+                }
+            }
+        }
+        private void Pb_Click(object sender, EventArgs e)
+        {
+            PictureBox clickedPictureBox = sender as PictureBox;
+            if (clickedPictureBox != null)
+            {
+                pictureBox1.Image = clickedPictureBox.Image;
+            }
+        }
     }
 }

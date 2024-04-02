@@ -31,11 +31,15 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnCart = new System.Windows.Forms.Button();
+            this.btnOrder = new System.Windows.Forms.Button();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -57,6 +61,10 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.btnCart);
+            this.splitContainer1.Panel2.Controls.Add(this.btnOrder);
+            this.splitContainer1.Panel2.Controls.Add(this.lblDate);
+            this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel2);
@@ -87,13 +95,77 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // btnCart
+            // 
+            this.btnCart.BackColor = System.Drawing.Color.White;
+            this.btnCart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
+            this.btnCart.Location = new System.Drawing.Point(181, 558);
+            this.btnCart.Name = "btnCart";
+            this.btnCart.Size = new System.Drawing.Size(113, 64);
+            this.btnCart.TabIndex = 20;
+            this.btnCart.Text = "加入購物車";
+            this.btnCart.UseVisualStyleBackColor = false;
+            this.btnCart.Click += new System.EventHandler(this.btnCart_Click);
+            // 
+            // btnOrder
+            // 
+            this.btnOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
+            this.btnOrder.ForeColor = System.Drawing.Color.White;
+            this.btnOrder.Location = new System.Drawing.Point(181, 488);
+            this.btnOrder.Name = "btnOrder";
+            this.btnOrder.Size = new System.Drawing.Size(113, 64);
+            this.btnOrder.TabIndex = 19;
+            this.btnOrder.Text = "立即預定";
+            this.btnOrder.UseVisualStyleBackColor = false;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
+            // 
+            // lblDate
+            // 
+            this.lblDate.Font = new System.Drawing.Font("微軟正黑體", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblDate.ForeColor = System.Drawing.Color.Black;
+            this.lblDate.Location = new System.Drawing.Point(111, 366);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(186, 41);
+            this.lblDate.TabIndex = 18;
+            this.lblDate.Text = "入住日期";
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
+            this.label2.Location = new System.Drawing.Point(6, 329);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(276, 37);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "入住日期";
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
+            this.label3.Location = new System.Drawing.Point(6, 407);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(291, 37);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "每晚價格";
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
+            this.label1.Location = new System.Drawing.Point(3, 70);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(291, 37);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "房間設備";
+            // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 110);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(291, 358);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(291, 216);
             this.flowLayoutPanel2.TabIndex = 10;
             this.flowLayoutPanel2.WrapContents = false;
             // 
@@ -101,7 +173,7 @@
             // 
             this.lblPrice.Font = new System.Drawing.Font("微軟正黑體", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblPrice.ForeColor = System.Drawing.Color.Red;
-            this.lblPrice.Location = new System.Drawing.Point(96, 595);
+            this.lblPrice.Location = new System.Drawing.Point(99, 444);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(198, 41);
             this.lblPrice.TabIndex = 9;
@@ -117,26 +189,6 @@
             this.lblName.Size = new System.Drawing.Size(291, 41);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "房型";
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
-            this.label1.Location = new System.Drawing.Point(3, 70);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(291, 37);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "該房含有:";
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(78)))), ((int)(((byte)(97)))));
-            this.label3.Location = new System.Drawing.Point(6, 477);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(291, 37);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "每晚價格";
             // 
             // FrmRoom
             // 
@@ -168,5 +220,9 @@
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnCart;
+        private System.Windows.Forms.Button btnOrder;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Label label2;
     }
 }

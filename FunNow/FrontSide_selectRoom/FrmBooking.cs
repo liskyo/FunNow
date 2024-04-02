@@ -81,6 +81,7 @@ namespace FunNow
             lblName.Text = selectedHotel.HotelName;
             lblMemo.Text = selectedHotel.HotelDescription;
 
+            //設備--------------------------------------------------------------------------
             var equipments = from eq in db.Hotel_Equipment_Reference
                              where eq.HotelID == selectedHotel.HotelID
                              select eq.HotelEquipment;
@@ -97,6 +98,34 @@ namespace FunNow
 
                 flowLayoutPanel3.Controls.Add(c);
             }
+            //圖片--------------------------------------------------------------------------
+            var pictures = from p in db.HotelImages
+                           where p.HotelID == selectedHotel.HotelID
+                           select p.HotelImage;
+            foreach (var pic in pictures)
+            {
+                PictureBox pb = new PictureBox();
+                pb.SizeMode = PictureBoxSizeMode.Zoom;
+                pb.Width = 100;
+                pb.Height = 50;
+                pb.Image = new Bitmap(pic);
+                pb.Click += Pb_Click;
+                flowLayoutPanel2.Controls.Add(pb);
+
+                if (flowLayoutPanel2.Controls.Count == 1)
+                {
+                    pictureBox1.Image = pb.Image;
+                }
+            }
+            
+        }
+        private void Pb_Click(object sender, EventArgs e)
+        {
+            PictureBox clickedPictureBox = sender as PictureBox;
+            if (clickedPictureBox != null)
+            {
+                pictureBox1.Image = clickedPictureBox.Image;
+            }
         }
 
         //showRoomMethod----------------------------------------------------------------
@@ -104,16 +133,38 @@ namespace FunNow
         {
             FrmRoom f = new FrmRoom();
             f.selectedRoom = p.room;
+            f.frmroomStart = p.roomboxStart;
+            f.frmroomEnd = p.roomboxEnd;
+            f.showAddCart += this.showAddCartMethodf;
             f.ShowDialog();
         }
 
-        //showAddCartMethod----------------------------------------------------------------
+        //showAddCartMethod(給roombox)----------------------------------------------------------------
         private void showAddCartMethod(roomBox p, DateTime start, DateTime end)
         {
             //存入orderdetails表
             dbFunNow db = new dbFunNow();
             OrderDetails o = new OrderDetails();
             o.RoomID = p.room.RoomID;
+            o.MemberID = FrmLogin.auth.MemberID;
+            o.CheckInDate = DateTime.Parse(start.ToString("yyyy/MM/dd"));
+            o.CheckOutDate = DateTime.Parse(end.ToString("yyyy/MM/dd")); ;
+            o.CreatedAt = DateTime.Now;
+            o.isOrdered = false;
+            db.OrderDetails.Add(o);
+            db.SaveChanges();
+            MessageBox.Show("已新增至購物車");
+
+            FrmCart f = new FrmCart();
+            f.ShowDialog();
+        }
+        //showAddCartMethodf(給frmroom)----------------------------------------------------------------
+        private void showAddCartMethodf(FrmRoom p, DateTime start, DateTime end)
+        {
+            //存入orderdetails表
+            dbFunNow db = new dbFunNow();
+            OrderDetails o = new OrderDetails();
+            o.RoomID = p.selectedRoom.RoomID;
             o.MemberID = FrmLogin.auth.MemberID;
             o.CheckInDate = DateTime.Parse(start.ToString("yyyy/MM/dd"));
             o.CheckOutDate = DateTime.Parse(end.ToString("yyyy/MM/dd")); ;
