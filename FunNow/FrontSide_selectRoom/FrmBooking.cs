@@ -1,6 +1,7 @@
 ﻿using Fun;
 using FunNow.BackSide_POS;
 using FunNow.Comment;
+using FunNow.FrontSide_Cart;
 using prjFunNowMember.View;
 using System;
 using System.Collections.Generic;
@@ -87,6 +88,9 @@ namespace FunNow
                 rb.showRoomEvent += this.showRoomMethod;
                 //在roombox註冊加入購物車的事件方法--------------------------------------------
                 rb.showAddCart += this.showAddCartMethod;
+                //DirectBuy
+                rb.showDirectBuy += this.showDirectBuyMethod;
+
                 flowLayoutPanel1.Controls.Add(rb);
             }
 
@@ -116,16 +120,16 @@ namespace FunNow
                            select p.HotelImage;
             foreach (var pic in pictures)
             {
-                string fliename = Path.GetFileName(pic);
-                string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
-                string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", fliename);
+                //string fliename = Path.GetFileName(pic);
+                //string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                //string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", fliename);
 
 
                 PictureBox pb = new PictureBox();
                 pb.SizeMode = PictureBoxSizeMode.Zoom;
                 pb.Width = 100;
                 pb.Height = 50;
-                pb.Image = new Bitmap(path);
+                pb.Image = new Bitmap(pic);
                 pb.Click += Pb_Click;
                 flowLayoutPanel2.Controls.Add(pb);
 
@@ -136,6 +140,27 @@ namespace FunNow
             }
             
         }
+
+        private void showDirectBuyMethod(roomBox p, DateTime start, DateTime end)
+        {
+            //將資料傳進OrderDetails 資料表
+            dbFunNow db = new dbFunNow();
+            OrderDetails o = new OrderDetails();
+            o.RoomID = p.room.RoomID;
+            o.MemberID = FrmLogin.auth.MemberID;
+            o.CheckInDate = DateTime.Parse(FrmPOS.checkInDate.ToString("yyyy/MM/dd"));
+            o.CheckOutDate = DateTime.Parse(FrmPOS.checkOutDate.ToString("yyyy/MM/dd")); ;
+            o.CreatedAt = DateTime.Now;
+            o.isOrdered = false;
+            db.OrderDetails.Add(o);
+            db.SaveChanges();
+            MessageBox.Show("已新增至直接購買");
+
+
+            FrmDirectBuy f = new FrmDirectBuy();
+            f.ShowDialog();
+        }
+
         private void Pb_Click(object sender, EventArgs e)
         {
             PictureBox clickedPictureBox = sender as PictureBox;

@@ -45,7 +45,7 @@ namespace prjFunNowMember.View
                 // 假设可以直接通过hl对象获取Hotel, City和HotelImages的信息
                 hlb.hotelName = hl.Hotel.HotelName;                                // 这里需要确保等號兩邊的属性类型一致
                 hlb.cityName = hl.Hotel.City.CityName;                             // 同上
-                hlb.hotelimage = hl.Hotel.HotelImages.FirstOrDefault();            // 假设每个酒店有多个图片，这里只取第一个作为示例
+                hlb.hotelimage = hl.Hotel.HotelImages.FirstOrDefault().HotelImage;            // 假设每个酒店有多个图片，这里只取第一个作为示例
                 hlb.HotelId = hl.Hotel.HotelID;                                    //todo.....
 
                 hlb.GoToHotel += GoToHotelHandler;                                 //HotelLikeBox按下立即查看按鈕 => 跳到相對應的飯店頁面

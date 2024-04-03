@@ -81,27 +81,28 @@ namespace Fun
             var orderDetails = from o in db.OrderDetails
                                where o.isOrdered == false && o.MemberID == FrmLogin.auth.MemberID
                                select new
-                               { o.Room.Hotel.HotelName, o.Room.Hotel.City.CityName, o.Room.RoomType.RoomTypeName, o.Room.RoomPrice, FirstRoomImage = o.Room.RoomImage.FirstOrDefault(), o.CheckInDate, o.CheckOutDate, o.OrderDetailID, o.Room.RoomName };
+                               { o.Room.Hotel.HotelName, o.Room.Hotel.City.CityName, o.Room.RoomType.RoomTypeName, o.Room.RoomPrice, FirstRoomImage = o.Room.RoomImage.Select(ri => ri.RoomImage1).FirstOrDefault(), o.CheckInDate, o.CheckOutDate, o.OrderDetailID, o.Room.RoomName };
 
             foreach (var od in orderDetails)
             {
-                
+                string firstRoomImageString = od.FirstRoomImage != null ? od.FirstRoomImage.ToString() : null;
                 payBox c = new payBox();
                 c.payHotelName = od.HotelName;
                 c.payCityName = od.CityName;
                 c.payRoomType = od.RoomTypeName;
-                c.payRoomPrice = od.RoomPrice;
+
                 //todo# roomImage
-                //c.payRoomPicture = od.FirstRoomImage.ToString(); 
+                c.payRoomPicture = firstRoomImageString;
                 c.payCheckInDate = od.CheckInDate;
                 c.payCheckOutDate = od.CheckOutDate;
                 c.orderDetailID = od.OrderDetailID;
-                c.payRoomName = od.RoomName; 
-               
+                c.payRoomName = od.RoomName;
+                int stayDuration = (od.CheckOutDate - od.CheckInDate).Days;
+                c.payRoomPrice = od.RoomPrice * stayDuration;
                 this.flowLayoutPanel1.Controls.Add(c);
 
-               
-                totalPrice += od.RoomPrice;
+
+                totalPrice += od.RoomPrice * stayDuration;
             }
             updateTotalPrice(totalPrice);
             lblFinalPrice.Text = totalPrice.ToString(); //FinalPrice 未選用付款方式前為Total Price

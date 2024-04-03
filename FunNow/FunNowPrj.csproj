@@ -74,17 +74,29 @@
     <Compile Include="BackSide_Hotel1\View\FrmHotel.designer.cs">
       <DependentUpon>FrmHotel.cs</DependentUpon>
     </Compile>
+    <Compile Include="BackSide_Hotel1\View\FrmHotelCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_Hotel1\View\FrmHotelCreate.designer.cs">
+      <DependentUpon>FrmHotelCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="BackSide_Hotel1\View\FrmRoom.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BackSide_Hotel1\View\FrmRoom.designer.cs">
       <DependentUpon>FrmRoom.cs</DependentUpon>
     </Compile>
-    <Compile Include="BackSide_Hotel1\View\HotelBox.cs">
+    <Compile Include="BackSide_Hotel1\View\FrmRoomUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_Hotel1\View\FrmRoomUpdate.designer.cs">
+      <DependentUpon>FrmRoomUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_Hotel1\View\HotelBoxCreate.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BackSide_Hotel1\View\HotelBox.designer.cs">
-      <DependentUpon>HotelBox.cs</DependentUpon>
+    <Compile Include="BackSide_Hotel1\View\HotelBoxCreate.designer.cs">
+      <DependentUpon>HotelBoxCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="BackSide_Member\FrmMember.cs">
       <SubType>Form</SubType>
@@ -210,6 +222,12 @@
     </Compile>
     <Compile Include="FrontSide_Cart\View\cartBox.designer.cs">
       <DependentUpon>cartBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrontSide_Cart\View\FrmDirectBuy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrontSide_Cart\View\FrmDirectBuy.designer.cs">
+      <DependentUpon>FrmDirectBuy.cs</DependentUpon>
     </Compile>
     <Compile Include="FrontSide_Cart\View\payBox.cs">
       <SubType>UserControl</SubType>
@@ -349,11 +367,17 @@
     <EmbeddedResource Include="BackSide_Hotel1\View\FrmHotel.resx">
       <DependentUpon>FrmHotel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_Hotel1\View\FrmHotelCreate.resx">
+      <DependentUpon>FrmHotelCreate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BackSide_Hotel1\View\FrmRoom.resx">
       <DependentUpon>FrmRoom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BackSide_Hotel1\View\HotelBox.resx">
-      <DependentUpon>HotelBox.cs</DependentUpon>
+    <EmbeddedResource Include="BackSide_Hotel1\View\FrmRoomUpdate.resx">
+      <DependentUpon>FrmRoomUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_Hotel1\View\HotelBoxCreate.resx">
+      <DependentUpon>HotelBoxCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BackSide_Member\FrmMember.resx">
       <DependentUpon>FrmMember.cs</DependentUpon>
@@ -402,6 +426,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrontSide_Cart\View\cartBox.resx">
       <DependentUpon>cartBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrontSide_Cart\View\FrmDirectBuy.resx">
+      <DependentUpon>FrmDirectBuy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrontSide_Cart\View\payBox.resx">
       <DependentUpon>payBox.cs</DependentUpon>
@@ -484,5 +511,6 @@
       <LastGenOutput>dbFunNow.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -20,6 +20,7 @@ namespace FunNow
         //event--------------------------------------------------------
         public event D1 showAddCart;
         public event D2 showRoomEvent;
+        public event D1 showDirectBuy;
         //痊癒變數+屬性-------------------------------------------------
         private DateTime _roomboxStart;
         public DateTime roomboxStart
@@ -58,6 +59,7 @@ namespace FunNow
         private void btnCart_Click_1(object sender, EventArgs e)
         {
             showAddCart(this, roomboxStart, roomboxEnd);
+            
         }
 
         private void roomBox_Load(object sender, EventArgs e)
@@ -68,16 +70,16 @@ namespace FunNow
                            select p.RoomImage1;
             foreach (var pic in pictures)
             {
-                string fliename = Path.GetFileName(pic);
-                string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
-                string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", fliename);
+                //string fliename = Path.GetFileName(pic);
+                //string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                //string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", fliename);
 
 
                 PictureBox pb = new PictureBox();
                 pb.SizeMode = PictureBoxSizeMode.Zoom;
                 pb.Width = 100;
                 pb.Height = 50;
-                pb.Image = new Bitmap(path);
+                pb.Image = new Bitmap(pic);
                 pb.Click += Pb_Click;
                 flowLayoutPanel1.Controls.Add(pb);
 
@@ -94,6 +96,11 @@ namespace FunNow
             {
                 pictureBox1.Image = clickedPictureBox.Image;
             }
+        }
+
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            showDirectBuy(this, roomboxStart, roomboxEnd);
         }
     }
 }

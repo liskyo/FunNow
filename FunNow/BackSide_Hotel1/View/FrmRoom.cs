@@ -78,6 +78,9 @@ namespace FunNow.BackSide_Hotel.View
                     this.flowLayoutPanel2.Controls.Add(checkbox); 
                 }
             }
+            
+
+
 
         }
 
@@ -101,7 +104,6 @@ namespace FunNow.BackSide_Hotel.View
             if( !int.TryParse(hotelBox2.fileValue, out number) ) { MessageBox.Show("房價價格必須是數字"); return; }
             if ( flowLayoutPanel1.Controls.OfType<PictureBox>().Count() == 0 ) { MessageBox.Show("請新增圖片。"); return; }
 
-            
             using (dbFunNow db = new dbFunNow())
             {
                 //儲存房間
@@ -137,8 +139,9 @@ namespace FunNow.BackSide_Hotel.View
                 }
 
                 db.SaveChanges();
-            
+
             }
+
             MessageBox.Show("新增成功");
             _isOK = DialogResult.OK;
             this.Close();
@@ -157,7 +160,7 @@ namespace FunNow.BackSide_Hotel.View
             openFileDialog1.Multiselect = true;
             if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
 
-            string basePath = Application.StartupPath + "\\roomImages"; //取得啟動應用程式的可執行檔路徑，不包括檔名。
+            string basePath = Application.StartupPath + "\\image"; //取得啟動應用程式的可執行檔路徑，不包括檔名。
             if (!Directory.Exists(basePath))
             {
                 Directory.CreateDirectory(basePath); //在指定的路徑中建立所有目錄
@@ -165,25 +168,72 @@ namespace FunNow.BackSide_Hotel.View
 
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+            int index = 0;
             foreach (string file in openFileDialog1.FileNames)
             {
-                string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + Path.GetExtension(file);
+                string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + index.ToString() + Path.GetExtension(file);
                 string filePath = Path.Combine(basePath, uniqueFileName);
                 File.Copy(file, filePath);
 
                 _ImagePaths.Add(filePath); // 添加到圖片路徑列表
+
+                //Delete ICON
+                Button removeButton = new Button();
+                removeButton.Text = "刪除";
+                removeButton.Tag = filePath;
 
 
                 var pictureBox = new PictureBox
                 {
                     Image = Image.FromFile(filePath),
                     SizeMode = PictureBoxSizeMode.Zoom,
-                    BorderStyle = BorderStyle.FixedSingle
+                    BorderStyle = BorderStyle.FixedSingle,
+                    ImageLocation = filePath
+                };
+
+                removeButton.Click += (sender1, e1) =>
+                {
+                    Button btn = sender1 as Button; // 使用 as 關鍵字嘗試轉換 sender 為 Button 類型
+                    if (btn != null && btn.Tag is string) // 確保 btn 不是 null 並且 Tag 確實是一個 string
+                    {
+                        string pathToRemove = (string)btn.Tag;
+                        RemoveImageAndDescription(pathToRemove);
+                    }
                 };
 
                 flowLayoutPanel1.Controls.Add(pictureBox);
-             
+                flowLayoutPanel1.Controls.Add(removeButton);
+                index++;
             }
+        }
+
+        private void RemoveImageAndDescription(string imagePath)
+        {
+            PictureBox pictureBoxToRemove = flowLayoutPanel1.Controls.OfType<PictureBox>()
+     .FirstOrDefault(pb => pb.ImageLocation == imagePath);
+
+
+            
+            Button removeButtonToRemove = flowLayoutPanel1.Controls
+                .OfType<Button>()
+                .FirstOrDefault(btn => btn.Tag != null && btn.Tag.ToString() == imagePath);
+
+            if (pictureBoxToRemove != null )
+            {
+
+                flowLayoutPanel1.Controls.Remove(pictureBoxToRemove);
+
+                flowLayoutPanel1.Controls.Remove(removeButtonToRemove);
+
+                pictureBoxToRemove.Dispose();
+             
+                removeButtonToRemove.Dispose();
+
+                flowLayoutPanel1.PerformLayout(); // 強制 flowLayoutPanel1 重新佈局
+                flowLayoutPanel1.Invalidate(); // 強制 flowLayoutPanel1 重新繪製
+            }
+
+            _ImagePaths.Remove(imagePath);
         }
     }
 }

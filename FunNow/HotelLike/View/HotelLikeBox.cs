@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,20 +23,40 @@ namespace prjFunNowMember.View
         public event DGoToHotel GoToHotel;
         public event DRemoveFromFavorites RemoveFromFavorites;
 
-        private HotelImages _hotelImage;                    // HotelLikeBox上的pictureBox1位置放置 HotelImages資料表的 HotelImage欄位   
-        public HotelImages  hotelimage
+        private string _hotelImage;                    // HotelLikeBox上的pictureBox1位置放置 HotelImages資料表的 HotelImage欄位   
+        public string hotelimage
         {
-            get { return _hotelImage; }
+            //get { return _hotelImage; }
+        
+
+
             set
             {
-                _hotelImage = value;
-                //lblName.Text = _hotelImage.HotelImage;
-                //if (!string.IsNullOrEmpty(_hotelImage.HotelImage))
-                //{
-                //    string path = Application.StartupPath + "\\hotelImage";
-                //    pictureBox1.Image = new Bitmap(path + "\\" + _hotelImage.HotelImage);
-                //}
+                if (!string.IsNullOrEmpty(value) && File.Exists(value))
+                {
+                    value = Path.GetFileName(value);
+                    string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                    string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", value);
+
+
+                    pictureBox1.Image = Image.FromFile(path);
+                }
+                else
+                {
+                    pictureBox1.Image = null;
+                }
             }
+
+
+
+
+
+
+
+
+
+
+
         }
 
         private string _hotelName;                         // HotelLikeBox上的lblName位置放 hotel資料表的 hotelName欄位

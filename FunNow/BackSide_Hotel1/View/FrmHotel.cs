@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,29 +16,21 @@ namespace FunNow.BackSide_Hotel.View
 {
     public partial class FrmHotel : Form
     {
-        //private  dbFunNow _db;
-        internal dbFunNow db = new dbFunNow();
-        //public dbFunNow db { get { return _db; } set { _db = value; } }
-
+        int selectedCountryID;
         private Hotel _hotel;
+        private Country _country;
         private DialogResult _isOK;
         private List<string> _ImagePaths = new List<string>();
         public FrmHotel()
         {
-            InitializeComponent();
-           
+            InitializeComponent();        
         }
 
-        public DialogResult isOk
-        {
-            get
-            {
-                return _isOK;
-            }
-        }
+        public DialogResult isOk { get { return _isOK; } }
 
         public Hotel hotelInstance
         {
+
             get
             {             
                 if (_hotel == null) { _hotel = new Hotel(); }
@@ -48,7 +41,7 @@ namespace FunNow.BackSide_Hotel.View
                 _hotel.HotelDescription = textBox1.Text;
                 _hotel.CityID = (int)comboBox2.SelectedValue;
                 _hotel.HotelTypeID = (int)comboBox3.SelectedValue;
-
+                
                 return _hotel;
             }
 
@@ -60,12 +53,62 @@ namespace FunNow.BackSide_Hotel.View
                 hotelBox3.fileValue = _hotel.HotelAddress.ToString();
                 hotelBox2.fileValue = _hotel.HotelPhone.ToString();
                 textBox1.Text = _hotel.HotelDescription.ToString();
+                comboBox3.SelectedValue = _hotel.HotelTypeID.ToString();
 
 
             }
         }
 
-      
+
+     
+
+        public FlowLayoutPanel FlowLayoutPanel1
+        {
+            get { return flowLayoutPanel1; }
+            set
+            {
+                // 移除舊的 FlowLayoutPanel1 从 Form 控件集合中（如果需要的话）
+                if (flowLayoutPanel1 != null)
+                {
+                    this.Controls.Remove(flowLayoutPanel1);
+                }
+
+                // 設置新的 FlowLayoutPanel
+                flowLayoutPanel1 = value;
+
+                // 添加新的 FlowLayoutPanel 到 Form 控件集合中（如果需要的話）
+                if (flowLayoutPanel1 != null)
+                {
+                    this.Controls.Add(flowLayoutPanel1);
+                }
+            }
+        }
+
+
+        public FlowLayoutPanel FlowLayoutPanel2
+        {
+            get { return flowLayoutPanel2; }
+            set
+            {
+                // 移除舊的 FlowLayoutPanel1 从 Form 控件集合中（如果需要的话）
+                if (flowLayoutPanel2 != null)
+                {
+                    this.Controls.Remove(flowLayoutPanel2);
+                }
+
+                // 設置新的 FlowLayoutPanel
+                flowLayoutPanel2 = value;
+
+                // 添加新的 FlowLayoutPanel 到 Form 控件集合中（如果需要的話）
+                if (flowLayoutPanel2 != null)
+                {
+                    this.Controls.Add(flowLayoutPanel2);
+                }
+            }
+        }
+
+       
+
         private void FrmHotel_Load(object sender, EventArgs e)
         {
             //新增國家至ComboBox
@@ -94,20 +137,113 @@ namespace FunNow.BackSide_Hotel.View
             }
 
             //新增設備至flowLayoutPanel
-            using (var db = new dbFunNow())
-            {            
-                var allEquipments = db.HotelEquipment.ToList();
+            //using (var db = new dbFunNow())
+            //{            
+            //    var allEquipments2 = db.HotelEquipment.ToList();
           
 
-                // 用這些設施填充 CheckBoxList
-                foreach (var equipment in allEquipments)
+            //    // 用這些設施填充 CheckBoxList
+            //    foreach (var equipment in allEquipments2)
+            //    {
+            //        CheckBox checkbox = new CheckBox();
+            //        checkbox.Text = equipment.HotelEquipmentName;
+            //        checkbox.Tag = equipment.HotelEquipmentID; // 使用 Tag 屬性來儲存 HotelEquipmentID
+            //        this.flowLayoutPanel2.Controls.Add(checkbox); 
+            //    }
+            //}
+
+            //國家 城市 HotelType
+            dbFunNow db1 = new dbFunNow();
+            var hotel = (from h in db1.Hotel
+                         where h.HotelID == FrmHotelSystem.Id
+                         select new
+                         {
+                             HotelTypeName = h.HotelType.HotelTypeName,
+                             CityName = h.City.CityName,
+                             CountryName = h.City.Country.CountryName
+                         }).FirstOrDefault(); 
+
+            if (hotel != null)
+            {                
+                comboBox3.Text = hotel.HotelTypeName;              
+                comboBox1.Text = hotel.CountryName;
+            }
+            comboBox2.SelectedValue = _hotel.CityID;
+
+
+            //設備
+            dbFunNow db2 = new dbFunNow();
+            var allEquipments = db2.HotelEquipment.ToList();
+            var selectedEquipments = db2.Hotel_Equipment_Reference
+                              .Where(h => h.HotelID == FrmHotelSystem.Id)
+                              .Select(h => h.HotelEquipmentID)
+                              .ToList();
+            foreach (var equipment in allEquipments)
+            {
+                CheckBox checkbox = new CheckBox();
+                checkbox.Text = equipment.HotelEquipmentName;
+                checkbox.Tag = equipment.HotelEquipmentID; // 使用 Tag 屬性來儲存 HotelEquipmentID
+
+                // 如果設備ID在選中設備列表中，將 CheckBox 設為勾選狀態
+                if (selectedEquipments.Contains(equipment.HotelEquipmentID))
                 {
-                    CheckBox checkbox = new CheckBox();
-                    checkbox.Text = equipment.HotelEquipmentName;
-                    checkbox.Tag = equipment.HotelEquipmentID; // 使用 Tag 屬性來儲存 HotelEquipmentID
-                    this.flowLayoutPanel2.Controls.Add(checkbox); 
+                    checkbox.Checked = true;
+                }
+
+                this.flowLayoutPanel2.Controls.Add(checkbox);
+            }
+
+            //圖片
+            flowLayoutPanel1.Controls.Clear();
+
+            using (var db = new dbFunNow()) // 
+            {
+                var images = db.HotelImages.Where(h => h.HotelID == FrmHotelSystem.Id).ToList();
+
+                foreach (var img in images)
+                {
+                    PictureBox pictureBox = new PictureBox
+                    {
+                        SizeMode = PictureBoxSizeMode.Zoom,
+                        BorderStyle = BorderStyle.FixedSingle,
+                        ImageLocation = img.HotelImage,
+                        Image = Image.FromFile(img.HotelImage),
+                        //Width = 100, // 適當的大小
+                        // Height = 100  // 適當的大小
+                    };
+
+                    TextBox descriptionBox = new TextBox
+                    {
+                        Multiline = true,
+                        ScrollBars = ScrollBars.Vertical,
+                       // Width = 100, // 適當的大小
+                        //Height = 40, // 適當的高度
+                        Text = img.HImageDescription,
+                        Tag = img.HotelImage
+                };
+
+                    Button removeButton = new Button
+                    {
+                        Text = "刪除",
+                        Tag = img.HotelImage
+                    };
+
+                    // 刪除按鈕的事件處理
+                    removeButton.Click += (sender1, e1) =>
+                    {
+                        var button = sender1 as Button;
+                        string pathToRemove = (string)button.Tag;
+                        RemoveImageAndDescription(pathToRemove);
+                    };
+
+                    // 將控件添加到 FlowLayoutPanel
+                    flowLayoutPanel1.Controls.Add(pictureBox);
+                    flowLayoutPanel1.Controls.Add(descriptionBox);
+                    flowLayoutPanel1.Controls.Add(removeButton);
                 }
             }
+
+
 
 
         }
@@ -142,65 +278,75 @@ namespace FunNow.BackSide_Hotel.View
             if (String.IsNullOrWhiteSpace(textBox1.Text)) { MessageBox.Show("有欄位未填寫"); return; }
             if (flowLayoutPanel1.Controls.OfType<PictureBox>().Count() == 0) { MessageBox.Show("請新增圖片。"); return; }
 
-
-            var hotel = hotelInstance;
-            int hotelId = hotel.HotelID;
-            if (hotelId > 0) // 假設 HotelID 大於 0 表示已存在
+            //設備
+            using (var db = new dbFunNow())
             {
-                // 更新現有酒店資訊
-                db.Entry(hotel).State = EntityState.Modified;
-            }
-            else
-            {
-   
-                db.Hotel.Add(hotel);
-               
+                // 首先移除該飯店目前的所有設備關聯
+                var existingReferences = db.Hotel_Equipment_Reference
+                                           .Where(h => h.HotelID == FrmHotelSystem.Id);
+                db.Hotel_Equipment_Reference.RemoveRange(existingReferences);
 
-            }
-
-
-            //新增圖片
-            foreach (Control control in this.flowLayoutPanel1.Controls)
-            {
-                if (control is TextBox)
+                // 然後添加新的選擇
+                foreach (CheckBox checkbox in flowLayoutPanel2.Controls.OfType<CheckBox>())
                 {
-                    TextBox descriptionBox = (TextBox)control;
-                    string imagePath = (string)descriptionBox.Tag;
-                    string description = descriptionBox.Text;
-
-                    HotelImages hotelImage = new HotelImages
+                    if (checkbox.Checked)
                     {
-                        HotelID = hotelId,
-                        HotelImage = imagePath, // 這裡存儲圖片的路徑
-                        HImageDescription = description
-                    };
-
-                    db.HotelImages.Add(hotelImage);
+                        int equipmentId = (int)checkbox.Tag;
+                        var hotelEquipmentReference = new Hotel_Equipment_Reference
+                        {
+                            HotelID = FrmHotelSystem.Id,
+                            HotelEquipmentID = equipmentId
+                        };
+                        db.Hotel_Equipment_Reference.Add(hotelEquipmentReference);
+                    }
                 }
+
+                db.SaveChanges();
             }
 
-            //新增設備
-            foreach (CheckBox checkbox in this.flowLayoutPanel2.Controls)
+
+            //圖片
+
+            using (var db = new dbFunNow())
             {
-                if (checkbox.Checked)
-                {
-                    int equipmentId = (int)checkbox.Tag;
-                    var hotelEquipmentReference = new Hotel_Equipment_Reference
-                    {
-                        HotelID = hotelId,
-                        HotelEquipmentID = equipmentId
-                    };
+            
+            
+                var existingImages = db.HotelImages.Where(img => img.HotelID == FrmHotelSystem.Id);
+                db.HotelImages.RemoveRange(existingImages);
 
-                    db.Hotel_Equipment_Reference.Add(hotelEquipmentReference);
+                // 对flowLayoutPanel1中的每个PictureBox和TextBox对进行迭代
+                for (int i = 0; i < flowLayoutPanel1.Controls.Count; i += 3)
+                {
+                    var pictureBox = flowLayoutPanel1.Controls[i] as PictureBox;
+                    var descriptionBox = flowLayoutPanel1.Controls[i + 1] as TextBox;
+                    // var removeButton = flowLayoutPanel1.Controls[i + 2] as Button; // 如果需要引用删除按钮
+
+                    if (pictureBox != null && descriptionBox != null)
+                    {
+                        // 获取图片路径和描述
+                        string imagePath = pictureBox.ImageLocation; // 假设您在添加PictureBox时设置了ImageLocation
+                        string description = descriptionBox.Text;
+
+                        // 创建新的HotelImage实体对象
+                        var hotelImage = new HotelImages
+                        {
+                            HotelID = FrmHotelSystem.Id,
+                            HotelImage = imagePath,
+                            HImageDescription = description
+                        };
+          
+                        db.HotelImages.Add(hotelImage);
+                    }
                 }
+
+             
+                db.SaveChanges();
             }
 
-            db.SaveChanges();
 
 
-
-            MessageBox.Show("新增成功");
             _isOK = DialogResult.OK;
+            MessageBox.Show("修改成功");
             this.Close();
         }
 
@@ -217,7 +363,7 @@ namespace FunNow.BackSide_Hotel.View
             openFileDialog1.Multiselect = true;
             if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
 
-            string basePath = Application.StartupPath + "\\hotelImages"; //取得啟動應用程式的可執行檔路徑，不包括檔名。
+            string basePath = Application.StartupPath + "\\image"; //取得啟動應用程式的可執行檔路徑，不包括檔名。
             if (!Directory.Exists(basePath))
             {
                 Directory.CreateDirectory(basePath); //在指定的路徑中建立所有目錄
@@ -225,19 +371,25 @@ namespace FunNow.BackSide_Hotel.View
 
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+            int index = 0;
             foreach (string file in openFileDialog1.FileNames)
             {
-                string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + Path.GetExtension(file);
+                string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + index.ToString() + Path.GetExtension(file);
                 string filePath = Path.Combine(basePath, uniqueFileName);
                 File.Copy(file, filePath);  //複製現有的檔案到新的檔案。 不允許覆寫相同名稱的檔案。(string sourceFileName, string destFileName)
-
                 _ImagePaths.Add(filePath); // 添加到圖片路徑列表
-          
+
+                //Delete ICON
+                Button removeButton = new Button();
+                removeButton.Text = "刪除";
+                removeButton.Tag = filePath;
+
                 PictureBox pictureBox = new PictureBox
                 {
                     Image = Image.FromFile(filePath),
                     SizeMode = PictureBoxSizeMode.Zoom,
-                    BorderStyle = BorderStyle.FixedSingle
+                    BorderStyle = BorderStyle.FixedSingle,
+                    ImageLocation = filePath
                 };
 
                 
@@ -247,13 +399,55 @@ namespace FunNow.BackSide_Hotel.View
                 descriptionBox.Multiline = true;
                 descriptionBox.ScrollBars = ScrollBars.Vertical;
                 descriptionBox.Height = descriptionBox.Font.Height * numberOfLines;
+                descriptionBox.Tag = filePath;  //Tag 屬性
 
-                descriptionBox.Tag = file;  //Tag 屬性
+                removeButton.Click += (sender1, e1) =>
+                {
+                    Button btn = sender1 as Button; // 使用 as 關鍵字嘗試轉換 sender 為 Button 類型
+                    if (btn != null && btn.Tag is string) // 確保 btn 不是 null 並且 Tag 確實是一個 string
+                    {          
+                        string pathToRemove = (string)btn.Tag;
+                        RemoveImageAndDescription(pathToRemove);
+                    }
+                };
 
                 flowLayoutPanel1.Controls.Add(pictureBox); 
                 flowLayoutPanel1.Controls.Add(descriptionBox);
+                flowLayoutPanel1.Controls.Add(removeButton);
+                index++;
             }
         }
-   
+
+        private void RemoveImageAndDescription(string imagePath)
+        {
+
+            PictureBox pictureBoxToRemove = flowLayoutPanel1.Controls.OfType<PictureBox>()
+           .FirstOrDefault(pb => pb.ImageLocation == imagePath);
+
+
+            TextBox descriptionBoxToRemove = flowLayoutPanel1.Controls.OfType<TextBox>()
+                .FirstOrDefault(tb => (string)tb.Tag == imagePath);
+
+            Button removeButtonToRemove = flowLayoutPanel1.Controls
+                .OfType<Button>()
+                .FirstOrDefault(btn => btn.Tag != null && btn.Tag.ToString() == imagePath);
+
+            if (pictureBoxToRemove != null && descriptionBoxToRemove != null)
+            {
+                
+                flowLayoutPanel1.Controls.Remove(pictureBoxToRemove);
+                flowLayoutPanel1.Controls.Remove(descriptionBoxToRemove);
+                flowLayoutPanel1.Controls.Remove(removeButtonToRemove);
+
+                pictureBoxToRemove.Dispose(); 
+                descriptionBoxToRemove.Dispose();
+                removeButtonToRemove.Dispose();
+
+                flowLayoutPanel1.PerformLayout(); // 強制 flowLayoutPanel1 重新佈局
+                flowLayoutPanel1.Invalidate(); // 強制 flowLayoutPanel1 重新繪製
+            }
+            
+            _ImagePaths.Remove(imagePath);
+        }
     }
 }

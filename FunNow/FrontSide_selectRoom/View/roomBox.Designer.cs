@@ -208,6 +208,7 @@
             this.btnOrder.TabIndex = 8;
             this.btnOrder.Text = "立即預定";
             this.btnOrder.UseVisualStyleBackColor = false;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
             // 
             // lblPrice
             // 

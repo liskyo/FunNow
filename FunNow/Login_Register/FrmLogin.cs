@@ -85,6 +85,7 @@ namespace FunNow
                             //進入管理員後臺頁面
                             FrmMain fa = new FrmMain();
                             auth = mm;
+                            fa.ShowDialog();
                         }
                         else
                         {

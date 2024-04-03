@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,8 +57,17 @@ namespace FunNow.FrontSide.View
 
         public string cartRoomPicture
         {
-            //get { return; }
-            set { PictureBoxRoom.Image =Image.FromFile(value); }
+            set
+            {
+                if (!string.IsNullOrEmpty(value) && File.Exists(value))
+                {
+                    PictureBoxRoom.Image = Image.FromFile(value);
+                }
+                else
+                {
+                    PictureBoxRoom.Image = null;
+                }
+            }
         }
 
         public int orderDetailID { get; set; }
@@ -67,6 +77,7 @@ namespace FunNow.FrontSide.View
             deleteCartBtn(this);
         }
 
+        public string roomName { get { return lblRoomName.Text; } set { lblRoomName.Text = value; } }
         public int btn { get { return (int)btnDelete.Tag; } set { btnDelete.Tag = value; } }
 
         

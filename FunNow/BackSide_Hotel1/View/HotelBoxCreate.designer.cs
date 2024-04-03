@@ -1,6 +1,6 @@
 ﻿namespace FunNow.BackSide_Hotel
 {
-    partial class HotelBox
+    partial class HotelBoxCreate
     {
         /// <summary> 
         /// 設計工具所需的變數。

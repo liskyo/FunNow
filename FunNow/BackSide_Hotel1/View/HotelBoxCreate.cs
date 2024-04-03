@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FunNow.BackSide_Hotel
 {
-    public partial class HotelBox : UserControl
+    public partial class HotelBoxCreate : UserControl
     {
-        public HotelBox()
+        public HotelBoxCreate()
         {
             InitializeComponent();
         }

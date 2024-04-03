@@ -67,7 +67,7 @@ namespace FunNow
 
                 string fliename = Path.GetFileName(pic);
                 string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
-                string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", fliename);
+                string path = Path.Combine(projectRoot, "\\roomImages", fliename);
 
                 PictureBox pb = new PictureBox();
                 pb.SizeMode = PictureBoxSizeMode.Zoom;

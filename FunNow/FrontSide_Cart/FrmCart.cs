@@ -15,6 +15,7 @@ namespace Fun
 {
     public partial class FrmCart : Form
     {
+
         public FrmCart()
         {
             InitializeComponent();
@@ -24,7 +25,6 @@ namespace Fun
         private void FrmCart_Load(object sender, EventArgs e)
         {
             queryAllCart();
-         
         }
 
         private void updateCount(int ctn)
@@ -37,37 +37,41 @@ namespace Fun
             decimal totalPrice = 0;
             dbFunNow db = new dbFunNow();
             var orderDetails = (from o in db.OrderDetails
-                               where o.isOrdered == false && o.MemberID == FrmLogin.auth.MemberID
-                               select new
-                               { o.Room.Hotel.HotelName, o.Room.Hotel.City.CityName, o.Room.RoomType.RoomTypeName, o.Room.RoomPrice, FirstRoomImage = o.Room.RoomImage.FirstOrDefault(), o.CheckInDate, o.CheckOutDate, o.OrderDetailID }).ToList();
-            Count = orderDetails.Count; // count幾筆資料
+                                where o.isOrdered == false && o.MemberID == FrmLogin.auth.MemberID
+                                select new
+                                { o.Room.Hotel.HotelName, o.Room.Hotel.City.CityName, o.Room.RoomType.RoomTypeName, o.Room.RoomPrice, FirstRoomImage = o.Room.RoomImage.Select(ri => ri.RoomImage1).FirstOrDefault(), o.CheckInDate, o.CheckOutDate, o.OrderDetailID, o.Room.RoomName }).ToList();
+            Count = orderDetails.Count; // count幾筆資料       
             updateCount(Count);
+
 
             foreach (var od in orderDetails)
             {
+
+                string firstRoomImageString = od.FirstRoomImage != null ? od.FirstRoomImage.ToString() : null;
+
                 cartBox c = new cartBox();
                 c.cartHotelName = od.HotelName;
                 c.cartCityName = od.CityName;
                 c.cartRoomType = od.RoomTypeName;
-                c.cartRoomPrice = od.RoomPrice;
-                //todo# roomImage
-                //c.cartRoomPicture = od.FirstRoomImage.ToString(); 
+                c.roomName = od.RoomName;
+                c.cartRoomPicture = firstRoomImageString;
                 c.cartCheckInDate = od.CheckInDate;
                 c.cartCheckOutDate = od.CheckOutDate;
                 c.orderDetailID = od.OrderDetailID;
                 c.deleteCartBtn += this.deleteMethod;
-                flowLayoutPanel1.Controls.Add(c);
-
+                int stayDuration = (od.CheckOutDate - od.CheckInDate).Days;
+                c.cartRoomPrice = od.RoomPrice * stayDuration;
                 c.btn = od.OrderDetailID;
-                totalPrice += od.RoomPrice;
+                flowLayoutPanel1.Controls.Add(c);
+                totalPrice += od.RoomPrice * stayDuration;
             }
             updateTotalPrice(totalPrice);
-            
+
         }
 
         private void updateTotalPrice(decimal totalPrice)
-        {         
-            lblTotalPrice.Text = totalPrice.ToString();             
+        {
+            lblTotalPrice.Text = totalPrice.ToString();
         }
 
         private void deleteMethod(cartBox c)
@@ -89,9 +93,9 @@ namespace Fun
         private void button14_Click(object sender, EventArgs e)
         {
             if (Count <= 0) { MessageBox.Show("購物車沒有商品喔!"); return; }
-            
-            new FrmPayment().Show();
-            //this.Close();
+
+            new FrmPayment().ShowDialog();
+            this.Close();
         }
     }
 }
