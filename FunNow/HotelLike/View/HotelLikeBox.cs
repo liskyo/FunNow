@@ -34,12 +34,12 @@ namespace prjFunNowMember.View
             {
                 if (!string.IsNullOrEmpty(value) && File.Exists(value))
                 {
-                    value = Path.GetFileName(value);
-                    string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
-                    string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", value);
+                    //value = Path.GetFileName(value);
+                    //string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                    //string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", value);
 
 
-                    pictureBox1.Image = Image.FromFile(path);
+                    pictureBox1.Image = Image.FromFile(value);
                 }
                 else
                 {

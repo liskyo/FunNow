@@ -977,7 +977,7 @@ namespace FunNow.BackSide_POS
                          where rooms.ToList().Contains(h.HotelID) // List<Hotel>
                          select
                          new
-                         {
+                         {                             
                              城市 = h.City.CityName,
                              旅館名稱 = h.HotelName,
                              旅館地址 = h.HotelAddress,
