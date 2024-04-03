@@ -39,9 +39,11 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(17, 51);
+            this.pictureBox1.Location = new System.Drawing.Point(13, 41);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(213, 208);
+            this.pictureBox1.Size = new System.Drawing.Size(160, 166);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -50,9 +52,10 @@
             this.button1.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(46, 344);
+            this.button1.Location = new System.Drawing.Point(34, 275);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(138, 55);
+            this.button1.Size = new System.Drawing.Size(104, 44);
             this.button1.TabIndex = 18;
             this.button1.Text = "查看住宿";
             this.button1.UseVisualStyleBackColor = true;
@@ -62,9 +65,10 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("微軟正黑體", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblName.Location = new System.Drawing.Point(41, 271);
+            this.lblName.Location = new System.Drawing.Point(31, 217);
+            this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(163, 35);
+            this.lblName.Size = new System.Drawing.Size(134, 28);
             this.lblName.TabIndex = 19;
             this.lblName.Text = "HotelName";
             // 
@@ -72,9 +76,10 @@
             // 
             this.lbCityName.AutoSize = true;
             this.lbCityName.Font = new System.Drawing.Font("微軟正黑體", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbCityName.Location = new System.Drawing.Point(41, 306);
+            this.lbCityName.Location = new System.Drawing.Point(31, 245);
+            this.lbCityName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbCityName.Name = "lbCityName";
-            this.lbCityName.Size = new System.Drawing.Size(143, 35);
+            this.lbCityName.Size = new System.Drawing.Size(117, 28);
             this.lbCityName.TabIndex = 20;
             this.lbCityName.Text = "CityName";
             // 
@@ -82,16 +87,17 @@
             // 
             this.buttonHeart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonHeart.Image = ((System.Drawing.Image)(resources.GetObject("buttonHeart.Image")));
-            this.buttonHeart.Location = new System.Drawing.Point(196, -2);
+            this.buttonHeart.Location = new System.Drawing.Point(147, -2);
+            this.buttonHeart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonHeart.Name = "buttonHeart";
-            this.buttonHeart.Size = new System.Drawing.Size(52, 50);
+            this.buttonHeart.Size = new System.Drawing.Size(39, 40);
             this.buttonHeart.TabIndex = 21;
             this.buttonHeart.UseVisualStyleBackColor = true;
             this.buttonHeart.Click += new System.EventHandler(this.RemoveHotelFromFavorites);
             // 
             // HotelLikeBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.buttonHeart);
@@ -99,8 +105,9 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "HotelLikeBox";
-            this.Size = new System.Drawing.Size(246, 402);
+            this.Size = new System.Drawing.Size(184, 322);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
