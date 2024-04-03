@@ -98,7 +98,7 @@ namespace FunNow.Comment
                     break;
                 }
             }
-            dataGridView1.DataSource = query.ToList();
+           
             return query.ToList();
 
         }
