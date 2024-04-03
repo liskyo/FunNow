@@ -144,11 +144,11 @@ namespace Fun
         private void button14_Click(object sender, EventArgs e)
         {
             if (_payID == 0) { MessageBox.Show("尚未選擇付款方式"); return; }
-            
+
             dbFunNow db = new dbFunNow();
             //CouponID
             PaymentStatus p = db.PaymentStatus.FirstOrDefault(x => x.PaymentStatusID == _payID);
-            
+
             Order o = new Order();
             o.MemberID = FrmLogin.auth.MemberID;
             o.OrderStatusID = 1; //預設為已訂
@@ -164,32 +164,49 @@ namespace Fun
             var orderDetailsToUpdate = from od in db.OrderDetails
                                        where od.MemberID == FrmLogin.auth.MemberID && od.OrderID == null
                                        select od;
-            foreach (var orderDetail in orderDetailsToUpdate) {
+            foreach (var orderDetail in orderDetailsToUpdate)
+            {
                 orderDetail.OrderID = o.OrderID;
                 orderDetail.isOrdered = true;
             }
             db.SaveChanges();
 
+            // 獲取所有與當前訂單關聯的訂單明細
+            var orderDetails = db.OrderDetails.Where(od => od.OrderID == o.OrderID).OrderBy(od => od.CreatedAt).ToList();
 
-            //根據購物車中商品筆數，顯示相對應的評論表單數
-            DateTime targetTime = DateTime.Now.AddSeconds(-30);
-            var orderDetails = db.OrderDetails.Where(od => od.MemberID == FrmLogin.auth.MemberID &&
-                 od.CreatedAt >= targetTime &&
-                 od.CreatedAt <= DateTime.Now).ToList();
             foreach (var orderDetail in orderDetails)
             {
-               
                 // 獲取與訂單相關的酒店資訊
                 var hotel = db.Hotel.FirstOrDefault(h => h.HotelID == orderDetail.Room.HotelID);
-                // 創建新的評論表單，並將相關訂單資訊傳遞給建構函式
-                FrmWriteComment wc = new FrmWriteComment(hotel.HotelID, hotel.HotelName, orderDetail.CheckInDate, orderDetail.CheckOutDate, orderDetail.Room.RoomName);
 
-                // 顯示評論表單
+                // 獲取訂單明細關聯的房型名稱
+                var roomTypeName = orderDetail.Room.RoomType.RoomTypeName;
+
+                // 創建新的評論表單,並將相關訂單資訊傳遞給建構函式
+                FrmWriteComment wc = new FrmWriteComment(hotel.HotelID, hotel.HotelName, orderDetail.CheckInDate, orderDetail.CheckOutDate, roomTypeName);
+    
                 wc.ShowDialog();
             }
-           
+
             this.Close();
 
         }
     }
 }
+//根據購物車中商品筆數，顯示相對應的評論表單數
+//DateTime targetTime = DateTime.Now.AddSeconds(-30);
+//var orderDetails = db.OrderDetails.Where(od => od.MemberID == FrmLogin.auth.MemberID &&
+//     od.CreatedAt >= targetTime &&
+//     od.CreatedAt <= DateTime.Now).ToList();
+//foreach (var orderDetail in orderDetails)
+//{
+
+//    // 獲取與訂單相關的酒店資訊
+//    var hotel = db.Hotel.FirstOrDefault(h => h.HotelID == orderDetail.Room.HotelID);
+//    // 創建新的評論表單，並將相關訂單資訊傳遞給建構函式
+//    FrmWriteComment wc = new FrmWriteComment(hotel.HotelID, hotel.HotelName, orderDetail.CheckInDate, orderDetail.CheckOutDate, orderDetail.Room.RoomName);
+
+//    // 顯示評論表單
+//    wc.ShowDialog();
+//}
+// 獲取所有與當前訂單關聯的訂單明細

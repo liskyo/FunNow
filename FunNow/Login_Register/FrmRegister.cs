@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Security.Cryptography;
@@ -68,8 +69,14 @@ namespace projFunNow_Ruby
             txtRecheck.Text = "";
             txtRecheck.PasswordChar = '●';
             imgs = new Image[2];
-            imgs[0] = Image.FromFile("c:\\openEyes.png");
-            imgs[1] = Image.FromFile("c:\\closeEyes.png");
+            string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+            string path0 = Path.Combine(projectRoot, "..\\..\\..\\image\\", "openEyes.png");
+            string path1 = Path.Combine(projectRoot, "..\\..\\..\\image\\", "closeEyes.png");
+            imgs[0] = Image.FromFile(path0);
+            imgs[1] = Image.FromFile(path1);
+
+            //imgs[0] = Image.FromFile("c:\\openEyes.png");
+            //imgs[1] = Image.FromFile("c:\\closeEyes.png");
         }
 
 
