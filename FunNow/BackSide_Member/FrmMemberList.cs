@@ -24,8 +24,8 @@ namespace prjFunNowMember
 
             dbFunNow db = new dbFunNow();
             var members = from m in db.Member
-                          join h in db.HotelLikes
-                          on m.MemberID equals h.MemberID
+                          //join h in db.HotelLikes
+                          //on m.MemberID equals h.MemberID
                           join r in db.Role
                           on m.RoleID equals r.RoleID
                           select new

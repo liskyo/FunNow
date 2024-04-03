@@ -65,15 +65,15 @@ namespace FunNow
             foreach (var pic in pictures)
             {
 
-                string fliename = Path.GetFileName(pic);
-                string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
-                string path = Path.Combine(projectRoot, "\\roomImages", fliename);
+                //string fliename = Path.GetFileName(pic);
+                //string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                //string path = Path.Combine(projectRoot, "\\roomImages", fliename);
 
                 PictureBox pb = new PictureBox();
                 pb.SizeMode = PictureBoxSizeMode.Zoom;
                 pb.Width = 100;
                 pb.Height = 50;
-                pb.Image = new Bitmap(path);
+                pb.Image = new Bitmap(pic);
                 pb.Click += Pb_Click;
                 flowLayoutPanel1.Controls.Add(pb);
 
