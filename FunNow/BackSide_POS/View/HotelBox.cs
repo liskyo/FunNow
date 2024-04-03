@@ -100,7 +100,12 @@ namespace FunNow.BackSide_POS.View
                 lblCity.Text = _hotel.City.CityName;
                 lblHotelDescription.Text = _hotel.HotelDescription;
                 lblHotelTypeName.Text = _hotel.HotelType.HotelTypeName;
+                
+                
+                if(_hotel.CommentRate != null && _hotel.CommentRate.Any())
+                {
                 lblRating.Text = "" + _hotel.CommentRate.Average(c => c.Rating);
+                }
 
 
                 //if (!string.IsNullOrEmpty(_room.fImagepath))//不是空字串則載入圖片

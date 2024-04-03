@@ -985,7 +985,7 @@ namespace FunNow.BackSide_POS
                              旅館電話 = h.HotelPhone,
                              旅館種類 = h.HotelType.HotelTypeName,
                              //均價 = h.Room.Average(p => p.RoomPrice),
-                             評分 = c.Rating
+                             評分 = h.CommentRate.Average(p => p.Rating)
 
                          };  // 將hotels查詢結果繫結到dataGridView1 
 
