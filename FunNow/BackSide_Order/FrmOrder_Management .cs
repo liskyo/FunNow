@@ -38,8 +38,11 @@ namespace FunNow.BackSide_Order
                              PaymentStatusID = order.PaymentStatusID,
                              TotalPrice = order.TotalPrice,
                              CouponID = order.CouponID,
-                             CreatedAt = order.CreatedAt
+                             CreatedAt = orderDetail.CreatedAt,
+                             OrderdetailID = orderDetail.OrderDetailID
                          };
+
+
 
             dataGridView1.DataSource = orders.ToList();
             resetGridStyle();
@@ -54,7 +57,7 @@ namespace FunNow.BackSide_Order
             dataGridView1.Columns[5].HeaderText = "房間名稱"; // 新增房間名稱欄位
             dataGridView1.Columns[6].HeaderText = "可入住時間";
             dataGridView1.Columns[7].HeaderText = "可退房時間";
-            dataGridView1.Columns[8].HeaderText = "折價券";
+            dataGridView1.Columns[8].HeaderText = "訂單狀態";
             dataGridView1.Columns[9].HeaderText = "付款狀態";
             dataGridView1.Columns[10].HeaderText = "總價";
             dataGridView1.Columns[11].HeaderText = "折價券";
@@ -64,7 +67,7 @@ namespace FunNow.BackSide_Order
             dataGridView1.Columns[2].Width = 80;
             dataGridView1.Columns[3].Width = 80;
             dataGridView1.Columns[4].Width = 80;
-            dataGridView1.Columns[5].Width =100;
+            dataGridView1.Columns[5].Width = 100;
             dataGridView1.Columns[6].Width = 100;
             dataGridView1.Columns[7].Width = 100;
             dataGridView1.Columns[8].Width = 80;
@@ -72,7 +75,8 @@ namespace FunNow.BackSide_Order
             dataGridView1.Columns[10].Width = 80;
             dataGridView1.Columns[11].Width = 80;
             dataGridView1.Columns[12].Width = 200;
-
+            // 隱藏 OrderdetailID 欄位
+            dataGridView1.Columns["OrderdetailID"].Visible = false;
             //for (int i = 12; i < dataGridView1.Columns.Count; i++)
             //{
             //    dataGridView1.Columns[i].Visible = false; // 將 column12 以後的列隱藏
@@ -97,7 +101,7 @@ namespace FunNow.BackSide_Order
             Membercomboxquery();
 
         }
-       
+
 
         private void Membercomboxquery()
         {
@@ -172,6 +176,8 @@ namespace FunNow.BackSide_Order
         private void button2_Click(object sender, EventArgs e)
         {
             FrmOrder f = new FrmOrder();
+            f.CreatedAtBox.Visible = false;
+
             // 設定表單的 CreatedAtBox 的預設值為當前時間
             //f.CreatedAtBox.fileValue = dateTimeVariable.ToString(); // 使用 ToString() 方法將 DateTime 轉換為字串
 
@@ -213,7 +219,7 @@ namespace FunNow.BackSide_Order
             dbFunNow db2 = new dbFunNow();
             db2.OrderDetails.Add(y);
             db2.SaveChanges();
-           
+
             queryAll();
         }
 
@@ -255,6 +261,7 @@ namespace FunNow.BackSide_Order
             FrmOrder f = new FrmOrder();
             f.label2.Visible = true;
             f.OrderIDcomboBox.Visible = true;
+            f.CreatedAtBox.Visible = false;
 
             // 先清空 OrderIDcomboBox 控制元件的項目
             f.OrderIDcomboBox.Items.Clear();
@@ -285,6 +292,7 @@ namespace FunNow.BackSide_Order
                 RoomID = f.orderdetails.RoomID,
                 CheckInDate = f.orderdetails.CheckInDate,
                 CheckOutDate = f.orderdetails.CheckOutDate,
+                CreatedAt = f.orderdetails.CreatedAt,
                 isOrdered = f.orderdetails.isOrdered
             };
 
@@ -303,12 +311,12 @@ namespace FunNow.BackSide_Order
             }
 
             // 獲取所選擇的行的訂單號碼
-            int selectedOrderID = (int)dataGridView1.SelectedRows[0].Cells["OrderID"].Value;
+            int selectedOrderID = (int)dataGridView1.SelectedRows[0].Cells["OrderDetailID"].Value;
 
             // 從資料庫中刪除該訂單的相關訂單詳細資料
             using (dbFunNow db = new dbFunNow())
             {
-                OrderDetails orderDetailToDelete = db.OrderDetails.FirstOrDefault(od => od.OrderID == selectedOrderID);
+                OrderDetails orderDetailToDelete = db.OrderDetails.FirstOrDefault(od => od.OrderDetailID == selectedOrderID);
                 if (orderDetailToDelete != null)
                 {
                     db.OrderDetails.Remove(orderDetailToDelete);
@@ -320,4 +328,4 @@ namespace FunNow.BackSide_Order
             queryAll();
         }
     }
-    }
+}

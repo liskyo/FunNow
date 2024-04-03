@@ -243,7 +243,7 @@
         private BackSide_Hotel.HotelOrderBox PaymentStatusIDBox;
         private BackSide_Hotel.HotelOrderBox TotalPriceBox;
         private BackSide_Hotel.HotelOrderBox CouponIDBox;
-        private BackSide_Hotel.HotelOrderBox CreatedAtBox;
+        public BackSide_Hotel.HotelOrderBox CreatedAtBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;

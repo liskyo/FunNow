@@ -8,7 +8,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -145,31 +144,47 @@ namespace FunNow.BackSide_Order
                                                  };
 
                 // 將結果集載入到內存中
-                var dailyOrderQuantities = dailyOrderQuantitiesFromDb.ToList();
+                var dailyOrderQuantities = (from order in db.Order
+                                            join orderDetail in db.OrderDetails on order.OrderID equals orderDetail.OrderID
+                                            join room in db.Room on orderDetail.RoomID equals room.RoomID
+                                            join hotel in db.Hotel on room.HotelID equals hotel.HotelID
+                                            group new { order, orderDetail, room, hotel } by DbFunctions.TruncateTime(orderDetail.CheckInDate) into g
+                                            select new
+                                            {
+                                                Date = g.Key,
+                                                OrderCount = g.Count(),
+                                                HotelName = g.FirstOrDefault().hotel.HotelName
+                                            }).ToList();
 
                 // 使用折線圖顯示每日的訂單量變化趨勢
                 chart1.Series.Clear();
-                chart1.Series.Add(new Series
-                {
-                    Name = "總訂單量",
-                    ChartType = SeriesChartType.Line,
-                    XValueType = ChartValueType.DateTime,
-                    YValueType = ChartValueType.Int32
-                });
 
-                // 添加資料到折線圖中
-                foreach (var dailyOrderQuantity in dailyOrderQuantities)
+                // 遍歷每個飯店，為每個飯店添加一條統計線
+                foreach (var hotelName in dailyOrderQuantities.Select(x => x.HotelName).Distinct())
                 {
-                    chart1.Series["總訂單量"].Points.AddXY(dailyOrderQuantity.Date, dailyOrderQuantity.OrderCount);
+                    var ordersForHotel = dailyOrderQuantities.Where(x => x.HotelName == hotelName).ToList();
+
+                    var series = new Series
+                    {
+                        Name = hotelName + "近七日訂單量",
+                        ChartType = SeriesChartType.Line,
+                        XValueType = ChartValueType.DateTime,
+                        YValueType = ChartValueType.Int32
+                    };
+
+                    // 添加該飯店的訂單量到折線圖中
+                    foreach (var orderForHotel in ordersForHotel)
+                    {
+                        series.Points.AddXY(orderForHotel.Date, orderForHotel.OrderCount);
+                    }
+
+                    chart1.Series.Add(series);
                 }
 
                 // 設定折線圖的樣式
                 chart1.BackColor = Color.White;
                 chart1.ChartAreas[0].BackColor = Color.Transparent;
-                chart1.Series[0].Color = Color.Blue;
-                chart1.Series[0].BorderWidth = 2;
                 chart1.ChartAreas[0].AxisX.LabelStyle.Format = "MM/dd/yyyy"; // 設定X軸日期格式
-                chart1.Series[0].XValueType = ChartValueType.DateTime; // 設定X軸值類型為日期時間
                 chart1.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.LightGray;
                 chart1.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.LightGray;
             }
@@ -200,7 +215,7 @@ namespace FunNow.BackSide_Order
                                       UsageCount = g.Count()
                                   };
 
-               
+
 
                 // 使用圓餅圖顯示折扣券使用率
                 chart1.Series.Clear();
@@ -225,7 +240,7 @@ namespace FunNow.BackSide_Order
             }
         }
 
-       
-        
+
+
     }
 }

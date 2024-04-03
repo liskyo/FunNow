@@ -1,4 +1,4 @@
-﻿
+﻿using FunNow.BackSide_Hotel.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,12 +15,12 @@ namespace FunNow.BackSide_Order
     public partial class FrmOrder : Form
 
     {
-       // private string _ImagePath = "";
+        // private string _ImagePath = "";
         private DialogResult _isOk;
         private Order _order;
         private OrderDetails _orderDetails;
 
-        public OrderDetails orderdetails 
+        public OrderDetails orderdetails
         {
             get
             {
@@ -39,16 +39,16 @@ namespace FunNow.BackSide_Order
 
                 return _orderDetails;
             }
-            set 
+            set
             {
                 _orderDetails = value;
                 MemberIDBox.fileValue = _orderDetails.MemberID.ToString();
-                RoomIDBox.fileValue =_orderDetails.RoomID.ToString();
+                RoomIDBox.fileValue = _orderDetails.RoomID.ToString();
                 CheckInDateBox.fileValue = _orderDetails.CheckInDate.ToString();
                 CheckOutDateBox.fileValue = _orderDetails.CheckOutDate.ToString();
                 CreatedAtBox.fileValue = _orderDetails.CreatedAt.ToString();
-                isOrderedBox.fileValue =_orderDetails.isOrdered.ToString();
-               // OrderIDBox.fileValue = _orderDetails.OrderID.ToString();
+                isOrderedBox.fileValue = _orderDetails.isOrdered.ToString();
+                // OrderIDBox.fileValue = _orderDetails.OrderID.ToString();
 
             }
         }
@@ -68,7 +68,7 @@ namespace FunNow.BackSide_Order
                 _order.TotalPrice = Convert.ToDecimal(TotalPriceBox.fileValue);
                 _order.CouponID = Convert.ToInt32(CouponIDBox.fileValue);
                 _order.CreatedAt = Convert.ToDateTime(CreatedAtBox.fileValue);
-                
+
 
                 return _order;
             }
@@ -103,6 +103,9 @@ namespace FunNow.BackSide_Order
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(CreatedAtBox.fileValue))
+
+                CreatedAtBox.fileValue = DateTime.Now.ToString(); // 使用 ToString() 方法將 DateTime 轉換為字串並賦值給 CreatedAtBox 的 Text 屬性
             _isOk = DialogResult.OK;
             Close();
         }
@@ -115,9 +118,9 @@ namespace FunNow.BackSide_Order
 
         private void FrmOrder_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(CreatedAtBox.fileValue))
+            //if (string.IsNullOrEmpty(CreatedAtBox.fileValue))
 
-                CreatedAtBox.fileValue = DateTime.Now.ToString(); // 使用 ToString() 方法將 DateTime 轉換為字串並賦值給 CreatedAtBox 的 Text 屬性
+            //    CreatedAtBox.fileValue = DateTime.Now.ToString(); // 使用 ToString() 方法將 DateTime 轉換為字串並賦值給 CreatedAtBox 的 Text 屬性
 
         }
     }
