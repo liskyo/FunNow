@@ -157,8 +157,8 @@ namespace FunNow
 
         private void button3_Click(object sender, EventArgs e)
         {
-            txtEmail.Text = "A@2.com";
-            txtPassword.Text = "Aa2222";
+            txtEmail.Text = "A1@gmail.com";
+            txtPassword.Text = "Aa1111";
         }
 
         private void button4_Click(object sender, EventArgs e)

@@ -30,5 +30,10 @@ namespace FunNow.BackSide_Hotel
             f.WindowState = FormWindowState.Maximized;
             f.Show();
         }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
