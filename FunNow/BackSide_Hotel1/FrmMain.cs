@@ -1,4 +1,7 @@
 ﻿using FunNow.BackSide_Hotel.View;
+using FunNow.BackSide_Order;
+using FunNow.Comment;
+using prjFunNowMember;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,6 +37,30 @@ namespace FunNow.BackSide_Hotel
         private void FrmMain_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            Frm f = new Frm();
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
+            f.Show();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            FrmMemberList f = new FrmMemberList();
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
+            f.Show();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            FrmCommentList f = new FrmCommentList();
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
+            f.Show();
         }
     }
 }
