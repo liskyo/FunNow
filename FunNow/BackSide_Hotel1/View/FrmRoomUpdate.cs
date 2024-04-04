@@ -240,22 +240,39 @@ namespace FunNow.BackSide_Hotel1.View
             int index = 0;
             foreach (string file in openFileDialog1.FileNames)
             {
-                string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + index.ToString() + Path.GetExtension(file);
-                string filePath = Path.Combine(basePath, uniqueFileName);
-                File.Copy(file, filePath);  //複製現有的檔案到新的檔案。 不允許覆寫相同名稱的檔案。(string sourceFileName, string destFileName)
-                _ImagePaths.Add(filePath); // 添加到圖片路徑列表
+                string destPath = Path.Combine(basePath, file);
+
+                MessageBox.Show(file + "   " + destPath);
+                //string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + index.ToString() + Path.GetExtension(file);
+                //string filePath = Path.Combine(basePath, uniqueFileName);
+                //File.Copy(file, destPath);  //複製現有的檔案到新的檔案。 不允許覆寫相同名稱的檔案。(string sourceFileName, string destFileName)
+                try
+                {
+                    File.Copy(file, destPath);
+                    Console.WriteLine("File copied successfully.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+
+
+                //string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + index.ToString() + Path.GetExtension(file);
+                //string filePath = Path.Combine(basePath, uniqueFileName);
+                //File.Copy(file, filePath);  //複製現有的檔案到新的檔案。 不允許覆寫相同名稱的檔案。(string sourceFileName, string destFileName)
+                _ImagePaths.Add(destPath); // 添加到圖片路徑列表
 
                 //Delete ICON
                 Button removeButton = new Button();
                 removeButton.Text = "刪除";
-                removeButton.Tag = filePath;
+                removeButton.Tag = destPath;
 
                 PictureBox pictureBox = new PictureBox
                 {
-                    Image = Image.FromFile(filePath),
+                    Image = Image.FromFile(destPath),
                     SizeMode = PictureBoxSizeMode.Zoom,
                     BorderStyle = BorderStyle.FixedSingle,
-                    ImageLocation = filePath
+                    ImageLocation = destPath
                 };
 
   

@@ -116,8 +116,15 @@ namespace FunNow.BackSide_Hotel.View
                 //儲存照片
                 foreach (string imagePath in _ImagePaths)
                 {
+                    MessageBox.Show(imagePath);
+
+
+                    string filename = Path.GetFileName(imagePath);
+                    string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                    string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", filename);
+
                     RoomImage roomImage = new RoomImage();
-                    roomImage.RoomImage1 = imagePath;
+                    roomImage.RoomImage1 = path;
                     roomImage.RoomID = roomId;
                     db.RoomImage.Add(roomImage);
                 }
@@ -160,7 +167,7 @@ namespace FunNow.BackSide_Hotel.View
             openFileDialog1.Multiselect = true;
             if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
 
-            string basePath = Application.StartupPath + "\\image"; //取得啟動應用程式的可執行檔路徑，不包括檔名。
+            string basePath = Application.StartupPath + "..\\..\\..\\image\\"; //取得啟動應用程式的可執行檔路徑，不包括檔名。
             if (!Directory.Exists(basePath))
             {
                 Directory.CreateDirectory(basePath); //在指定的路徑中建立所有目錄
@@ -171,24 +178,40 @@ namespace FunNow.BackSide_Hotel.View
             int index = 0;
             foreach (string file in openFileDialog1.FileNames)
             {
-                string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + index.ToString() + Path.GetExtension(file);
-                string filePath = Path.Combine(basePath, uniqueFileName);
-                File.Copy(file, filePath);
 
-                _ImagePaths.Add(filePath); // 添加到圖片路徑列表
+                string destPath = Path.Combine(basePath, file);
+
+                MessageBox.Show(file + "   " + destPath);
+                //string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + index.ToString() + Path.GetExtension(file);
+                //string filePath = Path.Combine(basePath, uniqueFileName);
+                //File.Copy(file, destPath);  //複製現有的檔案到新的檔案。 不允許覆寫相同名稱的檔案。(string sourceFileName, string destFileName)
+                try
+                {
+                    File.Copy(file, destPath);
+                    Console.WriteLine("File copied successfully.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+                ////string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + index.ToString() + Path.GetExtension(file);
+                //string filePath = Path.Combine(basePath, uniqueFileName);
+                //File.Copy(file, filePath);
+
+                _ImagePaths.Add(destPath); // 添加到圖片路徑列表
 
                 //Delete ICON
                 Button removeButton = new Button();
                 removeButton.Text = "刪除";
-                removeButton.Tag = filePath;
+                removeButton.Tag = destPath;
 
 
                 var pictureBox = new PictureBox
                 {
-                    Image = Image.FromFile(filePath),
+                    Image = Image.FromFile(destPath),
                     SizeMode = PictureBoxSizeMode.Zoom,
                     BorderStyle = BorderStyle.FixedSingle,
-                    ImageLocation = filePath
+                    ImageLocation = destPath
                 };
 
                 removeButton.Click += (sender1, e1) =>

@@ -203,16 +203,19 @@ namespace FunNow.BackSide_Hotel.View
                 foreach (var img in images)
                 {
                     //string relativeImagePath = Path.Combine(Application.StartupPath, "image", Path.GetFileName(img.HotelImage));
-                    //string relativeImagePath = Path.Combine(Application.StartupPath, "..", "image", Path.GetFileName(img.HotelImage));
-                    string relativeImagePath = Path.Combine(Application.StartupPath.Replace("\\bin\\Debug", ""), "image", Path.GetFileName(img.HotelImage));
 
+                    string filename = Path.GetFileName(img.HotelImage);
+                    string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                    string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", filename);
+
+                    MessageBox.Show(path);
 
                     PictureBox pictureBox = new PictureBox
                     {
                         SizeMode = PictureBoxSizeMode.Zoom,
                         BorderStyle = BorderStyle.FixedSingle,
-                        ImageLocation = relativeImagePath,
-                        Image = Image.FromFile(relativeImagePath),
+                        ImageLocation = path,
+                        Image = Image.FromFile(path),
 
 
                         //SizeMode = PictureBoxSizeMode.Zoom,
@@ -335,8 +338,10 @@ namespace FunNow.BackSide_Hotel.View
                     if (pictureBox != null && descriptionBox != null)
                     {
                         // 获取图片路径和描述
+
                         string imagePath = pictureBox.ImageLocation; // 假设您在添加PictureBox时设置了ImageLocation
                         string description = descriptionBox.Text;
+
 
                         // 创建新的HotelImage实体对象
                         var hotelImage = new HotelImages
@@ -345,6 +350,9 @@ namespace FunNow.BackSide_Hotel.View
                             HotelImage = imagePath,
                             HImageDescription = description
                         };
+
+                        MessageBox.Show(""+ hotelImage.HotelID + "    "+ hotelImage.HotelImage + "  " + hotelImage.HImageDescription);
+
           
                         db.HotelImages.Add(hotelImage);
                     }
@@ -374,7 +382,12 @@ namespace FunNow.BackSide_Hotel.View
             openFileDialog1.Multiselect = true;
             if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
 
-            string basePath = Application.StartupPath + "\\image"; //取得啟動應用程式的可執行檔路徑，不包括檔名。
+
+            string basePath = Path.Combine(Application.StartupPath, "..\\..\\..\\image\\"); // 修改 basePath 為新路徑
+
+            MessageBox.Show("kevin"+basePath);
+
+            //string basePath = Application.StartupPath + "\\image"; //取得啟動應用程式的可執行檔路徑，不包括檔名。
             if (!Directory.Exists(basePath))
             {
                 Directory.CreateDirectory(basePath); //在指定的路徑中建立所有目錄
@@ -385,22 +398,34 @@ namespace FunNow.BackSide_Hotel.View
             int index = 0;
             foreach (string file in openFileDialog1.FileNames)
             {
-                string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + index.ToString() + Path.GetExtension(file);
-                string filePath = Path.Combine(basePath, uniqueFileName);
-                File.Copy(file, filePath);  //複製現有的檔案到新的檔案。 不允許覆寫相同名稱的檔案。(string sourceFileName, string destFileName)
-                _ImagePaths.Add(filePath); // 添加到圖片路徑列表
+                string destPath = Path.Combine(basePath, file);
+
+                MessageBox.Show(file +"   "+ destPath);
+                //string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + index.ToString() + Path.GetExtension(file);
+                //string filePath = Path.Combine(basePath, uniqueFileName);
+                //File.Copy(file, destPath);  //複製現有的檔案到新的檔案。 不允許覆寫相同名稱的檔案。(string sourceFileName, string destFileName)
+                try
+                {
+                    File.Copy(file, destPath);
+                    Console.WriteLine("File copied successfully.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+                _ImagePaths.Add(destPath); // 添加到圖片路徑列表
 
                 //Delete ICON
                 Button removeButton = new Button();
                 removeButton.Text = "刪除";
-                removeButton.Tag = filePath;
+                removeButton.Tag = destPath;
 
                 PictureBox pictureBox = new PictureBox
                 {
-                    Image = Image.FromFile(filePath),
+                    Image = Image.FromFile(destPath),
                     SizeMode = PictureBoxSizeMode.Zoom,
                     BorderStyle = BorderStyle.FixedSingle,
-                    ImageLocation = filePath
+                    ImageLocation = destPath
                 };
 
                 
@@ -410,7 +435,7 @@ namespace FunNow.BackSide_Hotel.View
                 descriptionBox.Multiline = true;
                 descriptionBox.ScrollBars = ScrollBars.Vertical;
                 descriptionBox.Height = descriptionBox.Font.Height * numberOfLines;
-                descriptionBox.Tag = filePath;  //Tag 屬性
+                descriptionBox.Tag = destPath;  //Tag 屬性
 
                 removeButton.Click += (sender1, e1) =>
                 {
@@ -459,6 +484,11 @@ namespace FunNow.BackSide_Hotel.View
             }
             
             _ImagePaths.Remove(imagePath);
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
