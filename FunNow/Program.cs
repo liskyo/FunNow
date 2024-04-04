@@ -2,6 +2,9 @@
 using FunNow.BackSide_Hotel;
 using FunNow.BackSide_Order;
 using FunNow.BackSide_POS;
+using FunNow.Comment;
+using prjFunNowMember;
+using prjFunNowMember.View;
 
 //using FunNow.BackSide_Hotel;
 
@@ -36,6 +39,13 @@ namespace FunNow
             Application.Run(new FrmPOS());
             //Application.Run(new FrmMain());
             //Application.Run(new Frm());
+            //Application.Run(new FrmMemberList());
+
+            //Application.Run(new FrmCommentList());
+
+            //Application.Run(new FrmHotelLikeBack());
+
+    
 
 
 
