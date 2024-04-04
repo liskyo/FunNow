@@ -202,14 +202,25 @@ namespace FunNow.BackSide_Hotel.View
 
                 foreach (var img in images)
                 {
+                    //string relativeImagePath = Path.Combine(Application.StartupPath, "image", Path.GetFileName(img.HotelImage));
+                    //string relativeImagePath = Path.Combine(Application.StartupPath, "..", "image", Path.GetFileName(img.HotelImage));
+                    string relativeImagePath = Path.Combine(Application.StartupPath.Replace("\\bin\\Debug", ""), "image", Path.GetFileName(img.HotelImage));
+
+
                     PictureBox pictureBox = new PictureBox
                     {
                         SizeMode = PictureBoxSizeMode.Zoom,
                         BorderStyle = BorderStyle.FixedSingle,
-                        ImageLocation = img.HotelImage,
-                        Image = Image.FromFile(img.HotelImage),
-                        //Width = 100, // 適當的大小
-                        // Height = 100  // 適當的大小
+                        ImageLocation = relativeImagePath,
+                        Image = Image.FromFile(relativeImagePath),
+
+
+                        //SizeMode = PictureBoxSizeMode.Zoom,
+                        //BorderStyle = BorderStyle.FixedSingle,
+                        //ImageLocation = img.HotelImage,
+                        //Image = Image.FromFile(img.HotelImage),
+                        ////Width = 100, // 適當的大小
+                        //// Height = 100  // 適當的大小
                     };
 
                     TextBox descriptionBox = new TextBox
@@ -220,7 +231,7 @@ namespace FunNow.BackSide_Hotel.View
                         //Height = 40, // 適當的高度
                         Text = img.HImageDescription,
                         Tag = img.HotelImage
-                };
+                    };
 
                     Button removeButton = new Button
                     {

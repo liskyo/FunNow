@@ -120,22 +120,29 @@ namespace FunNow
                            select p.HotelImage;
             foreach (var pic in pictures)
             {
-                //string fliename = Path.GetFileName(pic);
-                //string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
-                //string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", fliename);
-
-
-                PictureBox pb = new PictureBox();
-                pb.SizeMode = PictureBoxSizeMode.Zoom;
-                pb.Width = 100;
-                pb.Height = 50;
-                pb.Image = new Bitmap(pic);
-                pb.Click += Pb_Click;
-                flowLayoutPanel2.Controls.Add(pb);
-
-                if (flowLayoutPanel2.Controls.Count == 1)
+                if (!string.IsNullOrEmpty(pic))
                 {
-                    pictureBox1.Image = pb.Image;
+                    string path = pic;
+
+                    if (File.Exists(path))
+                    {
+                        using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                        {
+                            Image img = Image.FromStream(fs);
+                            PictureBox pb = new PictureBox();
+                            pb.SizeMode = PictureBoxSizeMode.Zoom;
+                            pb.Width = 100;
+                            pb.Height = 50;
+                            pb.Image = img;
+                            pb.Click += Pb_Click;
+                            flowLayoutPanel1.Controls.Add(pb);
+
+                            if (flowLayoutPanel1.Controls.Count == 1)
+                            {
+                                pictureBox1.Image = pb.Image;
+                            }
+                        }
+                    }
                 }
             }
             

@@ -36,8 +36,8 @@ namespace FunNow
 
 
 
-            //Application.Run(new FrmPOS());
-            //Application.Run(new FrmMain());
+            Application.Run(new FrmPOS());
+            Application.Run(new FrmMain());
             //Application.Run(new Frm());
             //Application.Run(new FrmMemberList());
 
