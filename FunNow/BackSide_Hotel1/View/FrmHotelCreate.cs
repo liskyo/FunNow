@@ -132,7 +132,7 @@ namespace FunNow.BackSide_Hotel1.View
             {
                 string destPath = Path.Combine(basePath, file);
 
-                MessageBox.Show(file + "   " + destPath);
+                //MessageBox.Show(file + "   " + destPath);
                 //string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + index.ToString() + Path.GetExtension(file);
                 //string filePath = Path.Combine(basePath, uniqueFileName);
                 //File.Copy(file, destPath);  //複製現有的檔案到新的檔案。 不允許覆寫相同名稱的檔案。(string sourceFileName, string destFileName)

@@ -64,9 +64,14 @@ namespace FunNow.FrontSide_Cart.view
         {
             set
             {
-                if (!string.IsNullOrEmpty(value) && File.Exists(value))
+                if (!string.IsNullOrEmpty(value) )
                 {
-                    PictureBoxRoom.Image = Image.FromFile(value);
+
+                    value = Path.GetFileName(value);
+                    string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                    string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", value);
+
+                    PictureBoxRoom.Image = Image.FromFile(path);
                 }
                 else
                 {

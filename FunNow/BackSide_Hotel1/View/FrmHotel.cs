@@ -208,7 +208,7 @@ namespace FunNow.BackSide_Hotel.View
                     string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
                     string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", filename);
 
-                    MessageBox.Show(path);
+                    //MessageBox.Show(path);
 
                     PictureBox pictureBox = new PictureBox
                     {
@@ -351,7 +351,7 @@ namespace FunNow.BackSide_Hotel.View
                             HImageDescription = description
                         };
 
-                        MessageBox.Show(""+ hotelImage.HotelID + "    "+ hotelImage.HotelImage + "  " + hotelImage.HImageDescription);
+                        //MessageBox.Show(""+ hotelImage.HotelID + "    "+ hotelImage.HotelImage + "  " + hotelImage.HImageDescription);
 
           
                         db.HotelImages.Add(hotelImage);
@@ -385,7 +385,7 @@ namespace FunNow.BackSide_Hotel.View
 
             string basePath = Path.Combine(Application.StartupPath, "..\\..\\..\\image\\"); // 修改 basePath 為新路徑
 
-            MessageBox.Show("kevin"+basePath);
+           // MessageBox.Show("kevin"+basePath);
 
             //string basePath = Application.StartupPath + "\\image"; //取得啟動應用程式的可執行檔路徑，不包括檔名。
             if (!Directory.Exists(basePath))
@@ -400,7 +400,7 @@ namespace FunNow.BackSide_Hotel.View
             {
                 string destPath = Path.Combine(basePath, file);
 
-                MessageBox.Show(file +"   "+ destPath);
+               // MessageBox.Show(file +"   "+ destPath);
                 //string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + index.ToString() + Path.GetExtension(file);
                 //string filePath = Path.Combine(basePath, uniqueFileName);
                 //File.Copy(file, destPath);  //複製現有的檔案到新的檔案。 不允許覆寫相同名稱的檔案。(string sourceFileName, string destFileName)

@@ -40,12 +40,12 @@ namespace prjFunNowMember.View
             {
                 HotelLikeBox hlb = new HotelLikeBox();         //創建一個新的 HotelLikeBox   
 
-
+                
                 //開始把資料表的資料放進 HotelLikeBox裡面  等號右邊是資料表的每一列每一欄資料 
                 // 假设可以直接通过hl对象获取Hotel, City和HotelImages的信息
                 hlb.hotelName = hl.Hotel.HotelName;                                // 这里需要确保等號兩邊的属性类型一致
                 hlb.cityName = hl.Hotel.City.CityName;                             // 同上
-                                                                                   //hlb.hotelimage = hl.Hotel.HotelImages.FirstOrDefault().HotelImage;
+                                                                          //hlb.hotelimage = hl.Hotel.HotelImages.FirstOrDefault().HotelImage;
                 var hotelImageEntity = hl.Hotel.HotelImages.FirstOrDefault();
                 if (hotelImageEntity != null)
                 {
@@ -110,8 +110,12 @@ namespace prjFunNowMember.View
             // 例如，打開一個顯示酒店詳細資訊的新窗體
             //FrmBooking f = new FrmBooking(hotelId);          //是否new 思璇做的那個部分即可?? //todo......
             //f.Show();
+            
+            
             FrmBooking f = new FrmBooking(hotelId);          //是否new 思璇做的那個部分即可?? //todo......
+            //MessageBox.Show("123");
             f.Show();
+            //MessageBox.Show("456");
 
         }
 

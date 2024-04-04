@@ -19,12 +19,15 @@ namespace FunNow
 {
     public partial class FrmBooking : Form
     {
+        bool like = false;
         public FrmBooking(int hotelId)
         {
             InitializeComponent();
 
             dbFunNow db = new dbFunNow();
             this.selectedHotel = db.Hotel.FirstOrDefault(h => h.HotelID == hotelId);
+
+            like = true;
 
         }
 
@@ -35,7 +38,8 @@ namespace FunNow
         public DateTime frmbookingEnd { get; set; }
         public FrmBooking()
         {
-            InitializeComponent();     
+            InitializeComponent();   
+            like = false;
         }
         //Load--------------------------------------------------------------------------------------
         private void FrmBooking_Load(object sender, EventArgs e)
@@ -82,7 +86,14 @@ namespace FunNow
                 rb.room = r;
                 rb.Width = flowLayoutPanel1.Width;
                 //delegate傳時間: datetimepicker->hotelbox->frmbooking->roombox-------------
-                rb.roomboxStart = frmbookingStart;
+                if (like)
+                {
+                    rb.roomboxStart = DateTime.Now;
+                }
+                else
+                {
+                    rb.roomboxStart = frmbookingStart;
+                }
                 rb.roomboxEnd = frmbookingEnd;
                 //在roombox註冊顯示房間葉面的事件方法--------------------------------------------
                 rb.showRoomEvent += this.showRoomMethod;

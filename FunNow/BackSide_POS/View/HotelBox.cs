@@ -26,14 +26,17 @@ namespace FunNow.BackSide_POS.View
         {
             set
             {
-                if (!string.IsNullOrEmpty(value) && File.Exists(value) )
+                if (!string.IsNullOrEmpty(value) )
                 {
+                  
+
+
                     value = Path.GetFileName(value);
                     string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
                     string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", value);
 
 
-                    pictureBox1.Image = Image.FromFile(value);
+                    pictureBox1.Image = Image.FromFile(path);
                 }
                 else
                 {
