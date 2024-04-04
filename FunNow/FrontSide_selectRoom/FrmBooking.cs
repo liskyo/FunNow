@@ -89,12 +89,15 @@ namespace FunNow
                 if (like)
                 {
                     rb.roomboxStart = DateTime.Now;
+                    rb.roomboxEnd = rb.roomboxStart.AddDays(1);
+
                 }
                 else
                 {
                     rb.roomboxStart = frmbookingStart;
+                    rb.roomboxEnd = frmbookingEnd;
+
                 }
-                rb.roomboxEnd = frmbookingEnd;
                 //在roombox註冊顯示房間葉面的事件方法--------------------------------------------
                 rb.showRoomEvent += this.showRoomMethod;
                 //在roombox註冊加入購物車的事件方法--------------------------------------------
@@ -152,11 +155,12 @@ namespace FunNow
                             pb.Height = 50;
                             pb.Image = img;
                             pb.Click += Pb_Click;
-                            flowLayoutPanel1.Controls.Add(pb);
+                            flowLayoutPanel2.Controls.Add(pb);
 
-                            if (flowLayoutPanel1.Controls.Count == 1)
+                            if (flowLayoutPanel2.Controls.Count == 1)
                             {
                                 pictureBox1.Image = pb.Image;
+                                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                             }
                         }
                     }
@@ -263,11 +267,6 @@ namespace FunNow
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             new FrmHotelsLikeFront().Show();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
