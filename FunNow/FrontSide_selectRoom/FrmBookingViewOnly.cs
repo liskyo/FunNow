@@ -107,14 +107,21 @@ namespace FunNow
                 if (!string.IsNullOrEmpty(pic))//1)先檢查pic是否為空值
                                                //即, HotelImage表的HotelImage欄位是否有存放路徑
                 {
-                    if (File.Exists(pic))//2)再檢查是否可透過pic存放的路徑, 在電腦的檔案總管找到相對應的檔案
+                    string filename = Path.GetFileName(pic);
+                    string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                    string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", filename);
+
+
+                    //string path = pic;
+
+                    if (File.Exists(path))//2)再檢查是否可透過pic存放的路徑, 在電腦的檔案總管找到相對應的檔案
                     {
                         //這個使用 FileStream 的 using 語句，會打開圖片檔案並建立一個 FileStream 實例來讀取圖片的內容。
                         //參數:
                         //pic 是圖片的路徑
                         //FileMode.Open 表示以讀取模式打開檔案
                         //FileAccess.Read 表示訪問檔案的權限
-                        using (FileStream fs = new FileStream(pic, FileMode.Open, FileAccess.Read))
+                        using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                         {
                             //Image img = Image.FromStream(fs);：這一行從 FileStream 中讀取圖片並創建一個 Image 實例。
                             //透過 Image.FromStream 方法，將圖片的內容讀取到 img 變數中。
