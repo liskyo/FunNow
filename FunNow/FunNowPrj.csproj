@@ -241,6 +241,12 @@
     <Compile Include="FrontSide_selectRoom\FrmBooking.Designer.cs">
       <DependentUpon>FrmBooking.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrontSide_selectRoom\FrmBookingViewOnly.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrontSide_selectRoom\FrmBookingViewOnly.designer.cs">
+      <DependentUpon>FrmBookingViewOnly.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrontSide_selectRoom\FrmRoom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,6 +258,12 @@
     </Compile>
     <Compile Include="FrontSide_Cart\View\FieldBox.designer.cs">
       <DependentUpon>FieldBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrontSide_selectRoom\View\roomBoxViewOnly.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrontSide_selectRoom\View\roomBoxViewOnly.designer.cs">
+      <DependentUpon>roomBoxViewOnly.cs</DependentUpon>
     </Compile>
     <Compile Include="Hotel.cs">
       <DependentUpon>dbFunNow.tt</DependentUpon>
@@ -436,11 +448,17 @@
     <EmbeddedResource Include="FrontSide_selectRoom\FrmBooking.resx">
       <DependentUpon>FrmBooking.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrontSide_selectRoom\FrmBookingViewOnly.resx">
+      <DependentUpon>FrmBookingViewOnly.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrontSide_selectRoom\FrmRoom.resx">
       <DependentUpon>FrmRoom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrontSide_Cart\View\FieldBox.resx">
       <DependentUpon>FieldBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrontSide_selectRoom\View\roomBoxViewOnly.resx">
+      <DependentUpon>roomBoxViewOnly.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HotelLike\FrmHotelLikeBack.resx">
       <DependentUpon>FrmHotelLikeBack.cs</DependentUpon>
