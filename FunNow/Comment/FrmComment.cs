@@ -45,7 +45,7 @@ namespace FunNow.Comment
                                         HotelName = h.HotelName,
                                         RoomType = r.RoomName,
                                         CheckInDate = od.CheckInDate,
-                                        Rating = c.Rating,
+                                        Rating = (decimal)c.Rating,
                                         CommentTime = c.CreatedAt,
                                         CommentTxt = c.Description
                                     };
@@ -158,7 +158,7 @@ namespace FunNow.Comment
                                                 HotelName = h.HotelName,
                                                 RoomType = r.RoomName,
                                                 CheckInDate = od.CheckInDate,
-                                                Rating = c.Rating,
+                                                Rating = (decimal)c.Rating,
                                                 CommentTime = c.CreatedAt,
                                                 CommentTxt = c.Description
                                             };
