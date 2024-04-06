@@ -31,8 +31,8 @@ namespace FunNow.BackSide_Hotel1.View
                 if (_hotel == null) { _hotel = new Hotel(); }
 
                 _hotel.HotelName = hotelBox1.fileValue;
-                _hotel.HotelPhone = hotelBox2.fileValue;
-                _hotel.HotelAddress = hotelBox3.fileValue;
+                _hotel.HotelPhone = hotelBox3.fileValue;
+                _hotel.HotelAddress = hotelBox2.fileValue;
                 _hotel.HotelDescription = textBox1.Text;
                 _hotel.CityID = (int)comboBox2.SelectedValue;
                 _hotel.HotelTypeID = (int)comboBox3.SelectedValue;
@@ -126,8 +126,8 @@ namespace FunNow.BackSide_Hotel1.View
             }
 
             flowLayoutPanel1.Controls.Clear();
-            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            int index = 0;
+            //flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+            //int index = 0;
             foreach (string file in openFileDialog1.FileNames)
             {
                 string destPath = Path.Combine(basePath, file);
@@ -186,7 +186,7 @@ namespace FunNow.BackSide_Hotel1.View
                 flowLayoutPanel1.Controls.Add(pictureBox);
                 flowLayoutPanel1.Controls.Add(descriptionBox);
                 flowLayoutPanel1.Controls.Add(removeButton);
-                index++;
+                //index++;
             }
 
         }
@@ -243,7 +243,7 @@ namespace FunNow.BackSide_Hotel1.View
 
             int hotelId = hotelInstance.HotelID;
 
-            //新增圖片
+            //儲存照片
             foreach (Control control in this.flowLayoutPanel1.Controls)
             {
 
@@ -253,10 +253,16 @@ namespace FunNow.BackSide_Hotel1.View
                     string imagepath = (string)descriptionbox.Tag;
                     string description = descriptionbox.Text;
 
+
+                    string filename = Path.GetFileName(imagepath);
+                    string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                    string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", filename);
+
+
                     HotelImages hotelimage = new HotelImages
                     {
                         HotelID = hotelId,
-                        HotelImage = imagepath, // 這裡存儲圖片的路徑
+                        HotelImage = path, // 這裡存儲圖片的路徑
                         HImageDescription = description
                     };
 

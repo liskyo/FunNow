@@ -16,10 +16,8 @@ using System.Windows.Forms;
 namespace FunNow.BackSide_Hotel1.View
 {
     public partial class FrmRoomUpdate : Form
-    {
-        
-        private Room _room;
-    
+    {        
+        private Room _room;    
         private DialogResult _isOK;
         private List<string> _ImagePaths = new List<string>();
         public FrmRoomUpdate()
@@ -98,9 +96,9 @@ namespace FunNow.BackSide_Hotel1.View
 
             //圖片
             flowLayoutPanel1.Controls.Clear();
-            using (var db3 = new dbFunNow()) // 
+            using (var db2 = new dbFunNow()) // 
             {
-                var images = db3.RoomImage.Where(r => r.RoomID == FrmHotelSystem._roomId).ToList();
+                var images = db2.RoomImage.Where(r => r.RoomID == FrmHotelSystem._roomId).ToList();
 
                 foreach (var img in images)
                 {
@@ -111,6 +109,7 @@ namespace FunNow.BackSide_Hotel1.View
                         SizeMode = PictureBoxSizeMode.Zoom,
                         BorderStyle = BorderStyle.FixedSingle,
                         ImageLocation = img.RoomImage1,
+
 
                         //Width = 100, // 適當的大小
                         // Height = 100  // 適當的大小
@@ -139,7 +138,7 @@ namespace FunNow.BackSide_Hotel1.View
             }
 
 
-            //Hotel RoomType 顯示原本的
+            //RoomType 顯示原本的
             dbFunNow db1 = new dbFunNow();
             var room = (from r in db1.Room
                          where r.RoomID == FrmHotelSystem._roomId
@@ -177,14 +176,11 @@ namespace FunNow.BackSide_Hotel1.View
                 this.flowLayoutPanel2.Controls.Add(checkbox);
             }
 
-
+            //checkBox 原本的
             dbFunNow db6 = new dbFunNow();
             var room6 = (from r in db6.Room
                         where r.RoomID == FrmHotelSystem._roomId
-                        select new
-                        {
-                           r.RoomStatus
-                        }).FirstOrDefault();
+                        select new { r.RoomStatus }).FirstOrDefault();
 
             checkBox1.Checked = (bool)room6.RoomStatus;
 
@@ -312,16 +308,10 @@ namespace FunNow.BackSide_Hotel1.View
                                     select room).FirstOrDefault();
                 roomToUpdate.HotelID = (int)comboBox1.SelectedValue;
                 roomToUpdate.RoomTypeID = (int)comboBox2.SelectedValue;
-                roomToUpdate.RoomStatus = checkBox1.Checked;
-
-                
+                roomToUpdate.RoomStatus = checkBox1.Checked;                
 
                 db.SaveChanges();
-            }
-
-            //comboBox 
-           
-            
+            }              
 
 
             //設備
@@ -366,13 +356,16 @@ namespace FunNow.BackSide_Hotel1.View
                     {
                        
                         string imagePath = pictureBox.ImageLocation; // 假设您在添加PictureBox时设置了ImageLocation
-                    
+                        string filename = Path.GetFileName(imagePath);
+                        string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                        string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", filename);
+
 
                         // 创建新的HotelImage实体对象
                         var roomImage = new RoomImage
                         {
                             RoomID = FrmHotelSystem._roomId,
-                            RoomImage1 = imagePath                          
+                            RoomImage1 = path
                         };
 
                         db.RoomImage.Add(roomImage);

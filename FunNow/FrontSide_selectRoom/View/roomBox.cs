@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FunNow.BackSide_POS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -58,6 +59,14 @@ namespace FunNow
 
         private void btnCart_Click_1(object sender, EventArgs e)
         {
+            using (dbFunNow db = new dbFunNow())
+            {
+                var orderBooked = db.OrderDetails
+                    .Where(o => o.RoomID == this.room.RoomID && o.CheckInDate == FrmPOS.checkInDate && o.CheckOutDate == FrmPOS.checkOutDate);
+
+                if (orderBooked.Any()) { MessageBox.Show("無法重複加入購物車"); return; }
+
+            }
             showAddCart(this, roomboxStart, roomboxEnd);
             
         }
@@ -107,6 +116,13 @@ namespace FunNow
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
+            using (dbFunNow db = new dbFunNow())
+            {
+                var orderBooked = db.OrderDetails
+                    .Where(o => o.RoomID == this.room.RoomID && o.CheckInDate == FrmPOS.checkInDate && o.CheckOutDate == FrmPOS.checkOutDate);
+                if (orderBooked.Any()) { MessageBox.Show("商品已加入至購物車,無法直接下訂"); return; }
+
+            }
             showDirectBuy(this, roomboxStart, roomboxEnd);
         }
     }

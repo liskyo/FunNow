@@ -68,23 +68,23 @@
     <Compile Include="BackSide_Hotel1\FrmMain.designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="BackSide_Hotel1\View\FrmHotel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BackSide_Hotel1\View\FrmHotel.designer.cs">
-      <DependentUpon>FrmHotel.cs</DependentUpon>
-    </Compile>
     <Compile Include="BackSide_Hotel1\View\FrmHotelCreate.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BackSide_Hotel1\View\FrmHotelCreate.designer.cs">
       <DependentUpon>FrmHotelCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="BackSide_Hotel1\View\FrmRoom.cs">
+    <Compile Include="BackSide_Hotel1\View\FrmHotelUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BackSide_Hotel1\View\FrmRoom.designer.cs">
-      <DependentUpon>FrmRoom.cs</DependentUpon>
+    <Compile Include="BackSide_Hotel1\View\FrmHotelUpdate.designer.cs">
+      <DependentUpon>FrmHotelUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BackSide_Hotel1\View\FrmRoomCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackSide_Hotel1\View\FrmRoomCreate.designer.cs">
+      <DependentUpon>FrmRoomCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="BackSide_Hotel1\View\FrmRoomUpdate.cs">
       <SubType>Form</SubType>
@@ -370,14 +370,14 @@
     <EmbeddedResource Include="BackSide_Hotel1\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BackSide_Hotel1\View\FrmHotel.resx">
-      <DependentUpon>FrmHotel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="BackSide_Hotel1\View\FrmHotelCreate.resx">
       <DependentUpon>FrmHotelCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BackSide_Hotel1\View\FrmRoom.resx">
-      <DependentUpon>FrmRoom.cs</DependentUpon>
+    <EmbeddedResource Include="BackSide_Hotel1\View\FrmHotelUpdate.resx">
+      <DependentUpon>FrmHotelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackSide_Hotel1\View\FrmRoomCreate.resx">
+      <DependentUpon>FrmRoomCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BackSide_Hotel1\View\FrmRoomUpdate.resx">
       <DependentUpon>FrmRoomUpdate.cs</DependentUpon>

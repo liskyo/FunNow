@@ -32,7 +32,8 @@ namespace FunNow.BackSide_Hotel.View
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = tabPage2;
-            FrmRoom r = new FrmRoom();
+            //FrmRoom r = new FrmRoom();
+            FrmRoomCreate r = new FrmRoomCreate();
             r.ShowDialog();
             if (r.isOk != DialogResult.OK) return;
             RoomList();
@@ -114,12 +115,12 @@ namespace FunNow.BackSide_Hotel.View
             dbFunNow db = new dbFunNow();
             Hotel hotel = db.Hotel.FirstOrDefault(x => x.HotelID == id);
             if (hotel == null) return;
-            
+
 
             //畫面顯示原本資料
-            FrmHotel f = new FrmHotel();
-            f.hotelInstance = hotel;
-            
+            // FrmHotel f = new FrmHotel();
+            FrmHotelUpdate f = new FrmHotelUpdate();
+            f.hotelInstance = hotel;            
 
             f.ShowDialog();
             if (f.isOk != DialogResult.OK) return;
@@ -147,31 +148,12 @@ namespace FunNow.BackSide_Hotel.View
         private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             _roomId = (int)dataGridView2.Rows[e.RowIndex].Cells[0].Value;
-            editByIdroom(_roomId);
-            
-        }
 
-        private void editByIdroom(int id)
-        {
-            //dbFunNow db = new dbFunNow();
-            //Room room = db.Room.FirstOrDefault(x => x.RoomID == _roomId);
-            //if (room == null) return;
-
-
-           
-            FrmRoomUpdate f = new FrmRoomUpdate();          
+            FrmRoomUpdate f = new FrmRoomUpdate();
             f.ShowDialog();
-            //if (f.isOk != DialogResult.OK) return;
-            //room.HotelID = f.RoomInstance.HotelID;
-            //room.RoomTypeID = f.RoomInstance.RoomTypeID;
-            //room.RoomStatus = f.RoomInstance.RoomStatus;
-
-
-            //db.SaveChanges();
-
 
             RoomList();
-
         }
+
     }
 }
