@@ -67,7 +67,15 @@ namespace prjFunNowMember
                 fbEmail.fieldValue = _member.Email;
                 fbPassword.fieldValue = _member.Password;
                 fbPhone.fieldValue = _member.Phone;
-                fbBirth.fieldValue= _member.Birthday.ToString();
+                if (_member.Birthday.HasValue)
+                {
+                    fbBirth.fieldValue = _member.Birthday.Value.ToString("yyyy/MM/dd");      // 格式化日期,否則生日欄位會出現時間
+                }
+                else
+                {
+                    // 如果 Birthday 是 null，可以决定如何处理：或者设置为默认值，或者留空
+                    fbBirth.fieldValue = ""; // 或者设置为某个默认值，如 "未设置"
+                }
                 fbRoleId.fieldValue= _member.RoleID.ToString();
             }
         }
@@ -103,22 +111,14 @@ namespace prjFunNowMember
             // comboBox1.DataBindings.Add("......")
             comboBox1.DataSource = roles;
 
-            //如果成員已有角色ID，選擇該角色                                           // todo... 另一種寫法不知道怎麼寫?
-            //if (_member != null && _member.RoleID > 0)
-            //{
-            //    comboBox1.SelectedValue = _member.RoleID;
-            //}
+            fbEmail.Enabled = false;
+            fbPassword.Enabled = false;
 
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)           //將判斷寫在member {get} 裡面
         {
-            //確保有選擇項目且_member不為null
-            //if (comboBox1.SelectedItem != null && _member != null)
-            //{
-            //    更新 _member 實例的 RoleID
-            //    _member.RoleID = Convert.ToInt32(comboBox1.SelectedValue);
-            //}
+
 
         }
     }

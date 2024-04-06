@@ -24,10 +24,9 @@ namespace prjFunNowMember
 
             dbFunNow db = new dbFunNow();
             var members = from m in db.Member
-                          //join h in db.HotelLikes
-                          //on m.MemberID equals h.MemberID
                           join r in db.Role
                           on m.RoleID equals r.RoleID
+                          orderby m.MemberID
                           select new
                           {
                               MemberID = m.MemberID,
@@ -80,7 +79,36 @@ namespace prjFunNowMember
         private void FrmMemberList_Load(object sender, EventArgs e)
         {
             queryAll();
-            
+            FillMemberNamesComboBox();    //tabPage2裡面的comboBox => comboBoxInTabPage2
+
+        }
+        private void FillMemberNamesComboBox()
+        {
+            dbFunNow db = new dbFunNow();
+            // 獲取所有有收藏紀錄的會員的姓名和電話
+            var members = (from m in db.Member
+                           join hl in db.HotelLikes on m.MemberID equals hl.MemberID
+                           select new { m.Name, m.Phone }).ToList();
+
+            // 檢查是否存在相同的姓名
+            var memberNames = members
+                .GroupBy(m => m.Name)      //按姓名分组的集合，每个组包含所有该姓名的会员
+                .Select(g =>
+                {
+                    // 如果同名會員超過1個，就在姓名後附加電話
+                    if (g.Count() > 1)
+                    {
+                        return g.Select(m => $"{m.Name} ({m.Phone})").ToList();
+                    }
+                    else
+                    {
+                        return g.Select(m => m.Name).ToList();
+                    }
+                }).SelectMany(m => m).Distinct().ToList(); // 
+
+            memberNames.Insert(0, "會員收藏姓名");          //插入一個選項:會員收藏姓名
+            comboBoxInTabPage2.DataSource = memberNames;
+            comboBoxInTabPage2.SelectedIndex = 0;         //comboBoxInTabPage2預設值為會員收藏姓名
         }
 
         private void FrmMemberList_Activated(object sender, EventArgs e)
@@ -91,27 +119,57 @@ namespace prjFunNowMember
         private void toolStripButton2_Click(object sender, EventArgs e)   //會員收藏  //join Tables: Member、HotelLikes、Hotel、City
         {
             tabControl1.SelectedTab = tabPage2;
+            ClearDataGridView(dataGridView2);
+            querymemberlikesAll();
+
+            //dbFunNow db = new dbFunNow();
+            //var memberlikes = from m in db.Member 
+            //                  join hl in db.HotelLikes
+            //                  on m.MemberID equals hl.MemberID
+            //                  join h in db.Hotel
+            //                  on hl.HotelID equals h.HotelID
+            //                  join c in db.City
+            //                  on h.CityID equals c.CityID
+
+
+            //            select new
+            //            {
+            //                MemberID = m.MemberID,
+            //                Name = m.Name,                          
+            //                HotelName = h.HotelName,
+            //                CityName = c.CityName,
+            //                LikeStatus = hl.LikeStatus,
+            //            };
+            //dataGridView2.DataSource = memberlikes.ToList();
+            //resetmemberlikesGridStyle();
+        }
+        private void ClearDataGridView(DataGridView dgv)                 //清理 DataGridView
+        {
+            dgv.DataSource = null;
+            dgv.Columns.Clear();
+        }
+        private void querymemberlikesAll()                                     //從資料庫查詢會員收藏資料並呈現
+        {
             dbFunNow db = new dbFunNow();
-            var memberlikes = from m in db.Member 
+            var memberlikes = from m in db.Member
                               join hl in db.HotelLikes
                               on m.MemberID equals hl.MemberID
                               join h in db.Hotel
                               on hl.HotelID equals h.HotelID
                               join c in db.City
                               on h.CityID equals c.CityID
+                              orderby m.MemberID // 按照MemberID排序
 
-
-                        select new
-                        {
-                            MemberID = m.MemberID,
-                            Name = m.Name,                          
-                            HotelName = h.HotelName,
-                            CityName = c.CityName,
-                            LikeStatus = hl.LikeStatus,
-                        };
+                              select new
+                              {
+                                  MemberID = m.MemberID,
+                                  Name = m.Name,
+                                  HotelName = h.HotelName,
+                                  CityName = c.CityName,
+                                  LikeStatus = hl.LikeStatus,
+                              };
             dataGridView2.DataSource = memberlikes.ToList();
             resetmemberlikesGridStyle();
-
         }
         private void resetmemberlikesGridStyle()                              //會員收藏 resetGridStyle
         {
@@ -180,25 +238,60 @@ namespace prjFunNowMember
 
         private void toolStripButton3_Click(object sender, EventArgs e)  //查詢
         {
+            // 检查当前选中的 tabPage
+            if (tabControl1.SelectedTab == tabPage1)
+            {
+                // 原有的对 dataGridView1 的搜索逻辑
+                SearchInDataGridView(dataGridView1);
+            }
+            else if (tabControl1.SelectedTab == tabPage2)
+            {
+                // 新增的对 dataGridView2 的搜索逻辑
+                SearchInDataGridView(dataGridView2);
+            }
+
+            //bool isColorChanged = false;
+            //foreach (DataGridViewRow r in dataGridView1.Rows)
+            //{
+            //    isColorChanged = !isColorChanged;
+            //    r.DefaultCellStyle.BackColor = Color.FromArgb(229, 229, 229);
+            //    if (isColorChanged)
+            //        r.DefaultCellStyle.BackColor = Color.White;
+
+            //    foreach (DataGridViewCell c in r.Cells)
+            //    {
+            //        if (c.Value == null)
+            //            continue;
+            //        if (c.Value.ToString().Contains(txtKeyword.Text))
+            //        {
+            //            r.DefaultCellStyle.BackColor = Color.LightCyan;      //LightBlue //DeepSkyBlue
+            //            break;
+            //        }
+            //    }
+            //}
+        }
+        private void SearchInDataGridView(DataGridView dgv)              //查詢方法
+        {
             bool isColorChanged = false;
-            foreach (DataGridViewRow r in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dgv.Rows)
             {
                 isColorChanged = !isColorChanged;
-                r.DefaultCellStyle.BackColor = Color.FromArgb(229, 229, 229);
-                if (isColorChanged)
-                    r.DefaultCellStyle.BackColor = Color.White;
+                row.DefaultCellStyle.BackColor = isColorChanged ? Color.White : Color.FromArgb(229, 229, 229); // isColorChanged :true => Color.White ;isColorChanged:false => Color.FromArgb(229, 229, 229)
 
-                foreach (DataGridViewCell c in r.Cells)
+                foreach (DataGridViewCell cell in row.Cells)
                 {
-                    if (c.Value == null)
-                        continue;
-                    if (c.Value.ToString().Contains(txtKeyword.Text))
+                    if (cell.Value == null) continue;
+
+                    // 如果要不区分大小写的搜索，先将两边的字符串转换为同一种大小写形式
+                    if (cell.Value.ToString().ToLower().Contains(txtKeyword.Text.ToLower()))
                     {
-                        r.DefaultCellStyle.BackColor = Color.LightCyan;      //LightBlue //DeepSkyBlue
-                        break;
+                        row.DefaultCellStyle.BackColor = Color.LightCyan;
+                        break; // 找到匹配后即跳出循环
                     }
                 }
             }
+
+
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)   //會員資料
@@ -207,5 +300,77 @@ namespace prjFunNowMember
             queryAll();
             resetGridStyle();
         }
+
+        private void comboBoxInTabPage2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            // 检查是否选择了“會員收藏姓名”
+            if (comboBoxInTabPage2.SelectedItem != null &&
+                comboBoxInTabPage2.SelectedItem.ToString() == "會員收藏姓名")   // 如果選單拉到 comboBoxInTabPage2預設值為會員收藏姓名
+            {
+                QueryAllMemberLikes(); // 查詢並顯示所有會員的收藏數據
+            }
+            else
+            {
+                if (comboBoxInTabPage2.SelectedItem == null) return;
+
+                var selectedItem = comboBoxInTabPage2.SelectedItem.ToString();   //選到會員姓名
+                string name = selectedItem;
+                string phone = null;
+
+                // 检查选项是否包含手机号
+                if (selectedItem.Contains("(") && selectedItem.Contains(")"))
+                {
+                    // 解析姓名和手机号
+                    var startIndex = selectedItem.IndexOf("(") + 1;
+                    var endIndex = selectedItem.IndexOf(")") - startIndex;
+                    name = selectedItem.Substring(0, selectedItem.IndexOf(" ("));
+                    phone = selectedItem.Substring(startIndex, endIndex);
+                }
+
+                // 根据解析出的姓名和可选的手机号查询收藏
+                QueryMemberLikesByNameAndPhone(name, phone);
+            }
+        }
+        private void QueryAllMemberLikes()
+        {
+            dbFunNow db = new dbFunNow();
+            var allMemberLikes = (from m in db.Member
+                                  join hl in db.HotelLikes on m.MemberID equals hl.MemberID
+                                  join h in db.Hotel on hl.HotelID equals h.HotelID
+                                  join c in db.City on h.CityID equals c.CityID
+                                  orderby m.MemberID // 按照MemberID排序
+                                  select new
+                                  {
+                                      MemberID = m.MemberID,
+                                      Name = m.Name,
+                                      HotelName = h.HotelName,
+                                      CityName = c.CityName,
+                                      LikeStatus = hl.LikeStatus,
+                                  }).ToList();
+
+            dataGridView2.DataSource = allMemberLikes;
+            resetmemberlikesGridStyle();
+        }
+
+        private void QueryMemberLikesByNameAndPhone(string name, string phone)
+        {
+            dbFunNow db = new dbFunNow();
+            var memberlikes = db.Member
+                                .Where(m => m.Name == name && (phone == null || m.Phone == phone)) // 如果提供了手机号，进一步筛选
+                                .SelectMany(m => m.HotelLikes) // 使用导航属性从Member到HotelLikes
+                                .Select(hl => new
+                                {
+                                    MemberID = hl.Member.MemberID,
+                                    Name = hl.Member.Name,
+                                    HotelName = hl.Hotel.HotelName,
+                                    CityName = hl.Hotel.City.CityName,
+                                    LikeStatus = hl.LikeStatus,
+                                }).ToList();
+
+            dataGridView2.DataSource = memberlikes;
+            resetmemberlikesGridStyle();
+        }
+
     }
 }

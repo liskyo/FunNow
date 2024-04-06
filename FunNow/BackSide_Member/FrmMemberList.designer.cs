@@ -35,6 +35,7 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.txtKeyword = new System.Windows.Forms.ToolStripTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.comboBoxInTabPage2 = new System.Windows.Forms.ComboBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -57,7 +58,7 @@
             this.txtKeyword});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1178, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1178, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -66,7 +67,7 @@
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(93, 28);
+            this.toolStripButton4.Size = new System.Drawing.Size(79, 24);
             this.toolStripButton4.Text = "會員資料";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
@@ -75,7 +76,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(93, 28);
+            this.toolStripButton2.Size = new System.Drawing.Size(79, 24);
             this.toolStripButton2.Text = "會員收藏";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -85,7 +86,7 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(63, 28);
+            this.toolStripButton3.Size = new System.Drawing.Size(55, 24);
             this.toolStripButton3.Text = "查詢";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
@@ -95,11 +96,12 @@
             this.txtKeyword.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F);
             this.txtKeyword.Name = "txtKeyword";
             this.txtKeyword.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtKeyword.Size = new System.Drawing.Size(267, 31);
+            this.txtKeyword.Size = new System.Drawing.Size(267, 27);
             this.txtKeyword.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.comboBoxInTabPage2);
             this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
@@ -108,6 +110,15 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "會員收藏";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxInTabPage2
+            // 
+            this.comboBoxInTabPage2.FormattingEnabled = true;
+            this.comboBoxInTabPage2.Location = new System.Drawing.Point(976, 6);
+            this.comboBoxInTabPage2.Name = "comboBoxInTabPage2";
+            this.comboBoxInTabPage2.Size = new System.Drawing.Size(186, 23);
+            this.comboBoxInTabPage2.TabIndex = 2;
+            this.comboBoxInTabPage2.SelectedIndexChanged += new System.EventHandler(this.comboBoxInTabPage2_SelectedIndexChanged);
             // 
             // dataGridView2
             // 
@@ -188,5 +199,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.ComboBox comboBoxInTabPage2;
     }
 }
