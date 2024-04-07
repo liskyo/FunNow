@@ -126,16 +126,12 @@ namespace FunNow.BackSide_Hotel1.View
             }
 
             flowLayoutPanel1.Controls.Clear();
-            //flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+
             //int index = 0;
             foreach (string file in openFileDialog1.FileNames)
             {
                 string destPath = Path.Combine(basePath, file);
 
-                //MessageBox.Show(file + "   " + destPath);
-                //string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + index.ToString() + Path.GetExtension(file);
-                //string filePath = Path.Combine(basePath, uniqueFileName);
-                //File.Copy(file, destPath);  //複製現有的檔案到新的檔案。 不允許覆寫相同名稱的檔案。(string sourceFileName, string destFileName)
                 try
                 {
                     File.Copy(file, destPath);
@@ -146,9 +142,7 @@ namespace FunNow.BackSide_Hotel1.View
                     Console.WriteLine($"An error occurred: {ex.Message}");
                 }
 
-                //string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") +index.ToString() + Path.GetExtension(file);
-                //string filePath = Path.Combine(basePath, uniqueFileName);
-                //File.Copy(file, filePath);  //複製現有的檔案到新的檔案。 不允許覆寫相同名稱的檔案。(string sourceFileName, string destFileName)
+
                 _ImagePaths.Add(destPath); // 添加到圖片路徑列表
 
                 //Delete ICON
@@ -228,6 +222,7 @@ namespace FunNow.BackSide_Hotel1.View
             this.Close();
         }
 
+        //儲存
         private void button1_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrWhiteSpace(hotelBox1.fileValue)) { MessageBox.Show("有欄位未填寫"); return; }
