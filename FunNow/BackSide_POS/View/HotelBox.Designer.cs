@@ -85,7 +85,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Size = new System.Drawing.Size(638, 245);
-            this.splitContainer1.SplitterDistance = 343;
+            this.splitContainer1.SplitterDistance = 441;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -103,16 +103,15 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(343, 245);
+            this.panel1.Size = new System.Drawing.Size(441, 245);
             this.panel1.TabIndex = 0;
             // 
             // lblCity
             // 
             this.lblCity.AutoSize = true;
-            this.lblCity.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblCity.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblCity.ForeColor = System.Drawing.Color.Green;
-            this.lblCity.Location = new System.Drawing.Point(0, 182);
+            this.lblCity.Location = new System.Drawing.Point(0, 203);
             this.lblCity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCity.Name = "lblCity";
             this.lblCity.Size = new System.Drawing.Size(56, 21);
@@ -121,13 +120,11 @@
             // 
             // lblHotelDescription
             // 
-            this.lblHotelDescription.AutoSize = true;
-            this.lblHotelDescription.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblHotelDescription.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblHotelDescription.Location = new System.Drawing.Point(0, 203);
+            this.lblHotelDescription.Location = new System.Drawing.Point(1, 70);
             this.lblHotelDescription.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHotelDescription.Name = "lblHotelDescription";
-            this.lblHotelDescription.Size = new System.Drawing.Size(56, 21);
+            this.lblHotelDescription.Size = new System.Drawing.Size(427, 143);
             this.lblHotelDescription.TabIndex = 4;
             this.lblHotelDescription.Text = "label5";
             // 
@@ -186,6 +183,7 @@
             // 
             this.panel2.AutoSize = true;
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.pictureBox3);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.lblAvgPrice);
@@ -196,7 +194,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(292, 245);
+            this.panel2.Size = new System.Drawing.Size(194, 245);
             this.panel2.TabIndex = 0;
             // 
             // pictureBox3
@@ -212,11 +210,12 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.button1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(165, 207);
+            this.button1.Location = new System.Drawing.Point(0, 204);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 37);
+            this.button1.Size = new System.Drawing.Size(190, 37);
             this.button1.TabIndex = 10;
             this.button1.Text = "查看空房";
             this.button1.UseVisualStyleBackColor = false;
@@ -228,7 +227,7 @@
             this.lblAvgPrice.AutoSize = true;
             this.lblAvgPrice.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblAvgPrice.ForeColor = System.Drawing.Color.Tomato;
-            this.lblAvgPrice.Location = new System.Drawing.Point(192, 175);
+            this.lblAvgPrice.Location = new System.Drawing.Point(90, 171);
             this.lblAvgPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAvgPrice.Name = "lblAvgPrice";
             this.lblAvgPrice.Size = new System.Drawing.Size(88, 26);
@@ -240,7 +239,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("微軟正黑體", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label9.Location = new System.Drawing.Point(207, 160);
+            this.label9.Location = new System.Drawing.Point(105, 156);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(73, 15);
@@ -254,7 +253,7 @@
             this.lblRating.AutoSize = true;
             this.lblRating.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblRating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.lblRating.Location = new System.Drawing.Point(236, 26);
+            this.lblRating.Location = new System.Drawing.Point(134, 26);
             this.lblRating.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRating.Name = "lblRating";
             this.lblRating.Size = new System.Drawing.Size(56, 21);
@@ -267,7 +266,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label7.ForeColor = System.Drawing.Color.Goldenrod;
-            this.label7.Location = new System.Drawing.Point(222, 5);
+            this.label7.Location = new System.Drawing.Point(120, 5);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(58, 21);
