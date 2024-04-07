@@ -26,7 +26,7 @@ namespace FunNow.BackSide_POS.View
         {
             set
             {
-                if (!string.IsNullOrEmpty(value) )
+                if (!string.IsNullOrEmpty(value) && File.Exists(value))
                 {
                   
 
