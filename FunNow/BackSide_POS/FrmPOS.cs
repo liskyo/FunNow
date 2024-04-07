@@ -1301,7 +1301,18 @@ namespace FunNow.BackSide_POS
             dbFunNow db = new dbFunNow();//代表與資料庫的連線               
 
             var hotels = from h in db.Hotel   // 所有的hotel
-                         select h;
+                         select new
+                         {
+                             城市 = h.City.CityName,
+                             旅館名稱 = h.HotelName,
+                             旅館地址 = h.HotelAddress,
+                             旅館特色 = h.HotelDescription,
+                             旅館電話 = h.HotelPhone,
+                             旅館種類 = h.HotelType.HotelTypeName,
+                             均價 = h.Room.Average(p => p.RoomPrice)
+
+                             //旅館評價 = cr.Description,
+                         };
 
             // 將查詢結果繫結到資料表
             dataGridView1.DataSource = hotels.ToList();
