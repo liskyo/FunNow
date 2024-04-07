@@ -1165,6 +1165,8 @@ namespace FunNow.BackSide_POS
         }
         private void FrmPOS_Load(object sender, EventArgs e) //New時自動載入內容
         {
+            queryAll(); //SHOW出房間資訊 包含自訂欄位           
+            
             FrmLogin f = new FrmLogin();
 
             f.ShowDialog();
@@ -1173,7 +1175,6 @@ namespace FunNow.BackSide_POS
 
             toolStripLabel4.Text = "熱烈歡迎會員編號" + FrmLogin.auth.MemberID + "，大名為" + FrmLogin.auth.Name + "登入平台";
 
-            queryAll(); //SHOW出房間資訊 包含自訂欄位
 
             //CITY ComboBox
             dbFunNow db = new dbFunNow();//建立一個新的 dbDemoEntities 物件，代表與資料庫的連線。
@@ -1272,15 +1273,14 @@ namespace FunNow.BackSide_POS
         }
         private void resetGridStyle()//重設資料表樣式
         {
-            dataGridView1.Columns[0].Width = 80;
-            dataGridView1.Columns[1].Width = 120;
-            dataGridView1.Columns[2].Width = 180;
-            dataGridView1.Columns[3].Width = 160;
-            dataGridView1.Columns[4].Width = 120;
-            dataGridView1.Columns[5].Width = 120;
-            dataGridView1.Columns[6].Width = 100;
-            //dataGridView1.Columns[7].Width = 100;
-            //dataGridView1.Columns[8].Width = 100;
+            //dataGridView1.Columns[0].Width = 80;
+            //dataGridView1.Columns[1].Width = 120;
+            //dataGridView1.Columns[2].Width = 180;
+            //dataGridView1.Columns[3].Width = 160;
+            //dataGridView1.Columns[4].Width = 120;
+            //dataGridView1.Columns[5].Width = 120;
+            //dataGridView1.Columns[6].Width = 100;
+
 
             bool isColorChanged = false;  //設定行列的顏色
             foreach (DataGridViewRow r in dataGridView1.Rows)
