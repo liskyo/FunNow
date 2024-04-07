@@ -136,13 +136,6 @@ namespace FunNow.BackSide_Hotel.View
 
                 foreach (var img in images)
                 {
-                    string filename = Path.GetFileName(img.HotelImage);
-                    string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
-                    //string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", filename);
-
-                    string relativePath = Path.Combine("..\\..\\..\\image\\", filename);
-                    string fullPath = Path.GetFullPath(Path.Combine(projectRoot, relativePath));
-                   
 
                     if (string.IsNullOrEmpty(img.HotelImage)) break;
                     if(!File.Exists(img.HotelImage)) break;
@@ -151,11 +144,10 @@ namespace FunNow.BackSide_Hotel.View
                     {
                         SizeMode = PictureBoxSizeMode.Zoom,
                         BorderStyle = BorderStyle.FixedSingle,
-                        ImageLocation = fullPath,
-                        Image = Image.FromFile(fullPath),
-
-                        //Width = 100, // 適當的大小
-                        // Height = 100  // 適當的大小
+                        ImageLocation = img.HotelImage,
+                        //Image = Image.FromFile(img.HotelImage),
+                        //Width = 300, // 適當的大小
+                        //Height = 300  // 適當的大小
                     };
 
 
