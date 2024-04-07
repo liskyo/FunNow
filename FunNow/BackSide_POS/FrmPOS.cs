@@ -109,6 +109,52 @@ namespace FunNow.BackSide_POS
             dataGridView1.DataSource = hotels.ToList();
 
             resetGridStyle();// 重設資料表樣式
+
+            //===================================================  以下為顯示於HotelBox的操作，包含我的最愛功能
+
+            flowLayoutPanel1.Controls.Clear();
+
+            var hotellike = from hl in db.HotelLikes
+                            select hl;
+
+            var hotels2 = from h in db.Hotel   // 空房的hotel
+                          where rooms.ToList().Contains(h.HotelID)  // List<Hotel>
+                          select new { HotelAll = h, h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() };  //將hotels2查詢結果繫結到HotelBox
+                                                                                                                                                //設定照片條件
+            foreach (var h in hotels2)
+            {
+                string HotelImageString = h.FirstRoomImage != null ? h.FirstRoomImage.ToString() : null; //設定照片參數
+
+                HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。
+                                             //rb.start = dateTimePicker1.Value;
+                                             //rb.end = dateTimePicker2.Value;
+                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == FrmLogin.auth.MemberID);
+
+                if (hls.ToList().Count != 0)   //愛心顏色才會跟HotelLikes內的LikeStatus同步
+                {
+                    hb.hotellike = (HotelLikes)hls.ToList().ElementAt(0);
+                }
+
+                hb.HotelID = h.HotelID;
+                hb.MemberID = FrmLogin.auth.MemberID;
+
+                hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
+
+                hb.hotelPicture = HotelImageString;
+                hb.hotel = h.HotelAll;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數   
+                                      // rb._hotels = hotels2;//顯示全部旅館
+
+                hb.hotelboxStart = dateTimePicker1.Value;
+                hb.hotelboxEnd = dateTimePicker2.Value;
+                hb.showHotelEvent += this.showHotelMethod;
+                flowLayoutPanel1.Controls.Add(hb);
+                //將 RoomBox 物件新增到 flowLayoutPanel1 控制項中。
+            }
+            checkInDate = dateTimePicker1.Value.Date;
+            checkOutDate = dateTimePicker2.Value.Date;
+
+
+
         }
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e) //退房日期鍵
         {
