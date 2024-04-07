@@ -32,7 +32,6 @@ namespace FunNow.BackSide_Hotel.View
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = tabPage2;
-            //FrmRoom r = new FrmRoom();
             FrmRoomCreate r = new FrmRoomCreate();
             r.ShowDialog();
             if (r.isOk != DialogResult.OK) return;
@@ -104,11 +103,7 @@ namespace FunNow.BackSide_Hotel.View
            
 
             dataGridView1.DataSource = hotels.ToList();
-        }
-
-
-
-   
+        }   
 
         private void editByIdhotel(int id)
         {
@@ -118,7 +113,6 @@ namespace FunNow.BackSide_Hotel.View
 
 
             //畫面顯示原本資料
-            // FrmHotel f = new FrmHotel();
             FrmHotelUpdate f = new FrmHotelUpdate();
             f.hotelInstance = hotel;            
 
