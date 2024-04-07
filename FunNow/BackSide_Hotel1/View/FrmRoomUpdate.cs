@@ -22,8 +22,7 @@ namespace FunNow.BackSide_Hotel1.View
         private List<string> _ImagePaths = new List<string>();
         public FrmRoomUpdate()
         {
-            InitializeComponent();
-            
+            InitializeComponent();            
         }
 
         public DialogResult isOk { get { return _isOK; } }
@@ -53,8 +52,6 @@ namespace FunNow.BackSide_Hotel1.View
                 hotelBox1.fileValue = _room.RoomName.ToString();
                 hotelBox2.fileValue = _room.RoomPrice.ToString();
                 textBox1.Text = _room.Description;
-
-
             }
         }
 
@@ -109,7 +106,6 @@ namespace FunNow.BackSide_Hotel1.View
                         SizeMode = PictureBoxSizeMode.Zoom,
                         BorderStyle = BorderStyle.FixedSingle,
                         ImageLocation = img.RoomImage1,
-
 
                         //Width = 100, // 適當的大小
                         // Height = 100  // 適當的大小
@@ -233,15 +229,11 @@ namespace FunNow.BackSide_Hotel1.View
 
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            int index = 0;
+
             foreach (string file in openFileDialog1.FileNames)
             {
                 string destPath = Path.Combine(basePath, file);
 
-                //MessageBox.Show(file + "   " + destPath);
-                //string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + index.ToString() + Path.GetExtension(file);
-                //string filePath = Path.Combine(basePath, uniqueFileName);
-                //File.Copy(file, destPath);  //複製現有的檔案到新的檔案。 不允許覆寫相同名稱的檔案。(string sourceFileName, string destFileName)
                 try
                 {
                     File.Copy(file, destPath);
@@ -285,7 +277,7 @@ namespace FunNow.BackSide_Hotel1.View
 
                 flowLayoutPanel1.Controls.Add(pictureBox);              
                 flowLayoutPanel1.Controls.Add(removeButton);
-                index++;
+   
             }
         }
 
