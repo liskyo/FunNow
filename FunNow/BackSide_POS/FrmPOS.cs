@@ -930,7 +930,7 @@ namespace FunNow.BackSide_POS
             string keyword = txtKeyword.Text; //關鍵字搜尋
 
             var hotels = from h in db.Hotel   // 所有的hotel
-                         where rooms.ToList().Contains(h.HotelID) && h.HotelName.Contains("w")
+                         where rooms.ToList().Contains(h.HotelID) && h.HotelName.Contains("嘉義") || h.HotelName.Contains("首爾")
                          select
                          new
                          {
@@ -959,7 +959,7 @@ namespace FunNow.BackSide_POS
                             select hl;
 
             var hotels2 = from h in db.Hotel   // 空房的hotel
-                          where rooms.ToList().Contains(h.HotelID) && h.HotelName.Contains("w")
+                          where rooms.ToList().Contains(h.HotelID) && h.HotelName.Contains("嘉義") || h.HotelName.Contains("首爾")
                           select new { HotelAll = h, h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() };  //將hotels2查詢結果繫結到HotelBox
                                                                                                                                                 //設定照片條件
             foreach (var h in hotels2)
@@ -1296,26 +1296,58 @@ namespace FunNow.BackSide_POS
         }
         private void queryAll()  //select Room資料表資料內容
         {
-            dbFunNow db = new dbFunNow();
-            var hotels = from h in db.Hotel//使用 LINQ 查詢 Hotel 表中所有記錄 自訂新欄位如NEW
-                         join c in db.CommentRate on h.HotelID equals c.HotelID
-                         select
-                         new  //設定要顯示的欄位
-                         {
-                             城市 = h.City.CityName,
-                             旅館名稱 = h.HotelName,
-                             旅館地址 = h.HotelAddress,
-                             旅館特色 = h.HotelDescription,
-                             旅館電話 = h.HotelPhone,
-                             旅館種類 = h.HotelType.HotelTypeName,
-                             均價 = h.Room.Average(p => p.RoomPrice),
-                             //評分 = c.Rating
+            dateTimePicker1.MinDate = DateTime.Today;//將 dateTimePicker1 的最小日期設定為今天
 
+            dbFunNow db = new dbFunNow();//代表與資料庫的連線               
 
-                             //旅館評價 = cr.Description,
-                         };
+            var hotels = from h in db.Hotel   // 所有的hotel
+                         select h;
+
+            // 將查詢結果繫結到資料表
             dataGridView1.DataSource = hotels.ToList();
-            resetGridStyle();
+
+            resetGridStyle();// 重設資料表樣式
+
+            //===================================================  以下為顯示於HotelBox的操作，包含我的最愛功能
+
+            flowLayoutPanel1.Controls.Clear();
+
+            var hotellike = from hl in db.HotelLikes
+                            select hl;
+
+            var hotels2 = from h in db.Hotel   // 空房的hotel
+                          select new { HotelAll = h, h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() };  //將hotels2查詢結果繫結到HotelBox
+                                                                                                                                                //設定照片條件
+            foreach (var h in hotels2)
+            {
+                string HotelImageString = h.FirstRoomImage != null ? h.FirstRoomImage.ToString() : null; //設定照片參數
+
+                HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。
+                                             
+                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == 3);
+
+                if (hls.ToList().Count != 0)   //愛心顏色才會跟HotelLikes內的LikeStatus同步
+                {
+                    hb.hotellike = (HotelLikes)hls.ToList().ElementAt(0);
+                }
+
+                hb.HotelID = h.HotelID;
+                hb.MemberID =3;
+
+                hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
+
+                hb.hotelPicture = HotelImageString;
+                hb.hotel = h.HotelAll;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數   
+                                      // rb._hotels = hotels2;//顯示全部旅館
+
+                hb.hotelboxStart = dateTimePicker1.Value;
+                hb.hotelboxEnd = dateTimePicker2.Value;
+                hb.showHotelEvent += this.showHotelMethod;
+                flowLayoutPanel1.Controls.Add(hb);
+                //將 RoomBox 物件新增到 flowLayoutPanel1 控制項中。
+            }
+            checkInDate = dateTimePicker1.Value.Date;
+            checkOutDate = dateTimePicker2.Value.Date;
         }
         private void resetGridStyle()//重設資料表樣式
         {
