@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace FunNow.BackSide_Order
 {
+
     public partial class Frm : Form
     {
         public Frm()
@@ -27,21 +28,25 @@ namespace FunNow.BackSide_Order
                          select new
                          {
                              OrderID = order.OrderID,
-                             MemberID = order.MemberID,
+                             //MemberID = order.MemberID,
                              MemberName = member.Name,
                              HotelName = hotel.HotelName, // 新增飯店名稱欄位
                              RoomID = orderDetail.RoomID,
                              RoomName = room.RoomName,
                              CheckInDate = orderDetail.CheckInDate,
                              CheckOutDate = orderDetail.CheckOutDate,
-                             OrderStatusID = order.OrderStatusID,
-                             PaymentStatusID = order.PaymentStatusID,
+                             OrderStatusID = (order.OrderStatusID == 1) ? "下訂成功" : "其他狀態", // 根據 OrderStatusID 設定訂單狀態
+                             PaymentStatus = (order.PaymentStatusID == 1) ? "已付款" :
+                                     (order.PaymentStatusID == 3) ? "付款失敗" : "其他狀態", // 根據 PaymentStatusID 設定付款狀態
+
                              TotalPrice = order.TotalPrice,
                              CouponID = order.CouponID,
                              CreatedAt = orderDetail.CreatedAt,
                              OrderdetailID = orderDetail.OrderDetailID
                          };
 
+
+            // 將訂單狀態為 1 的值轉換為「下訂成功」
 
 
             dataGridView1.DataSource = orders.ToList();
@@ -50,31 +55,31 @@ namespace FunNow.BackSide_Order
         private void resetGridStyle()
         {
             dataGridView1.Columns[0].HeaderText = "訂單號碼";
-            dataGridView1.Columns[1].HeaderText = "會員編號";
-            dataGridView1.Columns[2].HeaderText = "會員名稱";
-            dataGridView1.Columns[3].HeaderText = "飯店名稱";
-            dataGridView1.Columns[4].HeaderText = "房間ID";
-            dataGridView1.Columns[5].HeaderText = "房間名稱"; // 新增房間名稱欄位
-            dataGridView1.Columns[6].HeaderText = "可入住時間";
-            dataGridView1.Columns[7].HeaderText = "可退房時間";
-            dataGridView1.Columns[8].HeaderText = "訂單狀態";
-            dataGridView1.Columns[9].HeaderText = "付款狀態";
-            dataGridView1.Columns[10].HeaderText = "總價";
-            dataGridView1.Columns[11].HeaderText = "折價券";
-            dataGridView1.Columns[12].HeaderText = "訂單時間";
+            // dataGridView1.Columns[1].HeaderText = "會員編號";
+            dataGridView1.Columns[1].HeaderText = "會員名稱";
+            dataGridView1.Columns[2].HeaderText = "飯店名稱";
+            dataGridView1.Columns[3].HeaderText = "房間ID";
+            dataGridView1.Columns[4].HeaderText = "房間名稱"; // 新增房間名稱欄位
+            dataGridView1.Columns[5].HeaderText = "可入住時間";
+            dataGridView1.Columns[6].HeaderText = "可退房時間";
+            dataGridView1.Columns[7].HeaderText = "訂單狀態";
+            dataGridView1.Columns[8].HeaderText = "付款狀態";
+            dataGridView1.Columns[9].HeaderText = "總價";
+            dataGridView1.Columns[10].HeaderText = "折價券";
+            dataGridView1.Columns[11].HeaderText = "訂單時間";
+
             dataGridView1.Columns[0].Width = 80;
-            dataGridView1.Columns[1].Width = 80;
-            dataGridView1.Columns[2].Width = 80;
-            dataGridView1.Columns[3].Width = 80;
+            dataGridView1.Columns[1].Width = 80; // 調整會員名稱的寬度
+            dataGridView1.Columns[2].Width = 100;
+            dataGridView1.Columns[3].Width = 100;
             dataGridView1.Columns[4].Width = 80;
-            dataGridView1.Columns[5].Width = 100;
+            dataGridView1.Columns[5].Width = 120; // 修改房間名稱的寬度
             dataGridView1.Columns[6].Width = 100;
             dataGridView1.Columns[7].Width = 100;
             dataGridView1.Columns[8].Width = 80;
             dataGridView1.Columns[9].Width = 80;
             dataGridView1.Columns[10].Width = 80;
-            dataGridView1.Columns[11].Width = 80;
-            dataGridView1.Columns[12].Width = 200;
+            dataGridView1.Columns[11].Width = 200;
             // 隱藏 OrderdetailID 欄位
             dataGridView1.Columns["OrderdetailID"].Visible = false;
             //for (int i = 12; i < dataGridView1.Columns.Count; i++)

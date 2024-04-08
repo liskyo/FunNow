@@ -81,7 +81,9 @@ namespace FunNow
             {
                 if (!string.IsNullOrEmpty(pic))
                 {
-                    string path = pic;
+                    string filename = Path.GetFileName(pic);
+                    string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                    string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", filename);
 
                     if (File.Exists(path))
                     {

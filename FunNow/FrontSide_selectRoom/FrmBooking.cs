@@ -170,6 +170,7 @@ namespace FunNow
             }
             
         }
+        //showDirectBuyMethod(給roombox)----------------------------------------------------------------
 
         private void showDirectBuyMethod(roomBox p, DateTime start, DateTime end)
         {
@@ -177,6 +178,27 @@ namespace FunNow
             dbFunNow db = new dbFunNow();
             OrderDetails o = new OrderDetails();
             o.RoomID = p.room.RoomID;
+            o.MemberID = FrmLogin.auth.MemberID;
+            o.CheckInDate = DateTime.Parse(FrmPOS.checkInDate.ToString("yyyy/MM/dd"));
+            o.CheckOutDate = DateTime.Parse(FrmPOS.checkOutDate.ToString("yyyy/MM/dd")); ;
+            o.CreatedAt = DateTime.Now;
+            o.isOrdered = false;
+            db.OrderDetails.Add(o);
+            db.SaveChanges();
+            MessageBox.Show("已新增至直接購買");
+
+
+            FrmDirectBuy f = new FrmDirectBuy();
+            f.ShowDialog();
+        }
+
+        //showDirectBuyMethod(給FrmRoom)----------------------------------------------------------------
+        private void showDirectBuyMethodf(FrmRoom p, DateTime start, DateTime end)
+        {
+            //將資料傳進OrderDetails 資料表
+            dbFunNow db = new dbFunNow();
+            OrderDetails o = new OrderDetails();
+            o.RoomID = p.selectedRoom.RoomID;
             o.MemberID = FrmLogin.auth.MemberID;
             o.CheckInDate = DateTime.Parse(FrmPOS.checkInDate.ToString("yyyy/MM/dd"));
             o.CheckOutDate = DateTime.Parse(FrmPOS.checkOutDate.ToString("yyyy/MM/dd")); ;
@@ -208,6 +230,7 @@ namespace FunNow
             f.frmroomStart = p.roomboxStart;
             f.frmroomEnd = p.roomboxEnd;
             f.showAddCart += this.showAddCartMethodf;
+            f.showDirectBuy += this.showDirectBuyMethodf;
             f.ShowDialog();
         }
 

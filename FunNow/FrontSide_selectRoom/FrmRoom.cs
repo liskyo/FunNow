@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FunNow.BackSide_POS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,8 @@ namespace FunNow
     public partial class FrmRoom : Form
     {
         public event D3 showAddCart;
+        public event D3 showDirectBuy;
+
 
         //痊癒變數+屬性-------------------------------------------------------------
         private DateTime _frmroomStart;
@@ -110,12 +113,24 @@ namespace FunNow
         }
         private void btnCart_Click(object sender, EventArgs e)
         {
-            showAddCart?.Invoke(this, frmroomStart, frmroomEnd);
+            using (dbFunNow db = new dbFunNow())
+            {
+                var orderBooked = db.OrderDetails
+                    .Where(o => o.RoomID == this.selectedRoom.RoomID && o.CheckInDate == FrmPOS.checkInDate && o.CheckOutDate == FrmPOS.checkOutDate);
+                if (orderBooked.Any()) { MessageBox.Show("商品已加入至購物車,無法直接下訂"); return; }
+                showAddCart?.Invoke(this, frmroomStart, frmroomEnd);
+            }
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            //立即預定?
+            using (dbFunNow db = new dbFunNow())
+            {
+                var orderBooked = db.OrderDetails
+                    .Where(o => o.RoomID == this.selectedRoom.RoomID && o.CheckInDate == FrmPOS.checkInDate && o.CheckOutDate == FrmPOS.checkOutDate);
+                if (orderBooked.Any()) { MessageBox.Show("商品已加入至購物車,無法直接下訂"); return; }
+                showDirectBuy?.Invoke(this, frmroomStart, frmroomEnd);
+            }
         }
     }
 }

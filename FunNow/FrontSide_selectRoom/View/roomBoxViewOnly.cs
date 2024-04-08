@@ -48,9 +48,13 @@ namespace FunNow
 
                 if (!string.IsNullOrEmpty(pic))
                 {
-                    if (File.Exists(pic))
+                    string filename = Path.GetFileName(pic);
+                    string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                    string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", filename);
+
+                    if (File.Exists(path))
                     {
-                        using (FileStream fs = new FileStream(pic, FileMode.Open, FileAccess.Read))
+                        using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                         {
                             Image img = Image.FromStream(fs);
                             PictureBox pb = new PictureBox();
