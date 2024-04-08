@@ -17,9 +17,10 @@ namespace FunNow
         public int CommentID { get; set; }
         public int HotelID { get; set; }
         public int MemberID { get; set; }
-        public decimal Rating { get; set; }
+        public Nullable<decimal> Rating { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
+        public int RoomID { get; set; }
     
         public virtual Hotel Hotel { get; set; }
         public virtual Member Member { get; set; }

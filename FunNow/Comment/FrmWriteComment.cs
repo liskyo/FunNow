@@ -25,13 +25,15 @@ namespace FunNow.Comment
         private DateTime checkInDate;
         private DateTime checkOutDate;
         private string roomType;
-        public FrmWriteComment(int hotelID, string hotelName, DateTime checkInDate, DateTime checkOutDate, string roomType)
+        private int roomID;
+        public FrmWriteComment(int hotelID, string hotelName, DateTime checkInDate, DateTime checkOutDate, string roomType, int roomID)
         {
             this.hotelID = hotelID;
             this.hotelName = hotelName;
             this.checkInDate = checkInDate;
             this.checkOutDate = checkOutDate;
             this.roomType = roomType;
+            this.roomID = roomID;
 
             InitializeComponent();
             SortRating(); // 加載評分下拉列表
@@ -56,8 +58,10 @@ namespace FunNow.Comment
             // 將排序後的評分添加到 ComboBox 中
             foreach (var score in scores)
             { comboBoxScore.Items.Add(score.ToString("0.0")); }
+            comboBoxScore.SelectedItem = "5.0";
+
         }
-       
+
         private IEnumerable<dynamic> QueryOrderInfo()
         {
             // 查詢訂單資訊
@@ -66,15 +70,17 @@ namespace FunNow.Comment
                         join o in db.Order on od.OrderID equals o.OrderID
                         join r in db.Room on od.RoomID equals r.RoomID
                         join h in db.Hotel on r.HotelID equals h.HotelID
-                        where m.MemberID == FrmLogin.auth.MemberID 
-                        orderby od.CreatedAt 
+                        where m.MemberID == FrmLogin.auth.MemberID
+                        orderby od.CreatedAt
                         select new
                         {
                             HotelID = h.HotelID,
                             HotelName = h.HotelName,
                             CheckInDate = od.CheckInDate,
                             CheckOutDate = od.CheckOutDate,
-                            RoomType = r.RoomName
+                            RoomType = r.RoomName,
+                            roomID = r.RoomID
+
                         };
 
             foreach (var hotelInfo in query)
@@ -98,7 +104,7 @@ namespace FunNow.Comment
                     break;
                 }
             }
-           
+
             return query.ToList();
 
         }
@@ -112,6 +118,11 @@ namespace FunNow.Comment
 
             if (result == DialogResult.Yes)
             {
+                if (comboBoxScore.SelectedItem == null)
+                {
+                    MessageBox.Show("請選擇評分後再送出評論。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 SaveCommentToDatabase();
                 this.Close();
             }
@@ -162,7 +173,9 @@ namespace FunNow.Comment
                 CreatedAt = DateTime.Now,
                 Rating = (int)rating,
                 MemberID = FrmLogin.auth.MemberID,
-                HotelID = this.hotelID
+                HotelID = this.hotelID,
+                RoomID = this.roomID
+
             };
 
             // 確保評分有效

@@ -32,11 +32,12 @@ namespace FunNow.Comment
         {
 
             var comments = from c in db.CommentRate
+                           join m in db.Member on c.MemberID equals m.MemberID
                            select new
                            {
                                c.CommentID,
                                c.HotelID,
-                               c.MemberID,
+                               m.Name,
                                c.Rating,
                                c.Description,
                                c.CreatedAt
@@ -48,13 +49,21 @@ namespace FunNow.Comment
 
         private void resetGridStyle()
         {
-            dataGridView1.Columns[0].Width = 80;
-            dataGridView1.Columns[1].Width = 80;
-            dataGridView1.Columns[2].Width = 80;
+            dataGridView1.Columns[0].Width = 100;
+            dataGridView1.Columns[1].Width = 100;
+            dataGridView1.Columns[2].Width = 100;
             dataGridView1.Columns[3].Width = 80;
-            dataGridView1.Columns[4].Width = 150;
-            dataGridView1.Columns[5].Width = 200;
+            dataGridView1.Columns[4].Width = 250;
+            dataGridView1.Columns[5].Width = 250;
 
+            dataGridView1.Columns[0].HeaderText = "留言編號";
+            dataGridView1.Columns[1].HeaderText = "飯店名稱";
+            dataGridView1.Columns[2].HeaderText = "會員名稱";
+            dataGridView1.Columns[3].HeaderText = "評分";
+            dataGridView1.Columns[4].HeaderText = "評論內容";
+            dataGridView1.Columns[5].HeaderText = "評論時間";
+
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("微軟正黑體", 11, FontStyle.Bold);
 
 
             bool isColorChanged = false;

@@ -180,7 +180,7 @@ namespace FunNow.FrontSide_Cart
                 // 獲取與訂單相關的酒店資訊
                 var hotel = db.Hotel.FirstOrDefault(h => h.HotelID == orderDetail.Room.HotelID);
                 // 創建新的評論表單，並將相關訂單資訊傳遞給建構函式
-                FrmWriteComment wc = new FrmWriteComment(hotel.HotelID, hotel.HotelName, orderDetail.CheckInDate, orderDetail.CheckOutDate, orderDetail.Room.RoomName);
+                FrmWriteComment wc = new FrmWriteComment(hotel.HotelID, hotel.HotelName, orderDetail.CheckInDate, orderDetail.CheckOutDate, orderDetail.Room.RoomName, orderDetail.RoomID);
 
                 // 顯示評論表單
                 wc.ShowDialog();

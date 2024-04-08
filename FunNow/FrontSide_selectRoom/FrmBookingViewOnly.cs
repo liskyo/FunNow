@@ -31,7 +31,9 @@ namespace FunNow
 
         //痊癒變數+屬性-------------------------------------------------------------------------------
         public Hotel selectedHotel { get; set; }
-        
+        public string roomType { get; set; }
+
+
         public FrmBookingViewOnly()
         {
             InitializeComponent();     
@@ -155,7 +157,7 @@ namespace FunNow
 
         private void button1_Click(object sender, EventArgs e)
         {   //bnt showAllComment
-            FrmComment frmComment = new FrmComment(selectedHotel);
+            FrmComment frmComment = new FrmComment(selectedHotel, roomType);
             frmComment.ShowDialog();
         }
     }

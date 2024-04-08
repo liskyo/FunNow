@@ -5,6 +5,7 @@ namespace FunNow.Comment.Model
 {
     public class CComment
     {
+        public int CommentID { get; set; }
         public string MemberName { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime? CommentTime { get; set; }

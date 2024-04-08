@@ -25,10 +25,13 @@ namespace Fun
         private DateTime checkInDate;
         private DateTime checkOutDate;
         private string roomType;
-       // private DateTime CreateAt;
+        private int roomID;
+
+
+        // private DateTime CreateAt;
         public void ShowWriteComment()
         {
-            FrmWriteComment wc = new FrmWriteComment(hotelID, hotelName, checkInDate, checkOutDate, roomType);
+            FrmWriteComment wc = new FrmWriteComment(hotelID, hotelName, checkInDate, checkOutDate, roomType, roomID);
             wc.SelectedHotel = selectedHotel;
             wc.ShowDialog();
         }
@@ -183,8 +186,8 @@ namespace Fun
                 var roomTypeName = orderDetail.Room.RoomType.RoomTypeName;
 
                 // 創建新的評論表單,並將相關訂單資訊傳遞給建構函式
-                FrmWriteComment wc = new FrmWriteComment(hotel.HotelID, hotel.HotelName, orderDetail.CheckInDate, orderDetail.CheckOutDate, roomTypeName);
-    
+                FrmWriteComment wc = new FrmWriteComment(hotel.HotelID, hotel.HotelName, orderDetail.CheckInDate, orderDetail.CheckOutDate, roomTypeName, roomID);
+
                 wc.ShowDialog();
             }
 

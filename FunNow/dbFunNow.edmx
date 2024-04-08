@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FunNowModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="FunNow5Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityID" />
@@ -23,6 +23,7 @@
           <Property Name="Rating" Type="decimal" Precision="2" Scale="1" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="RoomID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -73,7 +74,7 @@
           </Key>
           <Property Name="HotelImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HotelID" Type="int" Nullable="false" />
-          <Property Name="HotelImage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HotelImage" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="HImageDescription" Type="text" />
         </EntityType>
         <EntityType Name="HotelLikes">
@@ -484,7 +485,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FunNowModelStoreContainer">
+        <EntityContainer Name="FunNow5ModelStoreContainer">
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommentRate" EntityType="Self.CommentRate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
@@ -604,7 +605,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="FunNowModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="FunNow5Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityID" />
@@ -625,6 +626,7 @@
           <Property Name="Rating" Type="Decimal" Precision="2" Scale="1" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="RoomID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Hotel" Relationship="Self.FK_Comment_Hotel" FromRole="CommentRate" ToRole="Hotel" />
           <NavigationProperty Name="Member" Relationship="Self.FK_Comment_Member1" FromRole="CommentRate" ToRole="Member" />
         </EntityType>
@@ -690,7 +692,7 @@
           </Key>
           <Property Name="HotelImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HotelID" Type="Int32" Nullable="false" />
-          <Property Name="HotelImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HotelImage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HImageDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelImages_Hotel" FromRole="HotelImages" ToRole="Hotel" />
         </EntityType>
@@ -1251,9 +1253,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FunNowModelStoreContainer" CdmEntityContainer="dbFunNow">
+        <EntityContainerMapping StorageEntityContainer="FunNow5ModelStoreContainer" CdmEntityContainer="dbFunNow">
           <EntitySetMapping Name="City">
-            <EntityTypeMapping TypeName="FunNowModel.City">
+            <EntityTypeMapping TypeName="FunNow5Model.City">
               <MappingFragment StoreEntitySet="City">
                 <ScalarProperty Name="CityID" ColumnName="CityID" />
                 <ScalarProperty Name="CityName" ColumnName="CityName" />
@@ -1262,7 +1264,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CommentRate">
-            <EntityTypeMapping TypeName="FunNowModel.CommentRate">
+            <EntityTypeMapping TypeName="FunNow5Model.CommentRate">
               <MappingFragment StoreEntitySet="CommentRate">
                 <ScalarProperty Name="CommentID" ColumnName="CommentID" />
                 <ScalarProperty Name="HotelID" ColumnName="HotelID" />
@@ -1270,11 +1272,12 @@
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Country">
-            <EntityTypeMapping TypeName="FunNowModel.Country">
+            <EntityTypeMapping TypeName="FunNow5Model.Country">
               <MappingFragment StoreEntitySet="Country">
                 <ScalarProperty Name="CountryID" ColumnName="CountryID" />
                 <ScalarProperty Name="CountryName" ColumnName="CountryName" />
@@ -1282,7 +1285,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Coupon">
-            <EntityTypeMapping TypeName="FunNowModel.Coupon">
+            <EntityTypeMapping TypeName="FunNow5Model.Coupon">
               <MappingFragment StoreEntitySet="Coupon">
                 <ScalarProperty Name="CouponID" ColumnName="CouponID" />
                 <ScalarProperty Name="CouponName" ColumnName="CouponName" />
@@ -1292,7 +1295,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Hotel">
-            <EntityTypeMapping TypeName="FunNowModel.Hotel">
+            <EntityTypeMapping TypeName="FunNow5Model.Hotel">
               <MappingFragment StoreEntitySet="Hotel">
                 <ScalarProperty Name="HotelID" ColumnName="HotelID" />
                 <ScalarProperty Name="HotelName" ColumnName="HotelName" />
@@ -1305,7 +1308,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Hotel_Equipment_Reference">
-            <EntityTypeMapping TypeName="FunNowModel.Hotel_Equipment_Reference">
+            <EntityTypeMapping TypeName="FunNow5Model.Hotel_Equipment_Reference">
               <MappingFragment StoreEntitySet="Hotel_Equipment_Reference">
                 <ScalarProperty Name="HotelEquipmentReferenceID" ColumnName="HotelEquipmentReferenceID" />
                 <ScalarProperty Name="HotelID" ColumnName="HotelID" />
@@ -1314,7 +1317,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HotelEquipment">
-            <EntityTypeMapping TypeName="FunNowModel.HotelEquipment">
+            <EntityTypeMapping TypeName="FunNow5Model.HotelEquipment">
               <MappingFragment StoreEntitySet="HotelEquipment">
                 <ScalarProperty Name="HotelEquipmentID" ColumnName="HotelEquipmentID" />
                 <ScalarProperty Name="HotelEquipmentName" ColumnName="HotelEquipmentName" />
@@ -1322,7 +1325,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HotelImages">
-            <EntityTypeMapping TypeName="FunNowModel.HotelImages">
+            <EntityTypeMapping TypeName="FunNow5Model.HotelImages">
               <MappingFragment StoreEntitySet="HotelImages">
                 <ScalarProperty Name="HotelImageID" ColumnName="HotelImageID" />
                 <ScalarProperty Name="HotelID" ColumnName="HotelID" />
@@ -1332,7 +1335,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HotelLikes">
-            <EntityTypeMapping TypeName="FunNowModel.HotelLikes">
+            <EntityTypeMapping TypeName="FunNow5Model.HotelLikes">
               <MappingFragment StoreEntitySet="HotelLikes">
                 <ScalarProperty Name="HotelLikeID" ColumnName="HotelLikeID" />
                 <ScalarProperty Name="HotelID" ColumnName="HotelID" />
@@ -1342,7 +1345,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HotelType">
-            <EntityTypeMapping TypeName="FunNowModel.HotelType">
+            <EntityTypeMapping TypeName="FunNow5Model.HotelType">
               <MappingFragment StoreEntitySet="HotelType">
                 <ScalarProperty Name="HotelTypeID" ColumnName="HotelTypeID" />
                 <ScalarProperty Name="HotelTypeName" ColumnName="HotelTypeName" />
@@ -1350,7 +1353,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Member">
-            <EntityTypeMapping TypeName="FunNowModel.Member">
+            <EntityTypeMapping TypeName="FunNow5Model.Member">
               <MappingFragment StoreEntitySet="Member">
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1363,7 +1366,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Order">
-            <EntityTypeMapping TypeName="FunNowModel.Order">
+            <EntityTypeMapping TypeName="FunNow5Model.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
@@ -1376,7 +1379,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="FunNowModel.OrderDetails">
+            <EntityTypeMapping TypeName="FunNow5Model.OrderDetails">
               <MappingFragment StoreEntitySet="OrderDetails">
                 <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
@@ -1390,7 +1393,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderStatus">
-            <EntityTypeMapping TypeName="FunNowModel.OrderStatus">
+            <EntityTypeMapping TypeName="FunNow5Model.OrderStatus">
               <MappingFragment StoreEntitySet="OrderStatus">
                 <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
                 <ScalarProperty Name="OrderStatusName" ColumnName="OrderStatusName" />
@@ -1399,7 +1402,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentStatus">
-            <EntityTypeMapping TypeName="FunNowModel.PaymentStatus">
+            <EntityTypeMapping TypeName="FunNow5Model.PaymentStatus">
               <MappingFragment StoreEntitySet="PaymentStatus">
                 <ScalarProperty Name="PaymentStatusID" ColumnName="PaymentStatusID" />
                 <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
@@ -1408,7 +1411,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="FunNowModel.Role">
+            <EntityTypeMapping TypeName="FunNow5Model.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
@@ -1417,7 +1420,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Room">
-            <EntityTypeMapping TypeName="FunNowModel.Room">
+            <EntityTypeMapping TypeName="FunNow5Model.Room">
               <MappingFragment StoreEntitySet="Room">
                 <ScalarProperty Name="RoomID" ColumnName="RoomID" />
                 <ScalarProperty Name="HotelID" ColumnName="HotelID" />
@@ -1430,7 +1433,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Room_Equipment_Reference">
-            <EntityTypeMapping TypeName="FunNowModel.Room_Equipment_Reference">
+            <EntityTypeMapping TypeName="FunNow5Model.Room_Equipment_Reference">
               <MappingFragment StoreEntitySet="Room_Equipment_Reference">
                 <ScalarProperty Name="RoomEquipmentReferenceID" ColumnName="RoomEquipmentReferenceID" />
                 <ScalarProperty Name="RoomID" ColumnName="RoomID" />
@@ -1439,7 +1442,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RoomEquipment">
-            <EntityTypeMapping TypeName="FunNowModel.RoomEquipment">
+            <EntityTypeMapping TypeName="FunNow5Model.RoomEquipment">
               <MappingFragment StoreEntitySet="RoomEquipment">
                 <ScalarProperty Name="RoomEquipmentID" ColumnName="RoomEquipmentID" />
                 <ScalarProperty Name="RoomEquipmentName" ColumnName="RoomEquipmentName" />
@@ -1447,7 +1450,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RoomImage">
-            <EntityTypeMapping TypeName="FunNowModel.RoomImage">
+            <EntityTypeMapping TypeName="FunNow5Model.RoomImage">
               <MappingFragment StoreEntitySet="RoomImage">
                 <ScalarProperty Name="RoomImageID" ColumnName="RoomImageID" />
                 <ScalarProperty Name="RoomImage1" ColumnName="RoomImage" />
@@ -1456,7 +1459,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RoomType">
-            <EntityTypeMapping TypeName="FunNowModel.RoomType">
+            <EntityTypeMapping TypeName="FunNow5Model.RoomType">
               <MappingFragment StoreEntitySet="RoomType">
                 <ScalarProperty Name="RoomTypeID" ColumnName="RoomTypeID" />
                 <ScalarProperty Name="RoomTypeName" ColumnName="RoomTypeName" />
@@ -1467,7 +1470,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="FunNowModel.sysdiagrams">
+            <EntityTypeMapping TypeName="FunNow5Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />

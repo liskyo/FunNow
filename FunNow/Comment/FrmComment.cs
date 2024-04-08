@@ -15,11 +15,14 @@ namespace FunNow.Comment
         private bool isFilterApplied = false;// 篩選按鈕是否已點擊
         private string currentFilter = string.Empty;
         public Hotel selectedHotel;
+        private string orderedroomType;
 
-        public FrmComment(Hotel hotel)
+
+        public FrmComment(Hotel selectedHotel, string orderedroomType)
         {
             InitializeComponent();
-            selectedHotel = hotel;
+            this.selectedHotel = selectedHotel;
+            this.orderedroomType = orderedroomType;
             InitializeForm();
         }
 
@@ -32,25 +35,37 @@ namespace FunNow.Comment
         {
             if (selectedHotel != null)
             {
-                var commentsQuery = from c in db.CommentRate
-                                    join h in db.Hotel on c.HotelID equals h.HotelID
-                                    join m in db.Member on c.MemberID equals m.MemberID
-                                    join od in db.OrderDetails on c.MemberID equals od.MemberID
-                                    join r in db.Room on od.RoomID equals r.RoomID
-                                    where h.HotelID == selectedHotel.HotelID && r.HotelID == selectedHotel.HotelID
+                foreach (Control control in flowLayoutPanel1.Controls)
+                {
+                    flowLayoutPanel1.Controls.Remove(control);
+                    control.Dispose(); // 释放控件资源
+                }
 
-                                    select new CComment
-                                    {
-                                        MemberName = m.Name,
-                                        HotelName = h.HotelName,
-                                        RoomType = r.RoomName,
-                                        CheckInDate = od.CheckInDate,
-                                        Rating = (decimal)c.Rating,
-                                        CommentTime = c.CreatedAt,
-                                        CommentTxt = c.Description
-                                    };
+                var commentsQuery = (
+                 from c in db.CommentRate
+                 join h in db.Hotel on c.HotelID equals h.HotelID
+                 join m in db.Member on c.MemberID equals m.MemberID
+                 join od in db.OrderDetails on new { c.MemberID, c.RoomID } equals new { od.MemberID, od.RoomID }
+                 join r in db.Room on c.RoomID equals r.RoomID
+                 where h.HotelID == selectedHotel.HotelID //&& r.RoomName == orderedroomType
+                 select new
+                 {
+                     c.CommentID,
+                     MemberName = m.Name,
+                     HotelName = h.HotelName,
+                     RoomType = r.RoomName,
+                     CheckInDate = od.CheckInDate,
+                     Rating = (decimal)c.Rating,
+                     CommentTime = c.CreatedAt,
+                     CommentTxt = c.Description
+                 }
+             )
+             .GroupBy(x => x.CommentID)
+             .Select(g => g.OrderBy(x => x.CheckInDate).FirstOrDefault())
+             .ToList();
 
                 var commentsData = commentsQuery.ToList();
+
                 dataGridView1.DataSource = commentsData;
 
                 originalComments.AddRange(commentsData.Select(c => new CComment
@@ -66,10 +81,9 @@ namespace FunNow.Comment
 
                 comments.AddRange(originalComments);
                 SendQueryResults();
-               
+
             }
         }
-
         private void SendQueryResults() // 顯示評論和計算評分
         {
             DisplayComments(SortOption.Newest);
@@ -138,7 +152,7 @@ namespace FunNow.Comment
         private void FilterComments(string selectedCategory) // 根據類別篩選評論
         {
             if (string.IsNullOrEmpty(selectedCategory))
-            {   
+            {
                 // 如果選定的類別為空，則恢復原始評論列表
                 comments.Clear();
                 comments.AddRange(originalComments);
@@ -146,22 +160,27 @@ namespace FunNow.Comment
             }
             else //根據選定的類別篩選
             {
-                var filteredCommentsQuery = from c in db.CommentRate
-                                            join h in db.Hotel on c.HotelID equals h.HotelID
-                                            join m in db.Member on c.MemberID equals m.MemberID
-                                            join od in db.OrderDetails on c.MemberID equals od.MemberID
-                                            join r in db.Room on c.HotelID equals r.HotelID
-                                            where c.Description.Contains(selectedCategory)
-                                            select new CComment
-                                            {
-                                                MemberName = m.Name,
-                                                HotelName = h.HotelName,
-                                                RoomType = r.RoomName,
-                                                CheckInDate = od.CheckInDate,
-                                                Rating = (decimal)c.Rating,
-                                                CommentTime = c.CreatedAt,
-                                                CommentTxt = c.Description
-                                            };
+                var filteredCommentsQuery = (from c in db.CommentRate
+                                             join h in db.Hotel on c.HotelID equals h.HotelID
+                                             join m in db.Member on c.MemberID equals m.MemberID
+                                             join od in db.OrderDetails on new { c.MemberID, c.RoomID } equals new { od.MemberID, od.RoomID }
+                                             join r in db.Room on c.RoomID equals r.RoomID
+                                             where c.Description.Contains(selectedCategory)
+                                             //&& r.RoomName == orderedroomType
+                                             select new CComment
+                                             {
+                                                 CommentID = c.CommentID,
+                                                 MemberName = m.Name,
+                                                 HotelName = h.HotelName,
+                                                 RoomType = r.RoomName,
+                                                 CheckInDate = od.CheckInDate,
+                                                 Rating = (decimal)c.Rating,
+                                                 CommentTime = c.CreatedAt,
+                                                 CommentTxt = c.Description
+                                             }).GroupBy(x => x.CommentID)
+             .Select(g => g.OrderBy(x => x.CheckInDate).FirstOrDefault())
+             .ToList();
+
 
                 comments.Clear();
                 comments.AddRange(filteredCommentsQuery);
@@ -174,14 +193,16 @@ namespace FunNow.Comment
         {
             if (isFilterApplied && currentFilter == "早餐")
             {
-                // 如果已點選該篩選，則恢復到原始評論
-                FilterComments(string.Empty);
+                // 如果已點選該篩選,則恢復到原始評論
+                comments.Clear();
+                comments.AddRange(originalComments);
                 isFilterApplied = false;
                 currentFilter = string.Empty;
+                DisplayComments(SortOption.Newest);
             }
             else
             {
-                // 如果尚未點選該篩選，則應用該篩選
+                // 如果尚未點選該篩選,則應用該篩選
                 FilterComments("早餐");
                 isFilterApplied = true;
                 currentFilter = "早餐";

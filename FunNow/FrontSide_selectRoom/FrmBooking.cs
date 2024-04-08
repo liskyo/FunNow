@@ -36,6 +36,8 @@ namespace FunNow
         public Hotel selectedHotel { get; set; }
         public DateTime frmbookingStart { get; set; }
         public DateTime frmbookingEnd { get; set; }
+        public string roomType { get; set; }
+
         public FrmBooking()
         {
             InitializeComponent();   
@@ -255,7 +257,7 @@ namespace FunNow
 
         private void button1_Click(object sender, EventArgs e)
         {   //bnt showAllComment
-            FrmComment frmComment = new FrmComment(selectedHotel);
+            FrmComment frmComment = new FrmComment(selectedHotel, roomType);
             frmComment.ShowDialog();
         }
 
