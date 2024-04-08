@@ -1442,5 +1442,11 @@ namespace FunNow.BackSide_POS
             // 設定 FlowLayoutPanel 的 WrapContents 屬性為 False。
             flowLayoutPanel1.WrapContents = false;
         }
+
+        private void toolStripButton11_Click(object sender, EventArgs e)
+        {
+            FrmFrontMember f = new FrmFrontMember();
+            f.Show();
+        }
     }
 }

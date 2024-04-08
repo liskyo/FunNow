@@ -301,6 +301,12 @@
     <Compile Include="Hotel_Equipment_Reference.cs">
       <DependentUpon>dbFunNow.tt</DependentUpon>
     </Compile>
+    <Compile Include="Login_Register\FrmFrontMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login_Register\FrmFrontMember.designer.cs">
+      <DependentUpon>FrmFrontMember.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login_Register\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -462,6 +468,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HotelLike\View\HotelLikeBox.resx">
       <DependentUpon>HotelLikeBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login_Register\FrmFrontMember.resx">
+      <DependentUpon>FrmFrontMember.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login_Register\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
