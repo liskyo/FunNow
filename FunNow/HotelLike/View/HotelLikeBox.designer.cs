@@ -40,7 +40,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(13, 41);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(160, 166);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -53,7 +53,7 @@
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.Location = new System.Drawing.Point(34, 275);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(104, 44);
             this.button1.TabIndex = 18;
@@ -63,8 +63,8 @@
             // 
             // lblName
             // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("微軟正黑體", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblName.AutoEllipsis = true;
+            this.lblName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblName.Location = new System.Drawing.Point(31, 217);
             this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblName.Name = "lblName";
@@ -88,7 +88,7 @@
             this.buttonHeart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonHeart.Image = ((System.Drawing.Image)(resources.GetObject("buttonHeart.Image")));
             this.buttonHeart.Location = new System.Drawing.Point(147, -2);
-            this.buttonHeart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonHeart.Margin = new System.Windows.Forms.Padding(2);
             this.buttonHeart.Name = "buttonHeart";
             this.buttonHeart.Size = new System.Drawing.Size(39, 40);
             this.buttonHeart.TabIndex = 21;
@@ -105,7 +105,7 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "HotelLikeBox";
             this.Size = new System.Drawing.Size(184, 322);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
