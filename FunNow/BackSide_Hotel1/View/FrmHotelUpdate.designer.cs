@@ -61,9 +61,9 @@
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1130, 700);
+            this.panel1.Size = new System.Drawing.Size(753, 467);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer1
@@ -72,8 +72,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 2);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.splitContainer1.Location = new System.Drawing.Point(2, 1);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -98,71 +98,75 @@
             this.splitContainer1.Panel2.Controls.Add(this.hotelBox1);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1108, 660);
-            this.splitContainer1.SplitterDistance = 245;
+            this.splitContainer1.Size = new System.Drawing.Size(738, 440);
+            this.splitContainer1.SplitterDistance = 163;
+            this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 185);
+            this.label4.Location = new System.Drawing.Point(11, 123);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 18);
+            this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 5;
             this.label4.Text = "住宿類型";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 118);
+            this.label3.Location = new System.Drawing.Point(7, 79);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 18);
+            this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 4;
             this.label3.Text = "城市";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 55);
+            this.label2.Location = new System.Drawing.Point(7, 37);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 18);
+            this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 3;
             this.label2.Text = "國家";
             // 
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(14, 205);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox3.Location = new System.Drawing.Point(9, 137);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(148, 26);
+            this.comboBox3.Size = new System.Drawing.Size(100, 20);
             this.comboBox3.TabIndex = 2;
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(14, 139);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox2.Location = new System.Drawing.Point(9, 93);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(148, 26);
+            this.comboBox2.Size = new System.Drawing.Size(100, 20);
             this.comboBox2.TabIndex = 1;
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(14, 76);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox1.Location = new System.Drawing.Point(9, 51);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(148, 26);
+            this.comboBox1.Size = new System.Drawing.Size(100, 20);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(436, 455);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button3.Location = new System.Drawing.Point(291, 303);
+            this.button3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(135, 47);
+            this.button3.Size = new System.Drawing.Size(90, 31);
             this.button3.TabIndex = 9;
             this.button3.Text = "請加入圖片...";
             this.button3.UseVisualStyleBackColor = true;
@@ -172,28 +176,30 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(432, 50);
+            this.label5.Location = new System.Drawing.Point(288, 33);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(130, 24);
+            this.label5.Size = new System.Drawing.Size(87, 16);
             this.label5.TabIndex = 14;
             this.label5.Text = "請新增設施";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(78, 359);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox1.Location = new System.Drawing.Point(52, 239);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(273, 88);
+            this.textBox1.Size = new System.Drawing.Size(183, 60);
             this.textBox1.TabIndex = 13;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(78, 330);
+            this.label1.Location = new System.Drawing.Point(52, 220);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 24);
+            this.label1.Size = new System.Drawing.Size(39, 16);
             this.label1.TabIndex = 12;
             this.label1.Text = "描述";
             // 
@@ -201,28 +207,28 @@
             // 
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(436, 78);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(291, 52);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(306, 369);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(205, 247);
             this.flowLayoutPanel2.TabIndex = 11;
             // 
             // hotelBox3
             // 
-            this.hotelBox3.filedName = "電話";
+            this.hotelBox3.filedName = "地址";
             this.hotelBox3.fileValue = "";
-            this.hotelBox3.Location = new System.Drawing.Point(74, 236);
-            this.hotelBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.hotelBox3.Location = new System.Drawing.Point(49, 157);
+            this.hotelBox3.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.hotelBox3.Name = "hotelBox3";
-            this.hotelBox3.Size = new System.Drawing.Size(277, 86);
+            this.hotelBox3.Size = new System.Drawing.Size(185, 57);
             this.hotelBox3.TabIndex = 4;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(504, 598);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Location = new System.Drawing.Point(336, 399);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(89, 37);
+            this.button2.Size = new System.Drawing.Size(59, 25);
             this.button2.TabIndex = 7;
             this.button2.Text = "取消";
             this.button2.UseVisualStyleBackColor = true;
@@ -230,30 +236,30 @@
             // 
             // hotelBox2
             // 
-            this.hotelBox2.filedName = "地址";
+            this.hotelBox2.filedName = "電話";
             this.hotelBox2.fileValue = "";
-            this.hotelBox2.Location = new System.Drawing.Point(74, 143);
-            this.hotelBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.hotelBox2.Location = new System.Drawing.Point(49, 95);
+            this.hotelBox2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.hotelBox2.Name = "hotelBox2";
-            this.hotelBox2.Size = new System.Drawing.Size(277, 86);
+            this.hotelBox2.Size = new System.Drawing.Size(185, 57);
             this.hotelBox2.TabIndex = 4;
             // 
             // hotelBox1
             // 
             this.hotelBox1.filedName = "飯店名稱";
             this.hotelBox1.fileValue = "";
-            this.hotelBox1.Location = new System.Drawing.Point(74, 49);
-            this.hotelBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.hotelBox1.Location = new System.Drawing.Point(49, 33);
+            this.hotelBox1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.hotelBox1.Name = "hotelBox1";
-            this.hotelBox1.Size = new System.Drawing.Size(277, 86);
+            this.hotelBox1.Size = new System.Drawing.Size(185, 57);
             this.hotelBox1.TabIndex = 4;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(330, 598);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Location = new System.Drawing.Point(220, 399);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 37);
+            this.button1.Size = new System.Drawing.Size(59, 25);
             this.button1.TabIndex = 6;
             this.button1.Text = "確定";
             this.button1.UseVisualStyleBackColor = true;
@@ -263,10 +269,10 @@
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(78, 455);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(52, 303);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(233, 199);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(155, 133);
             this.flowLayoutPanel1.TabIndex = 10;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -276,11 +282,11 @@
             // 
             // FrmHotelUpdate
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1130, 700);
+            this.ClientSize = new System.Drawing.Size(753, 467);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.Name = "FrmHotelUpdate";
             this.Text = "FrmHotelUpdate";
             this.Load += new System.EventHandler(this.FrmHotel_Load);

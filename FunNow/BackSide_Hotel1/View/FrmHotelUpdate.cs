@@ -34,8 +34,8 @@ namespace FunNow.BackSide_Hotel.View
                 if (_hotel == null) { _hotel = new Hotel(); }
 
                 _hotel.HotelName = hotelBox1.fileValue;
-                _hotel.HotelPhone = hotelBox3.fileValue;
-                _hotel.HotelAddress = hotelBox2.fileValue;
+                _hotel.HotelPhone = hotelBox2.fileValue;
+                _hotel.HotelAddress = hotelBox3.fileValue;
                 _hotel.HotelDescription = textBox1.Text;
                 _hotel.CityID = (int)comboBox2.SelectedValue;
                 _hotel.HotelTypeID = (int)comboBox3.SelectedValue;
