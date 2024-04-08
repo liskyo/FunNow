@@ -84,6 +84,9 @@ namespace FunNow.BackSide_POS
         {
             dateTimePicker1.MinDate = DateTime.Today;//將 dateTimePicker1 的最小日期設定為今天
 
+            dateTimePicker2.Value = dateTimePicker1.Value.AddDays(1);//將 dateTimePicker2 的最小日期設定為 dateTimePicker1 的值加 1 天。
+
+
             dbFunNow db = new dbFunNow();//代表與資料庫的連線
 
             var orders = from k in db.OrderDetails//使用 LINQ 查詢 OrderDetails 表中所有記錄的 RoomID 欄位
