@@ -82,8 +82,7 @@ namespace projFunNow_Ruby
 
         private void label1_Click(object sender, EventArgs e) //顯示登入頁面
         {
-            FrmLogin f = new FrmLogin();
-            f.Show();
+            this.Close();
         }
 
         private void notNull(System.Windows.Forms.TextBox t, System.Windows.Forms.Label l)
@@ -122,9 +121,8 @@ namespace projFunNow_Ruby
                               select r;
                 dataGridView1.DataSource = members.ToList();
                 MessageBox.Show("你已成功註冊");
-                //Close(); //註冊完之後要關閉註冊頁面，並跳出登入頁面
-                FrmLogin f = new FrmLogin();
-                f.Show();
+                this.Close(); //註冊完之後要關閉註冊頁面，並跳出登入頁面
+                
             }
             else 
             { 

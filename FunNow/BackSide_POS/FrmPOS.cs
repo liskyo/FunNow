@@ -1213,9 +1213,9 @@ namespace FunNow.BackSide_POS
         {
             queryAll(); //SHOW出房間資訊 包含自訂欄位           
             
-            FrmLogin f = new FrmLogin();
+            //FrmLogin f = new FrmLogin();
 
-            f.ShowDialog();
+            //f.ShowDialog();
 
             dateTimePicker2.Value = dateTimePicker1.Value.AddDays(1); //設定進首頁時，退房時間的顯示
 
@@ -1292,11 +1292,11 @@ namespace FunNow.BackSide_POS
         }
         private void FrmPOS_Activated(object sender, EventArgs e)
         {
-            //resetGridStyle();
+            //queryAll();
         }
         private void queryAll()  //select Room資料表資料內容
         {
-            dateTimePicker1.MinDate = DateTime.Today;//將 dateTimePicker1 的最小日期設定為今天
+            //dateTimePicker1.MinDate = DateTime.Today;//將 dateTimePicker1 的最小日期設定為今天
 
             dbFunNow db = new dbFunNow();//代表與資料庫的連線               
 
@@ -1335,7 +1335,7 @@ namespace FunNow.BackSide_POS
 
                 HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。
                                              
-                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == 3);
+                var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == FrmLogin.auth.MemberID);
 
                 if (hls.ToList().Count != 0)   //愛心顏色才會跟HotelLikes內的LikeStatus同步
                 {
@@ -1343,7 +1343,7 @@ namespace FunNow.BackSide_POS
                 }
 
                 hb.HotelID = h.HotelID;
-                hb.MemberID =3;
+                hb.MemberID = FrmLogin.auth.MemberID;
 
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
 

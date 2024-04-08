@@ -33,10 +33,11 @@ namespace FunNow.Comment
 
             var comments = from c in db.CommentRate
                            join m in db.Member on c.MemberID equals m.MemberID
+                           join h in db.Hotel on c.HotelID equals h.HotelID
                            select new
                            {
                                c.CommentID,
-                               c.HotelID,
+                               h.HotelName,
                                m.Name,
                                c.Rating,
                                c.Description,

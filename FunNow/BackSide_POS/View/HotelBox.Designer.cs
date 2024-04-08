@@ -256,9 +256,9 @@
             this.lblRating.Location = new System.Drawing.Point(134, 26);
             this.lblRating.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRating.Name = "lblRating";
-            this.lblRating.Size = new System.Drawing.Size(56, 21);
+            this.lblRating.Size = new System.Drawing.Size(34, 21);
             this.lblRating.TabIndex = 7;
-            this.lblRating.Text = "label8";
+            this.lblRating.Text = "5.0";
             // 
             // label7
             // 

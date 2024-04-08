@@ -131,7 +131,7 @@
             this.lbSmallComment1.Name = "lbSmallComment1";
             this.lbSmallComment1.Size = new System.Drawing.Size(149, 17);
             this.lbSmallComment1.TabIndex = 47;
-            this.lbSmallComment1.Text = "label2";
+            this.lbSmallComment1.Text = "目前無評論";
             // 
             // panel1
             // 
@@ -149,7 +149,7 @@
             this.lbSmallComment2.Name = "lbSmallComment2";
             this.lbSmallComment2.Size = new System.Drawing.Size(148, 17);
             this.lbSmallComment2.TabIndex = 47;
-            this.lbSmallComment2.Text = "label2";
+            this.lbSmallComment2.Text = "目前無評論";
             // 
             // panel2
             // 

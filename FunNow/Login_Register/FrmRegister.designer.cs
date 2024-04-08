@@ -332,9 +332,8 @@
             this.lblRecheck.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblRecheck.Location = new System.Drawing.Point(39, 457);
             this.lblRecheck.Name = "lblRecheck";
-            this.lblRecheck.Size = new System.Drawing.Size(17, 19);
+            this.lblRecheck.Size = new System.Drawing.Size(0, 19);
             this.lblRecheck.TabIndex = 34;
-            this.lblRecheck.Text = ": ";
             // 
             // picEyes1
             // 
@@ -367,9 +366,8 @@
             this.lblPhone.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblPhone.Location = new System.Drawing.Point(343, 337);
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(17, 19);
+            this.lblPhone.Size = new System.Drawing.Size(0, 19);
             this.lblPhone.TabIndex = 37;
-            this.lblPhone.Text = ": ";
             // 
             // lblEmail
             // 
@@ -378,9 +376,8 @@
             this.lblEmail.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblEmail.Location = new System.Drawing.Point(37, 242);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(17, 19);
+            this.lblEmail.Size = new System.Drawing.Size(0, 19);
             this.lblEmail.TabIndex = 38;
-            this.lblEmail.Text = ": ";
             // 
             // label9
             // 
