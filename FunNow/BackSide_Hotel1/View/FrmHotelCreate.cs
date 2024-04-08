@@ -44,8 +44,8 @@ namespace FunNow.BackSide_Hotel1.View
                 _hotel = value;
 
                 hotelBox1.fileValue = _hotel.HotelName;
-                hotelBox3.fileValue = _hotel.HotelAddress.ToString();
-                hotelBox2.fileValue = _hotel.HotelPhone.ToString();
+                hotelBox2.fileValue = _hotel.HotelAddress.ToString();
+                hotelBox3.fileValue = _hotel.HotelPhone.ToString();
                 textBox1.Text = _hotel.HotelDescription.ToString();
                 comboBox3.SelectedValue = _hotel.HotelTypeID.ToString();
             }

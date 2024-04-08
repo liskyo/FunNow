@@ -69,6 +69,8 @@ namespace FunNow.BackSide_POS
         {
             InitializeComponent();
             this.Text = "FunNow訂房平台，Have Fun!!";
+            queryAll(); //SHOW出房間資訊 包含自訂欄位           
+
         }
         private void toolStripComboBox1_Click(object sender, EventArgs e)
         {
@@ -1211,7 +1213,7 @@ namespace FunNow.BackSide_POS
         }
         private void FrmPOS_Load(object sender, EventArgs e) //New時自動載入內容
         {
-            queryAll(); //SHOW出房間資訊 包含自訂欄位           
+            //queryAll(); //SHOW出房間資訊 包含自訂欄位           
             
             //FrmLogin f = new FrmLogin();
 
