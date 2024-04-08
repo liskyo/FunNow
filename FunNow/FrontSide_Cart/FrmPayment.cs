@@ -186,7 +186,7 @@ namespace Fun
                 var roomTypeName = orderDetail.Room.RoomType.RoomTypeName;
 
                 // 創建新的評論表單,並將相關訂單資訊傳遞給建構函式
-                FrmWriteComment wc = new FrmWriteComment(hotel.HotelID, hotel.HotelName, orderDetail.CheckInDate, orderDetail.CheckOutDate, roomTypeName, roomID);
+                FrmWriteComment wc = new FrmWriteComment(hotel.HotelID, hotel.HotelName, orderDetail.CheckInDate, orderDetail.CheckOutDate, roomTypeName, orderDetail.RoomID);
 
                 wc.ShowDialog();
             }
