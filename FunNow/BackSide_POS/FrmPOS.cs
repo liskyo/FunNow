@@ -69,7 +69,7 @@ namespace FunNow.BackSide_POS
         {
             InitializeComponent();
             this.Text = "FunNow訂房平台，Have Fun!!";
-            queryAll(); //SHOW出房間資訊 包含自訂欄位           
+            //queryAll(); //SHOW出房間資訊 包含自訂欄位           
 
         }
         private void toolStripComboBox1_Click(object sender, EventArgs e)
@@ -274,10 +274,10 @@ namespace FunNow.BackSide_POS
             string keyword = txtKeyword.Text; //關鍵字搜尋
 
             var hotels = from h in db.Hotel   // 所有的hotel
-                         where (rooms.ToList().Contains(h.HotelID)) && h.HotelName.Contains(keyword)
+                         where (rooms.ToList().Contains(h.HotelID)) && (h.HotelName.Contains(keyword)
                          || h.HotelAddress.Contains(keyword)
                          || h.HotelPhone.Contains(keyword)
-                         || h.City.CityName.Contains(keyword)
+                         || h.City.CityName.Contains(keyword))
                          select
                          new
                          {
@@ -306,10 +306,10 @@ namespace FunNow.BackSide_POS
                             select hl;
 
             var hotels2 = from h in db.Hotel   // 空房的hotel
-                          where (rooms.ToList().Contains(h.HotelID)) && h.HotelName.Contains(keyword)
+                          where (rooms.ToList().Contains(h.HotelID)) && (h.HotelName.Contains(keyword)
                           || h.HotelAddress.Contains(keyword)
                           || h.HotelPhone.Contains(keyword)
-                          || h.City.CityName.Contains(keyword)
+                          || h.City.CityName.Contains(keyword))
                           select new { HotelAll = h, h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() };  //將hotels2查詢結果繫結到HotelBox
                                                                                                                                                 //設定照片條件
             foreach (var h in hotels2)
@@ -1005,13 +1005,7 @@ namespace FunNow.BackSide_POS
                          where !(k.CheckInDate >= dateTimePicker2.Value.Date || k.CheckOutDate <= dateTimePicker1.Value.Date) // 符合條件List<OrderDetails>
                          //使用 where 子句排除在指定日期範圍內已訂出的房間。 //訂單的開始日期大於或等於 dateTimePicker2 的值
                          select k.RoomID;                           //  或  //訂單的結束日期小於或等於 dateTimePicker1 的值。 //ex. List<RoomID> 123 234(在訂單內)
-            //   o 可訂  旅館  房間  
-            //   x (1)   3     123 (在訂單內)
-            //   x (2)   4     234
-            //   o (3)   4     235
-            //   o (4)   5     236 
-            //   o (4)   5     237
-
+  
             // 篩選出已在指定日期範圍內訂出的房間                    
             var rooms = from r in db.Room   // 查詢所有房間  List<Room>
                         where !orders.ToList().Contains(r.RoomID) //k.RoomID = r.RoomID => List<Room> 房間 o (3)  4-235    o (4)  5-236   o (4) 5-237 
@@ -1039,9 +1033,10 @@ namespace FunNow.BackSide_POS
 
             hotels = hotels.OrderByDescending(h => h.評分);
 
+            HashSet<Object> hs = new HashSet<Object>(hotels.ToList());
 
             // 將查詢結果繫結到資料表
-            dataGridView1.DataSource = hotels.ToList();
+            dataGridView1.DataSource = hs.ToList();// hotels.ToList();
 
             resetGridStyle();// 重設資料表樣式
 
@@ -1213,8 +1208,7 @@ namespace FunNow.BackSide_POS
         }
         private void FrmPOS_Load(object sender, EventArgs e) //New時自動載入內容
         {
-            //queryAll(); //SHOW出房間資訊 包含自訂欄位           
-            
+
             //FrmLogin f = new FrmLogin();
 
             //f.ShowDialog();
@@ -1291,6 +1285,12 @@ namespace FunNow.BackSide_POS
             {
                 comboBox4.Items.Add(ree);//將每個城市名稱作為項目新增到 comboBox1 中
             }
+
+            
+            queryAll(); //SHOW出房間資訊 包含自訂欄位
+            
+            //return;
+
         }
         private void FrmPOS_Activated(object sender, EventArgs e)
         {
@@ -1298,12 +1298,30 @@ namespace FunNow.BackSide_POS
         }
         private void queryAll()  //select Room資料表資料內容
         {
-            //dateTimePicker1.MinDate = DateTime.Today;//將 dateTimePicker1 的最小日期設定為今天
+            dbFunNow db = new dbFunNow();//代表與資料庫的連線
 
-            dbFunNow db = new dbFunNow();//代表與資料庫的連線               
+            var orders = from k in db.OrderDetails//使用 LINQ 查詢 OrderDetails 表中所有記錄的 RoomID 欄位，已被訂房的資料
+                         where !(k.CheckInDate >= dateTimePicker2.Value.Date || k.CheckOutDate <= dateTimePicker1.Value.Date) // 符合條件List<OrderDetails>
+                         //使用 where 子句排除在指定日期範圍內已訂出的房間。 //訂單的開始日期大於或等於 dateTimePicker2 的值
+                         select k.RoomID;                           //  或  //訂單的結束日期小於或等於 dateTimePicker1 的值。 //ex. List<RoomID> 123 234(在訂單內)
+            //   o 可訂  旅館  房間  
+            //   x (1)   3     123 (在訂單內)
+            //   x (2)   4     234
+            //   o (3)   4     235
+            //   o (4)   5     236 
+            //   o (4)   5     237
+
+            // 篩選出已在指定日期範圍內訂出的房間                    
+            var rooms = from r in db.Room   // 查詢所有房間  List<Room>
+                        where !orders.ToList().Contains(r.RoomID) //k.RoomID = r.RoomID => List<Room> 房間 o (3)  4-235    o (4)  5-236   o (4) 5-237 
+                        select r.HotelID;                         // List<HotelID>    旅館 o 4 o 5 o 5
+
+            string keyword = txtKeyword.Text; //關鍵字搜尋
 
             var hotels = from h in db.Hotel   // 所有的hotel
-                         select new
+                         where rooms.ToList().Contains(h.HotelID) && h.HotelName.Contains("嘉義") || h.HotelName.Contains("首爾")
+                         select
+                         new
                          {
                              城市 = h.City.CityName,
                              旅館名稱 = h.HotelName,
@@ -1314,7 +1332,8 @@ namespace FunNow.BackSide_POS
                              均價 = h.Room.Average(p => p.RoomPrice)
 
                              //旅館評價 = cr.Description,
-                         };
+
+                         };  // 將hotels查詢結果繫結到dataGridView1 
 
             // 將查詢結果繫結到資料表
             dataGridView1.DataSource = hotels.ToList();
@@ -1329,6 +1348,7 @@ namespace FunNow.BackSide_POS
                             select hl;
 
             var hotels2 = from h in db.Hotel   // 空房的hotel
+                          where rooms.ToList().Contains(h.HotelID) && h.HotelName.Contains("嘉義") || h.HotelName.Contains("首爾")
                           select new { HotelAll = h, h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() };  //將hotels2查詢結果繫結到HotelBox
                                                                                                                                                 //設定照片條件
             foreach (var h in hotels2)
@@ -1336,7 +1356,8 @@ namespace FunNow.BackSide_POS
                 string HotelImageString = h.FirstRoomImage != null ? h.FirstRoomImage.ToString() : null; //設定照片參數
 
                 HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。
-                                             
+                                             //rb.start = dateTimePicker1.Value;
+                                             //rb.end = dateTimePicker2.Value;
                 var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == FrmLogin.auth.MemberID);
 
                 if (hls.ToList().Count != 0)   //愛心顏色才會跟HotelLikes內的LikeStatus同步
@@ -1345,14 +1366,14 @@ namespace FunNow.BackSide_POS
                 }
 
                 hb.HotelID = h.HotelID;
+
                 hb.MemberID = FrmLogin.auth.MemberID;
 
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
 
                 hb.hotelPicture = HotelImageString;
-                hb.hotel = h.HotelAll;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數   
+                hb.hotel = h.HotelAll;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
                                       // rb._hotels = hotels2;//顯示全部旅館
-
                 hb.hotelboxStart = dateTimePicker1.Value;
                 hb.hotelboxEnd = dateTimePicker2.Value;
                 hb.showHotelEvent += this.showHotelMethod;

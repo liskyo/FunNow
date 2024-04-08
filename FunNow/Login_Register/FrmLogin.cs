@@ -89,8 +89,8 @@ namespace FunNow
                         }
                         else
                         {
-                            auth = mm;
                             FrmPOS f =new FrmPOS();
+                            auth = mm;
                             f.ShowDialog();
                         }
                         isClosed = false;
