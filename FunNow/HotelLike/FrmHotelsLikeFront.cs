@@ -58,9 +58,9 @@ namespace prjFunNowMember.View
 
                 hlb.HotelId = hl.Hotel.HotelID;                                    //todo.....
 
-                hlb.GoToHotel += GoToHotelHandler;                                 //HotelLikeBox按下立即查看按鈕 => 跳到相對應的飯店頁面
-                hlb.RemoveFromFavorites += HandleRemoveFromFavorites;
-
+                hlb.GoToHotelRequested += GoToHotelHandler;                                 //HotelLikeBox按下立即查看按鈕 => 跳到相對應的飯店頁面
+                hlb.RemoveFromFavoritesRequested += HandleRemoveFromFavorites;
+             
                 flowLayoutPanel1.Controls.Add(hlb);
 
                 //而等號左邊就是我在hotellikebox定義的屬性  存到等號左邊 等號右邊是來自資料庫資料表中的data
@@ -105,18 +105,9 @@ namespace prjFunNowMember.View
         }
 
         private void GoToHotelHandler(int hotelId)   //當 HotelLikeBox中的“查看住宿”按钮被點擊时，會觸發 GoToHotel事件，然後調用 GoToHotelHandler方法執行相對應的跳轉邏輯。
-        {
-            // 這裡實現根據 hotelId 跳轉到該酒店頁面的邏輯
-            // 例如，打開一個顯示酒店詳細資訊的新窗體
-            //FrmBooking f = new FrmBooking(hotelId);          //是否new 思璇做的那個部分即可?? //todo......
-            //f.Show();
-            
-            
-            FrmBooking f = new FrmBooking(hotelId);          //是否new 思璇做的那個部分即可?? //todo......
-            //MessageBox.Show("123");
-            f.Show();
-            //MessageBox.Show("456");
-
+        {        
+           FrmBookingViewOnly f = new FrmBookingViewOnly(hotelId);      
+            f.Show();         
         }
 
         private void toolStripButton9_Click(object sender, EventArgs e)

@@ -59,7 +59,7 @@
             this.button1.TabIndex = 18;
             this.button1.Text = "查看住宿";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.OnButtonGoToHotelClick);
             // 
             // lblName
             // 
@@ -93,7 +93,7 @@
             this.buttonHeart.Size = new System.Drawing.Size(39, 40);
             this.buttonHeart.TabIndex = 21;
             this.buttonHeart.UseVisualStyleBackColor = true;
-            this.buttonHeart.Click += new System.EventHandler(this.RemoveHotelFromFavorites);
+            this.buttonHeart.Click += new System.EventHandler(this.OnButtonRemoveFromFavoritesClick);
             // 
             // HotelLikeBox
             // 
