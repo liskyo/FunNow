@@ -74,7 +74,7 @@
           </Key>
           <Property Name="HotelImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HotelID" Type="int" Nullable="false" />
-          <Property Name="HotelImage" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HotelImage" Type="nvarchar(max)" Nullable="false" />
           <Property Name="HImageDescription" Type="text" />
         </EntityType>
         <EntityType Name="HotelLikes">
@@ -692,7 +692,7 @@
           </Key>
           <Property Name="HotelImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HotelID" Type="Int32" Nullable="false" />
-          <Property Name="HotelImage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HotelImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HImageDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelImages_Hotel" FromRole="HotelImages" ToRole="Hotel" />
         </EntityType>
