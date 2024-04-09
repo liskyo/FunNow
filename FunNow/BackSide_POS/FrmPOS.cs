@@ -1156,7 +1156,7 @@ namespace FunNow.BackSide_POS
                          };                                  // List<Hotel>
 
             // 按 CityID 排列
-            hotels = hotels.OrderBy(h => h.城市);
+            hotels = hotels.OrderBy(h => h.旅館名稱);
 
             // 將查詢結果繫結到資料表
             dataGridView1.DataSource = hotels.ToList();
@@ -1165,56 +1165,42 @@ namespace FunNow.BackSide_POS
 
             //========================================          
 
-            flowLayoutPanel1.Controls.Clear(); //首先，清除 flowLayoutPanel1 控制項中的所有控制項
+            flowLayoutPanel1.Controls.Clear();
 
-            var sorthotelname = hotels.Select(p => p.旅館名稱); //從 sortedhotels 集合中選取所有旅館名稱                                                                     
-            List<string> sorthotelnamelist = sorthotelname.ToList();//並轉換為 List<string> 集合 sorthotelname2
-
-            //從 db.Hotel 資料表中選取所有空房的旅館並轉換為 List<Hotel> 集合
-            var hotels2 = from h in db.Hotel   // 空房的hotel
-                          where rooms.ToList().Contains(h.HotelID)  // List<Hotel> hotels2list
-                          select new { HotelAll = h, h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() };  //將hotels2查詢結果繫結到HotelBox
-
-            //var hotels2list = hotels2.ToList();
-
-            //var sorthtels3 = hotels2list   //根據旅館名稱對 hotels2list 集合進行排序
-            //    .OrderBy(h => sorthotelnamelist.IndexOf(h.HotelName)).ToList();
-
-            var hotellike = from hl in db.HotelLikes //從 db.HotelLikes 資料表中選取所有旅館喜好資料。
+            var hotellike = from hl in db.HotelLikes
                             select hl;
-                                                                                                                                  //設定照片條件
+
+            var hotels2 = from h in db.Hotel   // 空房的hotel
+                          where rooms.ToList().Contains(h.HotelID)  // List<Hotel>
+                          select new { HotelAll = h , h.HotelName , h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() };  //將hotels2查詢結果繫結到HotelBox
+            hotels2 = hotels2.OrderBy(h => h.HotelName);
+
+            //設定照片條件
             foreach (var h in hotels2)
             {
                 string HotelImageString = h.FirstRoomImage != null ? h.FirstRoomImage.ToString() : null; //設定照片參數
 
-                HotelBox hb = new HotelBox();//建立一個 HotelBox 物件，用來顯示旅館資訊。
-
-                //根據會員 ID 和旅館 ID 從 db.HotelLikes 資料表中選取旅館喜好資料
+                HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。
+                                             //rb.start = dateTimePicker1.Value;
+                                             //rb.end = dateTimePicker2.Value;
                 var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == FrmLogin.auth.MemberID);
 
-                if (hls.ToList().Count != 0) //如果旅館喜好裡有資料，則設定 HotelBox 物件的旅館喜好狀態
+                if (hls.ToList().Count != 0)   //愛心顏色才會跟HotelLikes內的LikeStatus同步
                 {
-                    hb.hotellike = (HotelLikes)hls.ToList().ElementAt(0); //返回 List<HotelLikes> 集合中的第一個元素
-                                                                          //將第一個元素轉換為 HotelLikes 型別
-                                                                          //rb.hotellike：HotelBox 物件的 HotelLikes 屬性，用於存儲旅館喜好資料。
-                                                                          //hls：一個包含旅館喜好資料的 IEnumerable<HotelLikes> 集合。
-                                                                          //ToList()：將 IEnumerable< HotelLikes > 集合轉換為 List<HotelLikes> 集合。
-                                                                          //ElementAt(0)：返回 List<HotelLikes> 集合中的第一個元素。
-                                                                          //(HotelLikes)：將第一個元素轉換為 HotelLikes 型別。
+                    hb.hotellike = (HotelLikes)hls.ToList().ElementAt(0);
                 }
 
                 hb.HotelID = h.HotelID;
-
                 hb.MemberID = FrmLogin.auth.MemberID;
 
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
 
                 hb.hotelPicture = HotelImageString;
-                hb.hotel = h.HotelAll;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
+                hb.hotel = h.HotelAll;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數   
                                       // rb._hotels = hotels2;//顯示全部旅館
+
                 hb.hotelboxStart = dateTimePicker1.Value;
                 hb.hotelboxEnd = dateTimePicker2.Value;
-
                 hb.showHotelEvent += this.showHotelMethod;
                 flowLayoutPanel1.Controls.Add(hb);
                 //將 RoomBox 物件新增到 flowLayoutPanel1 控制項中。
