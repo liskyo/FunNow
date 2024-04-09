@@ -180,7 +180,9 @@ namespace FunNow.BackSide_Order
 
         private void button2_Click(object sender, EventArgs e)
         {
+
             FrmOrder f = new FrmOrder();
+            f.demobutton1.Visible = true;
             f.CreatedAtBox.Visible = false;
 
             // 設定表單的 CreatedAtBox 的預設值為當前時間
@@ -263,7 +265,10 @@ namespace FunNow.BackSide_Order
 
         private void button4_Click(object sender, EventArgs e)
         {
+
             FrmOrder f = new FrmOrder();
+            f.demobutton2.Visible = true;
+
             f.label2.Visible = true;
             f.OrderIDcomboBox.Visible = true;
             f.CreatedAtBox.Visible = false;
@@ -280,7 +285,7 @@ namespace FunNow.BackSide_Order
                 if (!string.IsNullOrEmpty(orderID) && !f.OrderIDcomboBox.Items.Contains(orderID))
                 {
                     f.OrderIDcomboBox.Items.Add(orderID);
-                    selectedOrderID = orderID; // 將所選擇的訂單號碼保存到變數中
+                    // selectedOrderID = orderID; // 將所選擇的訂單號碼保存到變數中
                 }
             }
 
@@ -292,7 +297,7 @@ namespace FunNow.BackSide_Order
             dbFunNow db2 = new dbFunNow();
             OrderDetails y = new OrderDetails
             {
-                OrderID = Convert.ToInt32(selectedOrderID), // 使用所選擇的訂單號碼
+                OrderID = Convert.ToInt32(f.selectedOrderID), // 使用所選擇的訂單號碼
                 MemberID = f.orderdetails.MemberID,
                 RoomID = f.orderdetails.RoomID,
                 CheckInDate = f.orderdetails.CheckInDate,

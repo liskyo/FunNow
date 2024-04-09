@@ -19,7 +19,7 @@ namespace FunNow.BackSide_Order
         private DialogResult _isOk;
         private Order _order;
         private OrderDetails _orderDetails;
-
+        public int selectedOrderID; // 儲存當前選擇的訂單ID
         public OrderDetails orderdetails
         {
             get
@@ -122,6 +122,43 @@ namespace FunNow.BackSide_Order
 
             //    CreatedAtBox.fileValue = DateTime.Now.ToString(); // 使用 ToString() 方法將 DateTime 轉換為字串並賦值給 CreatedAtBox 的 Text 屬性
 
+        }
+
+        
+
+        
+
+
+        private void demobutton2_Click_1(object sender, EventArgs e)
+        {
+            MemberIDBox.fileValue = 3.ToString();
+            OrderStatusIDBox.fileValue = 1.ToString();
+            PaymentStatusIDBox.fileValue = 1.ToString();
+            TotalPriceBox.fileValue = 410.ToString();
+            CouponIDBox.fileValue = 3.ToString();
+            RoomIDBox.fileValue = 1023.ToString();
+            CheckInDateBox.fileValue = new DateTime(2024, 4, 10).ToString();
+            CheckOutDateBox.fileValue = new DateTime(2024, 4, 12).ToString();
+            isOrderedBox.fileValue = true.ToString();
+        }
+
+        private void demobutton1_Click_1(object sender, EventArgs e)
+        {
+            MemberIDBox.fileValue = 3.ToString();
+            OrderStatusIDBox.fileValue = 1.ToString();
+            PaymentStatusIDBox.fileValue = 1.ToString();
+            TotalPriceBox.fileValue = 20000.ToString();
+            CouponIDBox.fileValue = 3.ToString();
+            RoomIDBox.fileValue = 1023.ToString();
+            CheckInDateBox.fileValue = new DateTime(2024, 4, 10).ToString();
+            CheckOutDateBox.fileValue = new DateTime(2024, 4, 12).ToString();
+            isOrderedBox.fileValue = true.ToString();
+        }
+
+        private void OrderIDcomboBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            selectedOrderID = Convert.ToInt32(comboBox.SelectedItem);
         }
     }
 }

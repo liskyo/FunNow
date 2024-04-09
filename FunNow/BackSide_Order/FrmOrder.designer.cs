@@ -33,6 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.OrderIDcomboBox = new System.Windows.Forms.ComboBox();
+            this.demobutton1 = new System.Windows.Forms.Button();
+            this.demobutton2 = new System.Windows.Forms.Button();
             this.isOrderedBox = new FunNow.BackSide_Hotel.HotelOrderBox();
             this.CheckOutDateBox = new FunNow.BackSide_Hotel.HotelOrderBox();
             this.CheckInDateBox = new FunNow.BackSide_Hotel.HotelOrderBox();
@@ -98,6 +100,29 @@
             this.OrderIDcomboBox.Size = new System.Drawing.Size(195, 20);
             this.OrderIDcomboBox.TabIndex = 15;
             this.OrderIDcomboBox.Visible = false;
+            this.OrderIDcomboBox.SelectedIndexChanged += new System.EventHandler(this.OrderIDcomboBox_SelectedIndexChanged_1);
+            // 
+            // demobutton1
+            // 
+            this.demobutton1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.demobutton1.Location = new System.Drawing.Point(64, 485);
+            this.demobutton1.Name = "demobutton1";
+            this.demobutton1.Size = new System.Drawing.Size(112, 41);
+            this.demobutton1.TabIndex = 16;
+            this.demobutton1.Text = "demo";
+            this.demobutton1.UseVisualStyleBackColor = true;
+            this.demobutton1.Click += new System.EventHandler(this.demobutton1_Click_1);
+            // 
+            // demobutton2
+            // 
+            this.demobutton2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.demobutton2.Location = new System.Drawing.Point(64, 485);
+            this.demobutton2.Name = "demobutton2";
+            this.demobutton2.Size = new System.Drawing.Size(112, 41);
+            this.demobutton2.TabIndex = 17;
+            this.demobutton2.Text = "demo";
+            this.demobutton2.UseVisualStyleBackColor = true;
+            this.demobutton2.Click += new System.EventHandler(this.demobutton2_Click_1);
             // 
             // isOrderedBox
             // 
@@ -214,6 +239,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 560);
+            this.Controls.Add(this.demobutton2);
+            this.Controls.Add(this.demobutton1);
             this.Controls.Add(this.OrderIDcomboBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.isOrderedBox);
@@ -253,5 +280,7 @@
         private BackSide_Hotel.HotelOrderBox isOrderedBox;
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.ComboBox OrderIDcomboBox;
+        public System.Windows.Forms.Button demobutton1;
+        public System.Windows.Forms.Button demobutton2;
     }
 }

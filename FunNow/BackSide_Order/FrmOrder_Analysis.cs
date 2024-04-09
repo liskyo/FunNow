@@ -10,7 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-
+using CefSharp;
+using CefSharp.WinForms;
+using FunNow.BackSide_Order.View;
 
 namespace FunNow.BackSide_Order
 {
@@ -93,11 +95,20 @@ namespace FunNow.BackSide_Order
                 case 2:
                     ShowCouponUsageRateAnalysis();
                     break;
+                case 3: // 假设 3 是 IFRAME 选项的索引
+                        // 将 HTML 页面载入到 WebBrowser 控件中
+                    LoadHtmlIntoWebBrowser();
+                    break;
                 default:
                     // 若索引未匹配到任何分析，則顯示預設分析
                     ShowTotalSalesAnalysis();
                     break;
             }
+        }
+        private void LoadHtmlIntoWebBrowser()
+        {
+            MAP F = new MAP();
+            F.Show();
         }
         private void ShowHotelOrderquantityAnalysis()
         {
