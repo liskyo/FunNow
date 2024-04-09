@@ -1335,7 +1335,7 @@ namespace FunNow.BackSide_POS
             string keyword = txtKeyword.Text; //關鍵字搜尋
 
             var hotels = from h in db.Hotel   // 所有的hotel
-                         where rooms.ToList().Contains(h.HotelID) && h.HotelName.Contains("嘉義") || h.HotelName.Contains("首爾")
+                         where rooms.ToList().Contains(h.HotelID) &&( h.HotelName.Contains("嘉義") || h.HotelName.Contains("靠北邊") || h.HotelName.Contains("加賀屋") || h.HotelName.Contains("樂高"))
                          select
                          new
                          {
@@ -1364,7 +1364,7 @@ namespace FunNow.BackSide_POS
                             select hl;
 
             var hotels2 = from h in db.Hotel   // 空房的hotel
-                          where rooms.ToList().Contains(h.HotelID) && h.HotelName.Contains("嘉義") || h.HotelName.Contains("首爾")
+                          where rooms.ToList().Contains(h.HotelID) && (h.HotelName.Contains("嘉義") || h.HotelName.Contains("靠北邊") || h.HotelName.Contains("加賀屋") || h.HotelName.Contains("樂高"))
                           select new { HotelAll = h, h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() };  //將hotels2查詢結果繫結到HotelBox
                                                                                                                                                 //設定照片條件
             foreach (var h in hotels2)
@@ -1422,52 +1422,11 @@ namespace FunNow.BackSide_POS
         }
         private void editById(int id) //可以修改資料
         {
-            //dbFunNowEntities db = new dbFunNowEntities();
-            //Room room = db.Room.FirstOrDefault(x => x.RoomID == id);
-            //if (room == null)
-            //    return;
 
-            //FrmRoom f = new FrmRoom();
-            //f.room = room;
-            //f.ShowDialog();
-
-            //if (f.isOk != DialogResult.OK)
-            //    return;
-            ////room.HotelID = f.room.HotelID;
-            //room.RoomName = f.room.RoomName;
-            //room.RoomPrice = f.room.RoomPrice;
-            //room.Description = f.room.Description;
-            //room.RoomTypeID = f.room.RoomTypeID;
-            //db.SaveChanges();
-            //queryAll();
         }
         private void dataGridView1_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            //int id = (int)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
 
-            //dbFunNowEntities db = new dbFunNowEntities();
-            //Room room = db.Room.FirstOrDefault(x => x.RoomID == id);
-            //if (room == null)
-            //    return;
-
-            //// 直接建立新的 tOrder 物件
-
-            //OrderDetails order = new OrderDetails();
-            //order.MemberID = order.MemberID;
-            //order.RoomID = room.RoomID;
-            //order.CheckInDate = dateTimePicker1.Value;
-            //order.CheckOutDate = dateTimePicker2.Value;
-
-            //FrmOrderDetails f = new FrmOrderDetails();// 建立 FrmOrder 物件
-            //f.order = order;// 將 tOrder 物件傳遞給 FrmOrder 物件
-            //f.ShowDialog();// 顯示 FrmOrder 表單
-
-            //if (f.isOk != DialogResult.OK) //不是點選確認，就離開
-            //    return;
-
-            //db.OrderDetails.Add(f.order);// 將修改後的 tOrder 物件新增到資料庫
-            //db.SaveChanges();// 儲存變更
-            //queryAll();// 重新查詢所有資料
         }
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e) //設計HotelBox滾輪
         {  //可以用垂直瀏覽資料
