@@ -79,7 +79,7 @@ namespace FunNow.Comment
                             CheckInDate = od.CheckInDate,
                             CheckOutDate = od.CheckOutDate,
                             RoomType = r.RoomName,
-                            roomID = r.RoomID
+                            roomID = od.RoomID
 
                         };
 
