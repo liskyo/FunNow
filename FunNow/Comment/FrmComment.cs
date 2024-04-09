@@ -166,6 +166,7 @@ namespace FunNow.Comment
                                              join od in db.OrderDetails on new { c.MemberID, c.RoomID } equals new { od.MemberID, od.RoomID }
                                              join r in db.Room on c.RoomID equals r.RoomID
                                              where c.Description.Contains(selectedCategory)
+                                             where c.HotelID == selectedHotel.HotelID
                                              //&& r.RoomName == orderedroomType
                                              select new CComment
                                              {
