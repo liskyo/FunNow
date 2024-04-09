@@ -83,8 +83,9 @@ namespace FunNow.BackSide_POS
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e) //訂房日期鍵
         {
             dateTimePicker1.MinDate = DateTime.Today;//將 dateTimePicker1 的最小日期設定為今天
+            MessageBox.Show("" + dateTimePicker1.MinDate);
 
-            dateTimePicker2.Value = dateTimePicker1.Value.AddDays(1);//將 dateTimePicker2 的最小日期設定為 dateTimePicker1 的值加 1 天。
+            dateTimePicker2.Value = dateTimePicker1.Value.Date.AddDays(1);//將 dateTimePicker2 的最小日期設定為 dateTimePicker1 的值加 1 天。
 
 
             dbFunNow db = new dbFunNow();//代表與資料庫的連線
@@ -176,7 +177,7 @@ namespace FunNow.BackSide_POS
         }
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e) //退房日期鍵
         {
-            dateTimePicker2.MinDate = dateTimePicker1.Value.AddDays(1);//將 dateTimePicker2 的最小日期設定為 dateTimePicker1 的值加 1 天。
+            dateTimePicker2.MinDate = dateTimePicker1.Value.Date.AddDays(1);//將 dateTimePicker2 的最小日期設定為 dateTimePicker1 的值加 1 天。
 
             dbFunNow db = new dbFunNow();//代表與資料庫的連線
 
