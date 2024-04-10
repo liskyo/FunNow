@@ -38,7 +38,20 @@ namespace FunNow.BackSide_POS
         {
             InitializeComponent();
             this.Text = "FunNow訂房平台，Have Fun!!";
-            //queryAll(); //SHOW出房間資訊 包含自訂欄位           
+            //queryAll(); //SHOW出房間資訊 包含自訂欄位
+
+            // 設定 Timer 控制項的 Interval 屬性
+            timer1.Interval = 500;
+
+            // 在 Timer 控制項的 Tick 事件中加入程式碼
+            timer1.Tick += (sender, e) =>
+            {
+                string text = toolStripLabel4.Text;
+                toolStripLabel4.Text = text.Substring(1) + text.Substring(0, 1);
+            };
+
+            // 啟動 Timer 控制項
+            timer1.Start();
 
         }
         private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
@@ -888,8 +901,7 @@ namespace FunNow.BackSide_POS
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
 
                 hb.hotelPicture = HotelImageString;
-                hb.hotel = h.HotelAll;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
-                                      // rb._hotels = hotels2;//顯示全部旅館
+                hb.hotel = h.HotelAll;
                 hb.hotelboxStart = dateTimePicker1.Value.Date;
                 hb.hotelboxEnd = dateTimePicker2.Value.Date;
                 hb.showHotelEvent += this.showHotelMethod;
@@ -907,14 +919,7 @@ namespace FunNow.BackSide_POS
                          where !(k.CheckInDate >= dateTimePicker2.Value.Date || k.CheckOutDate <= dateTimePicker1.Value.Date) // 符合條件List<OrderDetails>
                          //使用 where 子句排除在指定日期範圍內已訂出的房間。 //訂單的開始日期大於或等於 dateTimePicker2 的值
                          select k.RoomID;                           //  或  //訂單的結束日期小於或等於 dateTimePicker1 的值。 //ex. List<RoomID> 123 234(在訂單內)
-            //   o 可訂  旅館  房間  
-            //   x (1)   3     123 (在訂單內)
-            //   x (2)   4     234
-            //   o (3)   4     235
-            //   o (4)   5     236 
-            //   o (4)   5     237
-
-            // 篩選出已在指定日期範圍內訂出的房間                    
+                          
             var rooms = from r in db.Room   // 查詢所有房間  List<Room>
                         where !orders.ToList().Contains(r.RoomID) //k.RoomID = r.RoomID => List<Room> 房間 o (3)  4-235    o (4)  5-236   o (4) 5-237 
                         select r.HotelID;                         // List<HotelID>    旅館 o 4 o 5 o 5
@@ -959,8 +964,8 @@ namespace FunNow.BackSide_POS
                 string HotelImageString = h.FirstRoomImage != null ? h.FirstRoomImage.ToString() : null; //設定照片參數
 
                 HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。
-                                             //rb.start = dateTimePicker1.Value;
-                                             //rb.end = dateTimePicker2.Value;
+                                             
+
                 var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == FrmLogin.auth.MemberID);
 
                 if (hls.ToList().Count != 0)   //愛心顏色才會跟HotelLikes內的LikeStatus同步
@@ -1195,7 +1200,7 @@ namespace FunNow.BackSide_POS
             dateTimePicker2.MinDate = dateTimePicker1.Value.Date.AddDays(1);
 
 
-            toolStripLabel4.Text = "熱烈歡迎會員編號" + FrmLogin.auth.MemberID + "，大名為" + FrmLogin.auth.Name + "登入平台";
+            toolStripLabel4.Text = "熱烈歡迎會員編號" + FrmLogin.auth.MemberID + "，" + FrmLogin.auth.Name + "登入平台~~~~~"+"      ";
 
 
             //CITY ComboBox
