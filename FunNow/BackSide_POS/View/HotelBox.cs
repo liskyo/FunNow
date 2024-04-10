@@ -108,6 +108,12 @@ namespace FunNow.BackSide_POS.View
                 }
 
 
+                if(_hotel.CommentRate.Average(c => c.Rating) >= 4) { label7.Text = "超級好"; }
+                else if (_hotel.CommentRate.Average(c => c.Rating) >= 3) { label7.Text = "非常好"; }
+                else  { label7.Text = "普通好"; }
+
+
+
                 //if (!string.IsNullOrEmpty(_room.fImagepath))//不是空字串則載入圖片
                 //{
                 //    string path = Application.StartupPath + "\\roomImages";

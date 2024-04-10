@@ -955,7 +955,7 @@ namespace FunNow.BackSide_POS
             string keyword = txtKeyword.Text; //關鍵字搜尋
 
             var hotels = from h in db.Hotel   // 所有的hotel
-                         where rooms.ToList().Contains(h.HotelID) && (h.HotelName.Contains("嘉義") || h.HotelName.Contains("靠北邊") || h.HotelName.Contains("加賀屋") || h.HotelName.Contains("樂高"))
+                         where rooms.ToList().Contains(h.HotelID) && (h.HotelName.Contains("嘉義") || h.HotelName.Contains("靠北邊") || h.HotelName.Contains("基隆") || h.HotelName.Contains("嗨嗨"))
                          select
                          new
                          {
@@ -984,7 +984,7 @@ namespace FunNow.BackSide_POS
                             select hl;
 
             var hotels2 = from h in db.Hotel   // 空房的hotel
-                          where rooms.ToList().Contains(h.HotelID) && (h.HotelName.Contains("嘉義") || h.HotelName.Contains("靠北邊") || h.HotelName.Contains("加賀屋") || h.HotelName.Contains("樂高"))
+                          where rooms.ToList().Contains(h.HotelID) && (h.HotelName.Contains("嘉義") || h.HotelName.Contains("靠北邊") || h.HotelName.Contains("基隆") || h.HotelName.Contains("嗨嗨"))
                           select new { HotelAll = h, h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() };  //將hotels2查詢結果繫結到HotelBox
                                                                                                                                                 //設定照片條件
             foreach (var h in hotels2)
@@ -1332,7 +1332,7 @@ namespace FunNow.BackSide_POS
             string keyword = txtKeyword.Text; //關鍵字搜尋
 
             var hotels = from h in db.Hotel   // 所有的hotel
-                         where rooms.ToList().Contains(h.HotelID) &&( h.HotelName.Contains("嘉義") || h.HotelName.Contains("靠北邊") || h.HotelName.Contains("加賀屋") || h.HotelName.Contains("樂高"))
+                         where rooms.ToList().Contains(h.HotelID) &&( h.HotelName.Contains("嘉義") || h.HotelName.Contains("靠北邊") || h.HotelName.Contains("基隆") || h.HotelName.Contains("嗨嗨"))
                          select
                          new
                          {
@@ -1361,7 +1361,7 @@ namespace FunNow.BackSide_POS
                             select hl;
 
             var hotels2 = from h in db.Hotel   // 空房的hotel
-                          where rooms.ToList().Contains(h.HotelID) && (h.HotelName.Contains("嘉義") || h.HotelName.Contains("靠北邊") || h.HotelName.Contains("加賀屋") || h.HotelName.Contains("樂高"))
+                          where rooms.ToList().Contains(h.HotelID) && (h.HotelName.Contains("嘉義") || h.HotelName.Contains("靠北邊") || h.HotelName.Contains("基隆") || h.HotelName.Contains("嗨嗨"))
                           select new { HotelAll = h, h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() };  //將hotels2查詢結果繫結到HotelBox
                                                                                                                                                 //設定照片條件
             foreach (var h in hotels2)
