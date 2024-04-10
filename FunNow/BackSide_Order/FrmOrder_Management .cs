@@ -219,6 +219,7 @@ namespace FunNow.BackSide_Order
                 RoomID = f.orderdetails.RoomID,
                 CheckInDate = f.orderdetails.CheckInDate,
                 CheckOutDate = f.orderdetails.CheckOutDate,
+                CreatedAt = f.orderdetails.CreatedAt,
                 isOrdered = f.orderdetails.isOrdered
             };
 

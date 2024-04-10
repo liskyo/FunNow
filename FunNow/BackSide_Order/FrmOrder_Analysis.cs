@@ -114,6 +114,10 @@ namespace FunNow.BackSide_Order
         {
             using (dbFunNow db = new dbFunNow())
             {
+                // 獲取未來 7 日的日期範圍
+                DateTime today = DateTime.Now.Date;
+                DateTime startDate = today;
+                DateTime endDate = startDate.AddDays(7).Date;
 
                 // 查詢每個飯店的訂單量
                 var hotelquantitySales = from order in db.Order
@@ -136,57 +140,43 @@ namespace FunNow.BackSide_Order
                 dataGridView1.Columns["HotelName"].HeaderText = "飯店名稱";
                 dataGridView1.Columns["TotalSales"].HeaderText = "總訂單量";
 
-                // 設定 DataGridView 的樣式
-                dataGridView1.DefaultCellStyle.Font = new Font("微軟正黑體", 12);
-                dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("微軟正黑體", 12, FontStyle.Bold);
-                dataGridView1.DefaultCellStyle.BackColor = Color.White;
-                dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
-                dataGridView1.EnableHeadersVisualStyles = false;
-                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(66, 204, 156);
-                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-                dataGridView1.RowHeadersVisible = false;
+                // 獲取最近 7 日的訂單量
+                var futureOrderQuantities = (from order in db.Order
+                                             join orderDetail in db.OrderDetails on order.OrderID equals orderDetail.OrderID
+                                             join room in db.Room on orderDetail.RoomID equals room.RoomID
+                                             join hotel in db.Hotel on room.HotelID equals hotel.HotelID
+                                             where orderDetail.CheckInDate >= startDate && orderDetail.CheckInDate < endDate
+                                                && orderDetail.CheckOutDate < endDate // CheckOutDate 不包括 endDate
+                                             group new { order, orderDetail, room, hotel } by DbFunctions.TruncateTime(orderDetail.CheckInDate) into g
+                                             select new
+                                             {
+                                                 Date = g.Key,
+                                                 OrderCount = g.Count(),
+                                                 HotelName = g.FirstOrDefault().hotel.HotelName
+                                             }).ToList();
 
-                var dailyOrderQuantitiesFromDb = from order in db.Order
-                                                 group order by DbFunctions.TruncateTime(order.CreatedAt) into g
-                                                 select new
-                                                 {
-                                                     Date = DbFunctions.TruncateTime(g.Key),
-                                                     OrderCount = g.Count()
-                                                 };
-
-                // 將結果集載入到內存中
-                var dailyOrderQuantities = (from order in db.Order
-                                            join orderDetail in db.OrderDetails on order.OrderID equals orderDetail.OrderID
-                                            join room in db.Room on orderDetail.RoomID equals room.RoomID
-                                            join hotel in db.Hotel on room.HotelID equals hotel.HotelID
-                                            group new { order, orderDetail, room, hotel } by DbFunctions.TruncateTime(orderDetail.CheckInDate) into g
-                                            select new
-                                            {
-                                                Date = g.Key,
-                                                OrderCount = g.Count(),
-                                                HotelName = g.FirstOrDefault().hotel.HotelName
-                                            }).ToList();
-
-                // 使用折線圖顯示每日的訂單量變化趨勢
+                // 使用折線圖顯示最近 7 日的訂單量變化趨勢
                 chart1.Series.Clear();
 
                 // 遍歷每個飯店，為每個飯店添加一條統計線
-                foreach (var hotelName in dailyOrderQuantities.Select(x => x.HotelName).Distinct())
+                foreach (var hotelName in futureOrderQuantities.Select(x => x.HotelName).Distinct())
                 {
-                    var ordersForHotel = dailyOrderQuantities.Where(x => x.HotelName == hotelName).ToList();
+                    var ordersForHotel = futureOrderQuantities.Where(x => x.HotelName == hotelName).ToList();
 
                     var series = new Series
                     {
-                        Name = hotelName + "近七日訂單量",
+                        Name = hotelName + "未來七日訂單量",
                         ChartType = SeriesChartType.Line,
-                        XValueType = ChartValueType.DateTime,
+                        XValueType = ChartValueType.String, // 將 X 軸的值類型設為字符串，以顯示日期
                         YValueType = ChartValueType.Int32
                     };
 
                     // 添加該飯店的訂單量到折線圖中
                     foreach (var orderForHotel in ordersForHotel)
                     {
-                        series.Points.AddXY(orderForHotel.Date, orderForHotel.OrderCount);
+                        // 將日期轉換為 MM/dd 格式的字符串，並添加到折線圖中
+                        string dateStr = orderForHotel.Date.Value.ToString("MM/dd");
+                        series.Points.AddXY(dateStr, orderForHotel.OrderCount);
                     }
 
                     chart1.Series.Add(series);
@@ -195,7 +185,6 @@ namespace FunNow.BackSide_Order
                 // 設定折線圖的樣式
                 chart1.BackColor = Color.White;
                 chart1.ChartAreas[0].BackColor = Color.Transparent;
-                chart1.ChartAreas[0].AxisX.LabelStyle.Format = "MM/dd/yyyy"; // 設定X軸日期格式
                 chart1.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.LightGray;
                 chart1.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.LightGray;
             }
@@ -216,6 +205,8 @@ namespace FunNow.BackSide_Order
                     Discount = c.Discount
                 }).ToList();
 
+                // 設定第一欄的寬度
+                //dataGridView1.Columns[0].Width = 50; // 假設您希望將第一欄寬度設為 200 像素
                 // 查詢已使用的折扣券資料
                 var usedCoupons = from order in db.Order
                                   where order.CouponID != null
