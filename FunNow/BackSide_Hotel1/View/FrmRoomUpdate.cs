@@ -1,4 +1,5 @@
-﻿using FunNow.BackSide_Hotel.View;
+﻿using CefSharp.DevTools.CSS;
+using FunNow.BackSide_Hotel.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -99,17 +100,47 @@ namespace FunNow.BackSide_Hotel1.View
 
                 foreach (var img in images)
                 {
-                    if (string.IsNullOrEmpty(img.RoomImage1) || !File.Exists(img.RoomImage1)) break;
-          
-                    PictureBox pictureBox = new PictureBox
-                    {
-                        SizeMode = PictureBoxSizeMode.Zoom,
-                        BorderStyle = BorderStyle.FixedSingle,
-                        ImageLocation = img.RoomImage1,
 
-                        //Width = 100, // 適當的大小
-                        // Height = 100  // 適當的大小
-                    };
+                    if (!string.IsNullOrEmpty(img.RoomImage1))
+                    {
+                        string filename = Path.GetFileName(img.RoomImage1);
+                        string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                        string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", filename);
+
+                        if (File.Exists(path))
+                        {
+                            PictureBox pictureBox1 = new PictureBox
+                            {
+                                SizeMode = PictureBoxSizeMode.Zoom,
+                                BorderStyle = BorderStyle.FixedSingle,
+                                ImageLocation = path,
+                            };
+                            flowLayoutPanel1.Controls.Add(pictureBox1);
+                        }
+                    }
+                    else
+                    {
+                        PictureBox pictureBox1 = new PictureBox
+                        {
+                            SizeMode = PictureBoxSizeMode.Zoom,
+                            BorderStyle = BorderStyle.FixedSingle,
+                            ImageLocation = null,
+                        };
+                        flowLayoutPanel1.Controls.Add(pictureBox1);
+
+                    }
+
+
+
+
+                    //if (string.IsNullOrEmpty(img.RoomImage1) || !File.Exists(img.RoomImage1)) break;
+
+                    //PictureBox pictureBox = new PictureBox
+                    //{
+                    //    SizeMode = PictureBoxSizeMode.Zoom,
+                    //    BorderStyle = BorderStyle.FixedSingle,
+                    //    ImageLocation = img.RoomImage1,
+                    //};
 
          
 
@@ -128,7 +159,7 @@ namespace FunNow.BackSide_Hotel1.View
                     };
 
                     // 將控件添加到 FlowLayoutPanel
-                    flowLayoutPanel1.Controls.Add(pictureBox);           
+                       
                     flowLayoutPanel1.Controls.Add(removeButton);
                 }
             }
