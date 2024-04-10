@@ -549,7 +549,6 @@
             this.toolStripComboBox1.Name = "toolStripComboBox1";
             this.toolStripComboBox1.Size = new System.Drawing.Size(168, 62);
             this.toolStripComboBox1.ToolTipText = "搜尋地區";
-            this.toolStripComboBox1.Click += new System.EventHandler(this.toolStripComboBox1_Click);
             // 
             // pictureBox1
             // 

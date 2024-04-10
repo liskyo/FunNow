@@ -20,29 +20,9 @@ namespace FunNow.BackSide_POS
         public static DateTime checkOutDate { get; set; }
 
         private OrderDetails _order;
-        public OrderDetails order
-        {
-            get
-            {
-                if (_order == null)
-                {
-                    _order = new OrderDetails();
-                }
-                return _order;
-            }
-        }
+        
         private Hotel _h;
-        public Hotel h
-        {
-            get
-            {
-                if (_h == null)
-                {
-                    _h = new Hotel();
-                }
-                return _h;
-            }
-        }
+        
         private Room _r;
         private void showHotelMethod(HotelBox p, DateTime start, DateTime end)
         {
@@ -54,26 +34,11 @@ namespace FunNow.BackSide_POS
             f.ShowDialog();
 
         }
-        public Room r
-        {
-            get
-            {
-                if (_r == null)
-                {
-                    _r = new Room();
-                }
-                return _r;
-            }
-        }
-        public FrmPOS()
+         public FrmPOS()
         {
             InitializeComponent();
             this.Text = "FunNow訂房平台，Have Fun!!";
             //queryAll(); //SHOW出房間資訊 包含自訂欄位           
-
-        }
-        private void toolStripComboBox1_Click(object sender, EventArgs e)
-        {
 
         }
         private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
@@ -299,6 +264,7 @@ namespace FunNow.BackSide_POS
                          where (rooms.ToList().Contains(h.HotelID)) && 
                           ( h.HotelName.Contains(keyword)
                          || h.HotelAddress.Contains(keyword)
+                         || h.HotelDescription.Contains(keyword)
                          || h.HotelPhone.Contains(keyword)
                          || h.City.CityName.Contains(keyword))
                          select
@@ -332,6 +298,7 @@ namespace FunNow.BackSide_POS
                           where (rooms.ToList().Contains(h.HotelID)) && (h.HotelName.Contains(keyword)
                           || h.HotelAddress.Contains(keyword)
                           || h.HotelPhone.Contains(keyword)
+                          || h.HotelDescription.Contains(keyword)
                           || h.City.CityName.Contains(keyword))
                           select new { HotelAll = h, h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() };  //將hotels2查詢結果繫結到HotelBox
                                                                                                                                                 //設定照片條件
