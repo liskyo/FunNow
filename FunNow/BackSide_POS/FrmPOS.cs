@@ -118,11 +118,13 @@ namespace FunNow.BackSide_POS
 
             var hotels2 = from h in db.Hotel   // 空房的hotel
                           where rooms.ToList().Contains(h.HotelID)  // List<Hotel>
-                          select new { HotelAll = h, h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() };  //將hotels2查詢結果繫結到HotelBox
-                                                                                                                                                //設定照片條件
+                          select new { HotelAll = h, h.HotelID, FirstRoomImage = h.HotelImages.Select(ri => ri.HotelImage).FirstOrDefault() }; //首先，使用 h.HotelImages 語句來取得 Hotel 物件的所有圖片。
+                                                                                                                                               //然後，使用 Select(ri => ri.HotelImage) 語句來選取所有圖片的 URL。
+                                                                                                                                               //最後，使用 FirstOrDefault() 語句來取得第一張圖片的 URL。
             foreach (var h in hotels2)
             {
                 string HotelImageString = h.FirstRoomImage != null ? h.FirstRoomImage.ToString() : null; //設定照片參數
+                                         //三元運算式   //1.不=null   2. ture 執行.ToString()  3. false則為 null
 
                 HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。
                                              //rb.start = dateTimePicker1.Value;
