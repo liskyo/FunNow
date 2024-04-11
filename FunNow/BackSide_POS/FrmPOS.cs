@@ -276,7 +276,7 @@ namespace FunNow.BackSide_POS
             string keyword = txtKeyword.Text; //關鍵字搜尋
 
             var hotels = from h in db.Hotel   // 所有的hotel
-                         where (rooms.ToList().Contains(h.HotelID)) && 
+                         where (rooms.ToList().Contains(h.HotelID)) && //記得括號
                           ( h.HotelName.Contains(keyword)
                          || h.HotelAddress.Contains(keyword)
                          || h.HotelDescription.Contains(keyword)
@@ -310,7 +310,8 @@ namespace FunNow.BackSide_POS
                             select hl;
 
             var hotels2 = from h in db.Hotel   // 空房的hotel
-                          where (rooms.ToList().Contains(h.HotelID)) && (h.HotelName.Contains(keyword)
+                          where (rooms.ToList().Contains(h.HotelID)) && 
+                          (h.HotelName.Contains(keyword)
                           || h.HotelAddress.Contains(keyword)
                           || h.HotelPhone.Contains(keyword)
                           || h.HotelDescription.Contains(keyword)
@@ -352,11 +353,10 @@ namespace FunNow.BackSide_POS
         }
         private void toolStripButton4_Click(object sender, EventArgs e)  //3條件搜尋
         {
-            if (toolStripComboBox1.Text=="請選擇人數" || toolStripComboBox2.Text == "請選擇城市")
+            if (toolStripComboBox1.Text=="請選擇人數" || toolStripComboBox2.Text == "請選擇城市") //表示未選條件
             {
                 MessageBox.Show("請選擇城市及訂房人數");
             }
-
 
             dbFunNow db = new dbFunNow();//代表與資料庫的連線
 
@@ -415,9 +415,8 @@ namespace FunNow.BackSide_POS
             foreach (var h in hotels2)
             {
                 string HotelImageString = h.FirstRoomImage != null ? h.FirstRoomImage.ToString() : null; //設定照片參數
-                HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。
-                                             //rb.start = dateTimePicker1.Value;
-                                             //rb.end = dateTimePicker2.Value;
+                HotelBox hb = new HotelBox();//建立一個 RoomBox 物件，用來顯示房間資訊。                                           
+
                 var hls = hotellike.Where(p => p.HotelID == h.HotelID && p.MemberID == FrmLogin.auth.MemberID);
 
                 if (hls.ToList().Count != 0)   //愛心顏色才會跟HotelLikes內的LikeStatus同步
@@ -432,8 +431,7 @@ namespace FunNow.BackSide_POS
                 hb.Width = flowLayoutPanel1.Width;//設定 RoomBox 物件的寬度為 flowLayoutPanel1 的寬度。
 
                 hb.hotelPicture = HotelImageString;
-                hb.hotel = h.HotelAll;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數
-                                      // rb._hotels = hotels2;//顯示全部旅館
+                hb.hotel = h.HotelAll;//設定 RoomBox 物件的房間資料為h。hotel為Hotel的變數                                      
                 hb.hotelboxStart = dateTimePicker1.Value.Date;
                 hb.hotelboxEnd = dateTimePicker2.Value.Date;
                 hb.showHotelEvent += this.showHotelMethod;
@@ -455,13 +453,7 @@ namespace FunNow.BackSide_POS
                          where !(k.CheckInDate >= dateTimePicker2.Value.Date || k.CheckOutDate <= dateTimePicker1.Value.Date) // 符合條件List<OrderDetails>
                          //使用 where 子句排除在指定日期範圍內已訂出的房間。 //訂單的開始日期大於或等於 dateTimePicker2 的值
                          select k.RoomID;                           //  或  //訂單的結束日期小於或等於 dateTimePicker1 的值。 //ex. List<RoomID> 123 234(在訂單內)
-            //   o 可訂  旅館  房間  
-            //   x (1)   3     123 (在訂單內)
-            //   x (2)   4     234
-            //   o (3)   4     235
-            //   o (4)   5     236 
-            //   o (4)   5     237
-
+     
             // 篩選出已在指定日期範圍內訂出的房間                    
             var rooms = from r in db.Room   // 查詢所有房間  List<Room>
                         where !orders.ToList().Contains(r.RoomID) //k.RoomID = r.RoomID => List<Room> 房間 o (3)  4-235    o (4)  5-236   o (4) 5-237 
@@ -567,14 +559,7 @@ namespace FunNow.BackSide_POS
                          where !(k.CheckInDate >= dateTimePicker2.Value.Date || k.CheckOutDate <= dateTimePicker1.Value.Date) // 符合條件List<OrderDetails>
                          //使用 where 子句排除在指定日期範圍內已訂出的房間。 //訂單的開始日期大於或等於 dateTimePicker2 的值
                          select k.RoomID;                           //  或  //訂單的結束日期小於或等於 dateTimePicker1 的值。 // List<RoomID>123 234
-            //   o 可訂  旅館  房間  
-            //   x (1)   3     123 (在訂單內)
-            //   x (2)   4     234
-            //   o (3)   4     235
-            //   o (4)   5     236 
-            //   o (4)   5     237
-
-            // 篩選出已在指定日期範圍內訂出的房間                    
+                          
             var rooms = from r in db.Room   // 查詢所有房間  List<Room>
                         where !orders.ToList().Contains(r.RoomID) //k.RoomID = r.RoomID => List<Room> 房間 o (3)  4-235    o (4)  5-236   o (4) 5-237 
                         select r.HotelID;                         // List<HotelID>    旅館 o 4 o 5 o 5
@@ -832,16 +817,8 @@ namespace FunNow.BackSide_POS
                          where !(k.CheckInDate >= dateTimePicker2.Value.Date || k.CheckOutDate <= dateTimePicker1.Value.Date) // 符合條件List<OrderDetails>
                          //使用 where 子句排除在指定日期範圍內已訂出的房間。 //訂單的開始日期大於或等於 dateTimePicker2 的值
                          select k.RoomID;                           //  或  //訂單的結束日期小於或等於 dateTimePicker1 的值。 // List<RoomID>123 234
-            //   o 可訂  旅館  房間  
-            //   x (1)   3     123 (在訂單內)
-            //   x (2)   4     234
-            //   o (3)   4     235
-            //   o (4)   5     236 
-            //   o (4)   5     237
-
-            // 篩選出已在指定日期範圍內訂出的房間
-            // 
-
+      
+           
             var roomequipmentreference = from re in db.Room_Equipment_Reference
                                          where re.RoomEquipment.RoomEquipmentName == comboBox4.Text
                                          select re.RoomID;
@@ -1068,13 +1045,7 @@ namespace FunNow.BackSide_POS
 
                 if (hls.ToList().Count != 0) //如果旅館喜好裡有資料，則設定 HotelBox 物件的旅館喜好狀態
                 {
-                    hb.hotellike = (HotelLikes)hls.ToList().ElementAt(0); //返回 List<HotelLikes> 集合中的第一個元素
-                                                                          //將第一個元素轉換為 HotelLikes 型別
-                                                                          //rb.hotellike：HotelBox 物件的 HotelLikes 屬性，用於存儲旅館喜好資料。
-                                                                          //hls：一個包含旅館喜好資料的 IEnumerable<HotelLikes> 集合。
-                                                                          //ToList()：將 IEnumerable< HotelLikes > 集合轉換為 List<HotelLikes> 集合。
-                                                                          //ElementAt(0)：返回 List<HotelLikes> 集合中的第一個元素。
-                                                                          //(HotelLikes)：將第一個元素轉換為 HotelLikes 型別。
+                    hb.hotellike = (HotelLikes)hls.ToList().ElementAt(0); 
                 }
 
                 hb.HotelID = h.HotelID;
@@ -1108,13 +1079,7 @@ namespace FunNow.BackSide_POS
                          where !(k.CheckInDate >= dateTimePicker2.Value.Date || k.CheckOutDate <= dateTimePicker1.Value.Date) // 符合條件List<OrderDetails>
                          //使用 where 子句排除在指定日期範圍內已訂出的房間。 //訂單的開始日期大於或等於 dateTimePicker2 的值
                          select k.RoomID;                           //  或  //訂單的結束日期小於或等於 dateTimePicker1 的值。 //ex. List<RoomID> 123 234(在訂單內)
-            //   o 可訂  旅館  房間  
-            //   x (1)   3     123 (在訂單內)
-            //   x (2)   4     234
-            //   o (3)   4     235
-            //   o (4)   5     236 
-            //   o (4)   5     237
-
+     
             // 篩選出已在指定日期範圍內訂出的房間                    
             var rooms = from r in db.Room   // 查詢所有房間  List<Room>
                         where !orders.ToList().Contains(r.RoomID) //k.RoomID = r.RoomID => List<Room> 房間 o (3)  4-235    o (4)  5-236   o (4) 5-237 
@@ -1372,15 +1337,6 @@ namespace FunNow.BackSide_POS
         }
         private void resetGridStyle()//重設資料表樣式
         {
-            //dataGridView1.Columns[0].Width = 80;
-            //dataGridView1.Columns[1].Width = 120;
-            //dataGridView1.Columns[2].Width = 180;
-            //dataGridView1.Columns[3].Width = 160;
-            //dataGridView1.Columns[4].Width = 120;
-            //dataGridView1.Columns[5].Width = 120;
-            //dataGridView1.Columns[6].Width = 100;
-
-
             bool isColorChanged = false;  //設定行列的顏色
             foreach (DataGridViewRow r in dataGridView1.Rows)
             {
