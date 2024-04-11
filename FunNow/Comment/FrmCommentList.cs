@@ -16,7 +16,8 @@ namespace FunNow.Comment
     {
       
         private readonly dbFunNow db = new dbFunNow();
-        
+        private bool showHiddenComments = false;
+
         public FrmCommentList()
         {
             InitializeComponent();
@@ -34,6 +35,7 @@ namespace FunNow.Comment
             var comments = from c in db.CommentRate
                            join m in db.Member on c.MemberID equals m.MemberID
                            join h in db.Hotel on c.HotelID equals h.HotelID
+                           //where showHiddenComments || (c.Ishide.HasValue && !c.Ishide.Value)
                            select new
                            {
                                c.CommentID,
@@ -125,6 +127,37 @@ namespace FunNow.Comment
                     }
                 }
             }
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count <= 0)
+                return;
+
+            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+
+            // 獲取選擇行的CommentID
+            int commentId = (int)selectedRow.Cells["CommentID"].Value;
+
+            // 根據CommentID查找對應的CommentRate實體
+            CommentRate commentRate = db.CommentRate.FirstOrDefault(c => c.CommentID == commentId);
+
+            if (commentRate != null)
+            {
+                // 將Ishide設置為true,實現軟刪除
+              //  commentRate.Ishide = true;
+                db.SaveChanges();
+
+                // 刷新數據
+                queryAll();
+            }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            showHiddenComments = !showHiddenComments;
+            toolStripButton4.Checked = showHiddenComments;
+            queryAll();
         }
     }
 }
