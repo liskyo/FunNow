@@ -77,7 +77,7 @@
             "總銷售額分析",
             "飯店訂房率分析",
             "折扣券使用率分析",
-            "訂房飯店地圖"});
+            "平台銷售結構分析"});
             this.AnalysiscomboBox.Location = new System.Drawing.Point(112, 37);
             this.AnalysiscomboBox.Name = "AnalysiscomboBox";
             this.AnalysiscomboBox.Size = new System.Drawing.Size(230, 20);
