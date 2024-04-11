@@ -20,7 +20,7 @@ namespace FunNow.BackSide_Order.View
         private void LoadHtmlIntoWebBrowser()
         {
             chromiumWebBrowser1.Visible = true;
-            string powerBiMapEmbedLink = "https://app.powerbi.com/view?r=eyJrIjoiZDE0NzYzZTQtNjUzOC00ZjJmLTk5ZDMtY2M4MTcwNmIwYzdiIiwidCI6IjcwODk3ZDZmLTBhNDgtNDlkZS04ODBmLTI3ZDhhZDQ1ZDc2ZSIsImMiOjEwfQ%3D%3D";
+            string powerBiMapEmbedLink = "https://app.powerbi.com/view?r=eyJrIjoiOWRkNzY5Y2QtODAxYS00MDE5LTkxN2UtYzE5Y2U0ZWU2YjBmIiwidCI6IjcwODk3ZDZmLTBhNDgtNDlkZS04ODBmLTI3ZDhhZDQ1ZDc2ZSIsImMiOjEwfQ%3D%3D";
             chromiumWebBrowser1.Load(powerBiMapEmbedLink);
         }
     }
