@@ -100,12 +100,13 @@ namespace FunNow.BackSide_Hotel1.View
 
                 foreach (var img in images)
                 {
+                    string filename = Path.GetFileName(img.RoomImage1);
+                    string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                    string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", filename);
 
                     if (!string.IsNullOrEmpty(img.RoomImage1))
                     {
-                        string filename = Path.GetFileName(img.RoomImage1);
-                        string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
-                        string path = Path.Combine(projectRoot, "..\\..\\..\\image\\", filename);
+                       
 
                         if (File.Exists(path))
                         {
@@ -132,22 +133,11 @@ namespace FunNow.BackSide_Hotel1.View
 
 
 
-
-                    //if (string.IsNullOrEmpty(img.RoomImage1) || !File.Exists(img.RoomImage1)) break;
-
-                    //PictureBox pictureBox = new PictureBox
-                    //{
-                    //    SizeMode = PictureBoxSizeMode.Zoom,
-                    //    BorderStyle = BorderStyle.FixedSingle,
-                    //    ImageLocation = img.RoomImage1,
-                    //};
-
          
-
                     Button removeButton = new Button
                     {
                         Text = "刪除",
-                        Tag = img.RoomImage1
+                        Tag = path
                     };
 
                     // 刪除按鈕的事件處理
